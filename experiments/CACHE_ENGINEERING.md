@@ -99,6 +99,24 @@ AKV 的 cache engineering（drop + repos + 扩展 radix 复用）与 ActKV 的�
 > `_op_repos` 已改为分配失败先按 LRU 驱逐陈旧命名空间再重试（对齐 `_op_bind`）；首次全量冒烟
 > 中 11/12 会话回退冷启动，修复后 1,120/1,120 成功。
 
+#### 3.1.1 控制路径优化后的重跑（v2，`experiments/results/cache-engineering/replay-v2.json`）
+
+同一 128 会话配置在 idle housekeeping 节流（RPC 39×，§5.1）后重跑：
+
+| 臂 | prefill token | TTFT P50 | TTFT P95 | prefill 墙钟 |
+|---|---|---|---|---|
+| full | 26,063,160（=v1） | 74.0 → 120.9 ms | 1,715.2 → 1,787.1 ms | 1,580 → 1,687 s |
+| trim | 33,166,136（=v1） | 154.7 → 167.3 ms | 1,383.2 → 1,414.6 ms | 1,649 → 1,746 s |
+| cache-eng | 9,592,952（=v1） | 72.0 → 107.0 ms | 955.3 → 1,019.5 ms | 688 → 767 s |
+
+- **机制指标逐 token 一致**（prefill/复用/丢弃/命中/回退全部相等，确定性回放）；总墙钟
+  **6,369 → 5,003 s（−21.5%）**，即控制路径优化的端到端收益；负载下的 repos 墙钟
+  p50 22.9 / p95 52.6 ms（§5.1 的空闲 RPC 39× 是同一修复的直接测量）。
+- **per-request TTFT/wall +4–7%（P95 口径）的诚实解读**：v1 的慢 RPC 天然拉开了每轮节奏，
+  请求落在引擎空闲期；v2 的请求紧贴上一轮尾部，`forward_entry` 口径的排队暴露进 TTFT。
+  机制收益（re-prefill 2.7×/3.5×、P95 1.8×/1.4×）在 v2 同样成立，论文正文仍以 v1 表为
+  机制口径，本表作为控制优化与节奏效应的对照记录。
+
 ## 3.2 每次丢弃的成本（repos vs 冷预填）
 
 `experiments/cache_engineering_bench.py` 在 1K/4K/8K 前缀上丢弃 25% 中段，

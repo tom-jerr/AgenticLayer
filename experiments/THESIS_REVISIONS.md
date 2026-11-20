@@ -216,4 +216,8 @@ PDF 重画建议：图 4-6/4-7/4-8 的折线坐标与图注直接取自 SVG 内�
     迭代，p50 34.7 ms）——经 idle housekeeping 节流修复后 RPC p50 0.89 ms，repos 客户端墙钟 22K 由
     29–57 ms 降到 14.7–18.3 ms（2–3×）。负结果：post-insert match 不可用 InsertResult 替代（其 walk 参与
     原生 evictable 记账，省略会触发 idle 不变式池泄漏中止）；剩余 insert+match ≈ 7–9 ms 为 pinned
-    Python TreeCore walk 成本。论文写「键旋转成本」应引用总墙钟与上述分解。
+    Python TreeCore walk 成本。**全量回放重跑（v2）**：128 会话机制指标逐 token 一致，总墙钟
+    6,369 → 5,003 s（−21.5%）；负载下 repos 墙钟 p50 22.9 / p95 52.6 ms；per-request TTFT/wall
+    P95 +4–7%（v1 的慢 RPC 天然拉开节奏，v2 请求紧贴尾部、排队暴露进 forward_entry 口径），
+    机制收益（re-prefill 2.7×/3.5×、P95 1.8×/1.4×）在 v2 同样成立。论文写「键旋转成本」应引用
+    总墙钟与上述分解。

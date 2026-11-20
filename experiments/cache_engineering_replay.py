@@ -154,6 +154,7 @@ def run_arm(client: httpx.Client, engine: Engine, week: str, line: dict, arm: st
             handle, handle_len = None, 0
             salt = digest(f"{salt_prefix}:{index}:window")
         drop = None
+        repos_ms = None
         if arm != "full" and handle is not None and len(view_blocks) > cap_blocks:
             plan = select_drop_messages(message_blocks, sum(message_blocks))
             if plan is not None:
@@ -169,10 +170,13 @@ def run_arm(client: httpx.Client, engine: Engine, week: str, line: dict, arm: st
                 cached = view_tokens[:handle_len]
                 target = cached[:cut_from] + cached[cut_to:]
                 prompt = target + kept[len(target):]
+                repos_ms = None
                 try:
+                    repos_t0 = time.monotonic()
                     repos = engine.op("repos", f"r-{rid}", f"v-{index}", handle, {
                         "expected_ids": target, "cache_salt": new_salt,
                         "dropped": [[cut_from, cut_to]]})
+                    repos_ms = (time.monotonic() - repos_t0) * 1000
                 except RuntimeError:
                     repos = {"status": "unavailable"}
                 if repos.get("status") == "completed":
@@ -219,6 +223,7 @@ def run_arm(client: httpx.Client, engine: Engine, week: str, line: dict, arm: st
         turns.append({
             "turn": index, "tokens": len(prompt), "hit": hit,
             "dropped": (drop[1] - drop[0]) * 8 if drop else 0,
+            "repos_ms": (repos_ms if drop is not None and arm == "cache-eng" else None),
             "ttft": ttft if ttft > 0 else None, "wall": wall,
             "out": [],
         })
