@@ -4,6 +4,33 @@
 Qwen3.5-9B NVFP4 / RTX 5090 / 固定 CUDA Graph 引擎后的实测口径。两篇参考工作提供的关键点：
 AKV 的 cache engineering（drop + repos + 扩展 radix 复用）与 ActKV 的动作感知保留/置信度预算。
 
+## 0. 动机与背景
+
+**核心矛盾（AKV）**：上下文工程（裁剪/摘要）改写轨迹前缀后，保留后缀的 KV 全部失效，必须整体
+重预填；为了不重预填，harness 往往把压缩推迟到接近阈值再激进砍掉历史 → 丢信息、掉精度。AKV
+实测 trim 的成本反而达到全量的 1.85×。**缓存工程**不改文本轨迹：drop 只把选定 KV 移出后续注意力、
+repos 按 RoPE 重定位保留键，复用全部保留状态、免去 re-prefill。
+
+**本负载的画像证据**（`trace-profile.json`，16 周完整扫描）：12,002 会话、1,222,199 递归请求；
+上下文 P50 **118,080 token**（32K 窗口的 3.6 倍）；前缀改写 53,798 次（mutation 45,099 + switch
+8,699）。任何文本级裁剪都要重算改写点之后全部内容，按中位前缀折算约 6.2×10⁹ token 重复预填充。
+
+**三条可消融的路径**：`full`（不丢弃，窗口滑落时整窗冷预填）／`trim`（丢弃中段后冷启动，今日
+压缩路径）／`cache-eng`（丢弃同一段后键旋转复用，只预填增量）。三臂的比较直接回答：裁剪的
+re-prefill 代价能否用旋转复用收回。
+
+**修改与消融对照一览**（各条的证据见对应章节）：
+
+| 修改 | 消融/对照 | 效果 | 位置 |
+|---|---|---|---|
+| `_op_repos`（drop + 键旋转 + 新 salt 插入） | repos vs 冷预填（1K/4K/8K） | 4K 起 1.25–1.37×，且不重算 | §2、§3.2 |
+| `_op_repos` 分配失败先 LRU 驱逐 | 修复前后全量冒烟 | 回退 11/12 会话 → 1,120/1,120 零回退 | §3.1 |
+| `select_drop_messages` 消息边界保留 | 三臂回放（full/trim/cache-eng） | re-prefill −2.7×/−3.5×，P95 −1.8×/−1.4× | §3.1 |
+| DSH 插件 retention + REPOS 事件 + 源链 prepare | `dsh_bench --suite drop` 双轮 fixture | 17→42+marker 全门禁，391/1089 token 旋转复用 | §5.1 |
+| Triton 旋转核（AGENTIC_TRITON_ROTATE=1） | eager vs Triton 等价 + 8K/24K 测速 | 逐位一致、2.5–3.7×（但仅占 repos 墙钟 1–3 ms） | §5.1 |
+| idle housekeeping 节流（RPC 39×） | 优化前后 RPC/22K repos/全量回放 | RPC 34.7→0.89 ms；repos 14.7–18.3 ms；总墙钟 −21.5% | §5.1、§3.1.1 |
+| post-insert match 用 InsertResult 替代（负结果） | 引擎 idle 不变式 | 记账失衡中止，已回退——walk 参与原生账本 | §5.1 |
+
 ## 1. 机制映射
 
 | 论文机制 | 本仓库落点 | 状态 |

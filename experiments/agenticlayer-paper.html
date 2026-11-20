@@ -162,7 +162,8 @@
         <li><a href="#sensitivity"><span>05</span>敏感性分析</a></li>
         <li><a href="#ablation"><span>06</span>消融实验</a></li>
         <li><a href="#cases"><span>07</span>案例研究</a></li>
-        <li><a href="#discussion"><span>08</span>讨论与结论</a></li>
+        <li><a href="#cache-eng"><span>08</span>缓存工程消融</a></li>
+        <li><a href="#discussion"><span>09</span>讨论与结论</a></li>
         <li><a href="#references"><span>—</span>资料与复现</a></li>
       </ol>
     </nav>
@@ -172,6 +173,7 @@
         <h2 id="abstract-title">摘　要</h2>
         <p>智能体的一次用户输入会触发多次推理、工具调用、子任务和上下文变换。仅缩短单次生成无法消除整轮阻塞。AgenticLayer 将框架已确认的依赖、逻辑上下文版本与引擎物理状态交给同一个控制层：先判断动作是否合法、资源是否允许，再决定应否并行、何时准备以及哪些状态可以释放。</p>
         <p>在固定 CUDA Graph 的真实工具与 GPU 受控试验中，<strong>合法并行 + 付费前瞻</strong>使整轮 P95 下降 <strong>51.44%</strong>，独立复验下降 <strong>41.53%</strong>。而在独立的 FreeInference 留出回放中，联合策略比强组合只快 <strong>1.56%</strong>，区间跨 0，且没有触发可选准备或迁移。证据支持按依赖和等待窗口启用机制，不支持默认全开。</p>
+        <p>在缓存工程方向，<strong>drop / repos 键旋转复用</strong>让 FreeInference 16 周真实尺度回放的重预填 token 相对原生窗口滑落与「丢弃后冷启动」分别减少 <strong>2.7×</strong> 与 <strong>3.5×</strong>，TTFT P95 低 <strong>1.8×</strong> 与 <strong>1.4×</strong>；DSH 消息级丢弃闭环与 Triton 旋转核已接通，控制路径优化（RPC 39×）使全量回放总墙钟再降 <strong>21.5%</strong>。</p>
         <p class="keywords"><b>关键词：</b>智能体服务；活跃轮次；KV 缓存；上下文版本；联合调度</p>
       </section>
 
@@ -379,8 +381,123 @@
         </ol>
       </section>
 
+      <section id="cache-eng" aria-labelledby="ce-title">
+        <h2 id="ce-title"><span class="n">08</span>缓存工程：drop / repos 键旋转复用与真实尺度消融</h2>
+        <h3>8.1　动机与背景</h3>
+        <p>上下文工程（裁剪 / 摘要）改写轨迹前缀后，保留后缀必须整体重预填：AKV 实测 trim 的成本反而达到全量的 <strong>1.85×</strong>。FreeInference 16 周全量画像与这一结论一致：<strong>12,002 个会话、1,222,199 次递归请求</strong>，上下文 P50 达 <strong>118,080 token</strong>（32K 窗口的 3.6 倍），前缀改写事件 <strong>53,798 次</strong>（mutation 45,099 + switch 8,699）。任何文本级裁剪都要把改写点之后全部重算；按中位前缀折算约 6.2×10⁹ token 的重复预填充。</p>
+        <p>三条路径因此可消融：<strong>full</strong>（不丢弃，窗口滑落时整窗冷预填）、<strong>trim</strong>（丢弃中段后冷启动，今日压缩路径）、<strong>cache-eng</strong>（丢弃同一段后按 RoPE 键旋转复用，只预填增量）。比较的正是 AKV 的核心矛盾：裁剪省了上下文，却把 re-prefill 买回来。</p>
+        <h3>8.2　机制与改动</h3>
+        <div class="table-box" tabindex="0" role="region" aria-label="缓存工程机制与改动">
+          <table class="wide">
+            <caption><b>表 6．缓存工程机制落点与实测状态。</b> 载体为 Qwen3.5-9B-NVFP4 / RTX 5090 / SGLang 统一 radix（TP=1、page_size=1、no_buffer）。</caption>
+            <thead><tr><th scope="col">机制</th><th scope="col">实现</th><th scope="col">状态与边界</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">drop + repos 键旋转</th><td><code>engine_cache._op_repos</code> + <code>kernels.rotate_kv</code>：删除 span 后按部分 RoPE（rotary_dim=64）重定位保留键，Mamba 状态随链拷贝</td><td>22K 链客户端墙钟 14.7–18.3 ms；线性注意力状态保留原历史摘要（与 AKV 同源，非精确重算）</td></tr>
+              <tr><th scope="row">消息边界丢弃（ActKV）</th><td><code>policy.select_drop_messages</code> + <code>dsh-agentic</code> retention：任务锚点 + 最新轮保留，整消息丢弃，不切开工具往返</td><td>DSH 双轮 drop 套件全门禁（17→42+marker）；丢弃边界须落在模板干净处（tool 后 user 合并渲染则自动冷回退）</td></tr>
+              <tr><th scope="row">扩展 radix 命名空间</th><td>每次 drop 以新 <code>cache_salt</code> 插入原生 TreeCore；分配失败先 LRU 驱逐陈旧命名空间</td><td>操作历史不同的链物理隔离；1,120 次回放丢弃零回退</td></tr>
+              <tr><th scope="row">Triton 键旋转核</th><td><code>kernels._rotate_kv_kernel</code>（<code>AGENTIC_TRITON_ROTATE=1</code>，非 3D 布局回退 eager）</td><td>与 eager 逐位一致；8K/24K 旋转 3.7×/2.5×——但旋转只占 repos 墙钟 1–3 ms</td></tr>
+              <tr><th scope="row">控制路径优化</th><td><code>sglang_plugin._around_on_idle</code>：控制队列有积压时跳过 idle housekeeping，空闲时将其节流到 1 次/秒</td><td>RPC p50 34.7 → 0.89 ms（39×）；负结果：post-insert match 不可省（其 walk 参与原生 evictable 记账，省去会触发 idle 不变式池泄漏中止）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>8.3　消融实验与效果</h3>
+        <p>三臂在 16 周 × 每周 8 个真实根会话（128 会话、各 3,145 轮）上重放同一 token 流：初始视图 22K token、32K 窗口滑落保护、每会话 30 轮、消息边界丢弃。每轮以 prefill-only 请求物化候选前缀，收据 <code>full_kv_hit_length</code> 为实际命中。</p>
+        <div class="table-box" tabindex="0" role="region" aria-label="三臂真实尺度回放">
+          <table class="wide">
+            <caption><b>表 7．三臂真实尺度回放。</b> 128 会话、各 3,145 轮；1,120 次消息级丢弃全部经 repos 旋转复用、零回退。</caption>
+            <thead><tr><th scope="col">臂</th><th scope="col" class="num">re-prefill token</th><th scope="col" class="num">复用 token</th><th scope="col" class="num">TTFT P50</th><th scope="col" class="num">TTFT P95</th><th scope="col" class="num">prefill 墙钟</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>full</code>（窗口滑落）</th><td class="num">26,063,160</td><td class="num">44,362,000</td><td class="num">74.0 ms</td><td class="num">1,715.2 ms</td><td class="num">1,580.1 s</td></tr>
+              <tr><th scope="row"><code>trim</code>（丢弃后冷启动）</th><td class="num">33,166,136</td><td class="num">22,793,992</td><td class="num">154.7 ms</td><td class="num">1,383.2 ms</td><td class="num">1,648.7 s</td></tr>
+              <tr><th scope="row"><code>cache-eng</code>（键旋转复用）</th><td class="num"><strong>9,592,952</strong></td><td class="num">46,367,176</td><td class="num"><strong>72.0 ms</strong></td><td class="num"><strong>955.3 ms</strong></td><td class="num"><strong>687.9 s</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>re-prefill 比 full 少 2.7×、比 trim 少 3.5×；TTFT P95 比 full 低 1.8×、比 trim 低 1.4×。</strong> full 的 P95 由 811/3,145 轮窗口滑落整窗冷预填主导——正是 AKV 的动机；trim 每轮丢弃都要把保留视图重新预填；cache-eng 把同一滑落变成 687 MiB 的键旋转拷贝。逐轮曲线见下图。</p>
+        <figure>
+          <div class="chart-scroll" tabindex="0" role="region" aria-label="三臂逐轮 TTFT">
+<svg class="chart mobile-detail" viewBox="0 0 720 252" role="img" aria-labelledby="turn-ttft-title turn-ttft-desc">
+<title id="turn-ttft-title">TTFT 均值（ms）</title><desc id="turn-ttft-desc">full 第 30 轮 1054；trim 第 30 轮 546；cache-eng 第 30 轮 223</desc>
+<path class="grid" d="M62 210.00H704"/>
+<text x="54" y="214.00" text-anchor="end" class="small light">0</text>
+<path class="grid" d="M62 173.20H704"/>
+<text x="54" y="177.20" text-anchor="end" class="small light">230</text>
+<path class="grid" d="M62 136.40H704"/>
+<text x="54" y="140.40" text-anchor="end" class="small light">460</text>
+<path class="grid" d="M62 99.60H704"/>
+<text x="54" y="103.60" text-anchor="end" class="small light">690</text>
+<path class="grid" d="M62 62.80H704"/>
+<text x="54" y="66.80" text-anchor="end" class="small light">920</text>
+<path class="grid" d="M62 26.00H704"/>
+<text x="54" y="30.00" text-anchor="end" class="small light">1.1k</text>
+<text x="62.00" y="228.00" text-anchor="middle" class="small light">0</text>
+<text x="190.40" y="228.00" text-anchor="middle" class="small light">6</text>
+<text x="318.80" y="228.00" text-anchor="middle" class="small light">12</text>
+<text x="447.20" y="228.00" text-anchor="middle" class="small light">18</text>
+<text x="575.60" y="228.00" text-anchor="middle" class="small light">24</text>
+<text x="704.00" y="228.00" text-anchor="middle" class="small light">30</text>
+<text x="383.00" y="244.00" text-anchor="middle" class="small light">会话内轮次序号</text>
+<text x="22" y="118.00" text-anchor="middle" class="small light" transform="rotate(-90 22 118.00)">TTFT 均值（ms）</text>
+<path class="axis" d="M62 26V210H704"/>
+<path class="series base dashed" d="M62.00 119.76 L84.14 189.81 L106.28 190.93 L128.41 191.74 L150.55 185.31 L172.69 182.74 L194.83 179.02 L216.97 174.98 L239.10 175.60 L261.24 173.95 L283.38 168.13 L305.52 157.04 L327.66 151.92 L349.79 146.22 L371.93 143.17 L394.07 135.17 L416.21 124.88 L438.34 116.86 L460.48 103.97 L482.62 103.28 L504.76 87.95 L526.90 82.90 L549.03 74.40 L571.17 74.58 L593.31 71.74 L615.45 69.97 L637.59 70.14 L659.72 60.69 L681.86 43.17 L704.00 41.30"/>
+<path class="series joint" d="M62.00 119.89 L84.14 189.89 L106.28 137.57 L128.41 140.08 L150.55 135.07 L172.69 131.22 L194.83 129.46 L216.97 126.69 L239.10 130.13 L261.24 129.98 L283.38 130.14 L305.52 126.21 L327.66 126.86 L349.79 129.87 L371.93 129.18 L394.07 121.70 L416.21 124.40 L438.34 127.31 L460.48 124.82 L482.62 123.68 L504.76 123.52 L526.90 122.56 L549.03 125.39 L571.17 126.02 L593.31 126.32 L615.45 126.21 L637.59 124.56 L659.72 116.03 L681.86 115.18 L704.00 122.69"/>
+<path class="series gate" d="M62.00 119.84 L84.14 189.90 L106.28 190.96 L128.41 191.90 L150.55 189.71 L172.69 185.22 L194.83 184.46 L216.97 181.52 L239.10 183.41 L261.24 183.50 L283.38 184.10 L305.52 181.02 L327.66 180.85 L349.79 181.42 L371.93 182.58 L394.07 177.98 L416.21 178.21 L438.34 179.71 L460.48 178.58 L482.62 177.79 L504.76 176.56 L526.90 175.65 L549.03 176.06 L571.17 176.80 L593.31 177.09 L615.45 176.32 L637.59 177.87 L659.72 173.07 L681.86 165.71 L704.00 174.30"/>
+</svg>
+          </div>
+          <div class="legend"><span><i class="dash"></i>full（窗口滑落）</span><span><i class="red"></i>trim（丢弃后冷启动）</span><span><i class="teal"></i>cache-eng（键旋转复用）</span></div>
+          <figcaption><b>图 7．三臂逐轮平均 TTFT。</b> full 自约第 14 轮起窗口溢出，每轮整窗 32K 冷预填单调攀升；cache-eng 丢弃后仅预填增量（70–230 ms）；trim 每轮重预填保留视图（≈500 ms 平台）。</figcaption>
+        </figure>
+        <figure>
+          <div class="chart-scroll" tabindex="0" role="region" aria-label="三臂累计重预填">
+<svg class="chart mobile-detail" viewBox="0 0 720 252" role="img" aria-labelledby="cum-prefill-title cum-prefill-desc">
+<title id="cum-prefill-title">累计 re-prefill token</title><desc id="cum-prefill-desc">full 第 30 轮 274849；trim 第 30 轮 320029；cache-eng 第 30 轮 91930</desc>
+<path class="grid" d="M62 210.00H704"/>
+<text x="54" y="214.00" text-anchor="end" class="small light">0</text>
+<path class="grid" d="M62 173.20H704"/>
+<text x="54" y="177.20" text-anchor="end" class="small light">68.0k</text>
+<path class="grid" d="M62 136.40H704"/>
+<text x="54" y="140.40" text-anchor="end" class="small light">136.0k</text>
+<path class="grid" d="M62 99.60H704"/>
+<text x="54" y="103.60" text-anchor="end" class="small light">204.0k</text>
+<path class="grid" d="M62 62.80H704"/>
+<text x="54" y="66.80" text-anchor="end" class="small light">272.0k</text>
+<path class="grid" d="M62 26.00H704"/>
+<text x="54" y="30.00" text-anchor="end" class="small light">340.0k</text>
+<text x="62.00" y="228.00" text-anchor="middle" class="small light">0</text>
+<text x="190.40" y="228.00" text-anchor="middle" class="small light">6</text>
+<text x="318.80" y="228.00" text-anchor="middle" class="small light">12</text>
+<text x="447.20" y="228.00" text-anchor="middle" class="small light">18</text>
+<text x="575.60" y="228.00" text-anchor="middle" class="small light">24</text>
+<text x="704.00" y="228.00" text-anchor="middle" class="small light">30</text>
+<text x="383.00" y="244.00" text-anchor="middle" class="small light">会话内轮次序号</text>
+<text x="22" y="118.00" text-anchor="middle" class="small light" transform="rotate(-90 22 118.00)">累计 re-prefill token</text>
+<path class="axis" d="M62 26V210H704"/>
+<path class="series base dashed" d="M62.00 202.66 L84.14 201.80 L106.28 201.07 L128.41 200.39 L150.55 199.29 L172.69 198.01 L194.83 196.52 L216.97 194.81 L239.10 193.16 L261.24 191.42 L283.38 189.24 L305.52 186.33 L327.66 183.13 L349.79 179.58 L371.93 175.82 L394.07 171.56 L416.21 166.60 L438.34 161.10 L460.48 154.77 L482.62 148.38 L504.76 140.99 L526.90 133.28 L549.03 125.01 L571.17 116.76 L593.31 108.31 L615.45 99.75 L637.59 91.21 L659.72 82.03 L681.86 71.70 L704.00 61.26"/>
+<path class="series joint" d="M62.00 202.66 L84.14 201.80 L106.28 196.67 L128.41 191.70 L150.55 186.34 L172.69 180.66 L194.83 174.94 L216.97 169.01 L239.10 163.37 L261.24 157.70 L283.38 152.03 L305.52 146.00 L327.66 140.02 L349.79 134.42 L371.93 128.63 L394.07 122.25 L416.21 116.08 L438.34 110.28 L460.48 104.26 L482.62 98.20 L504.76 92.13 L526.90 85.93 L549.03 79.91 L571.17 74.00 L593.31 68.05 L615.45 62.14 L637.59 56.16 L659.72 49.52 L681.86 42.84 L704.00 36.81"/>
+<path class="series gate" d="M62.00 202.66 L84.14 201.80 L106.28 201.07 L128.41 200.38 L150.55 199.53 L172.69 198.30 L194.83 197.10 L216.97 195.68 L239.10 194.44 L261.24 193.21 L283.38 192.04 L305.52 190.54 L327.66 189.03 L349.79 187.60 L371.93 186.34 L394.07 184.71 L416.21 183.04 L438.34 181.55 L460.48 179.98 L482.62 178.39 L504.76 176.68 L526.90 174.89 L549.03 173.12 L571.17 171.46 L593.31 169.81 L615.45 168.04 L637.59 166.50 L659.72 164.56 L681.86 162.06 L704.00 160.25"/>
+</svg>
+          </div>
+          <div class="legend"><span><i class="dash"></i>full 累计 274.8K</span><span><i class="red"></i>trim 累计 320.0K</span><span><i class="teal"></i>cache-eng 累计 91.9K</span></div>
+          <figcaption><b>图 8．三臂累计 re-prefill token。</b> 逐轮均值累计；全量加和口径见表 7（2.7× / 3.5×）。</figcaption>
+        </figure>
+        <div class="table-box" tabindex="0" role="region" aria-label="逐规模成本与控制路径">
+          <table class="wide">
+            <caption><b>表 8．逐规模成本与控制路径优化。</b> 1K 处 repos 含首次编译；RPC 为空 snapshot 往返 p50。</caption>
+            <thead><tr><th scope="col">规模 / 阶段</th><th scope="col" class="num">优化前</th><th scope="col" class="num">优化后</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">4K 源前缀 repos / 冷预填同一紧凑序列</th><td class="num">—</td><td class="num">42.1 / 155.5 ms（1.25×）</td></tr>
+              <tr><th scope="row">8K 源前缀 repos / 冷预填</th><td class="num">—</td><td class="num">130.1 / 293.4 ms（1.37×）</td></tr>
+              <tr><th scope="row">22K 链 repos 客户端墙钟 p50</th><td class="num">29–57 ms</td><td class="num">14.7–18.3 ms</td></tr>
+              <tr><th scope="row">纯 RPC 往返 p50</th><td class="num">34.7 ms</td><td class="num">0.89 ms（39×）</td></tr>
+              <tr><th scope="row">全量回放总墙钟（同 128 会话）</th><td class="num">6,369 s</td><td class="num">5,003 s（−21.5%）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">重跑（v2）机制指标逐 token 一致；per-request TTFT/wall P95 +4–7%——v1 的慢 RPC 天然拉开了每轮节奏，v2 请求紧贴上一轮尾部，排队暴露进 forward_entry 口径。机制收益（2.7×/3.5×、P95 1.8×/1.4×）在 v2 同样成立。逐轮原始数据见 <code>results/cache-engineering/replay.json</code> 与 <code>replay-v2.json</code>。<sup class="cite"><a href="#ref-cache">[8]</a></sup></p>
+      </section>
+
       <section id="discussion" aria-labelledby="discussion-title">
-        <h2 id="discussion-title"><span class="n">08</span>讨论与结论</h2>
+        <h2 id="discussion-title"><span class="n">09</span>讨论与结论</h2>
         <p>证据支持的是<strong>条件式跨层优化</strong>：了解依赖才能利用并行，了解版本才能安全复用和回收，了解实际等待才能判断准备是否值得。把三者放到同一控制点的价值，不等同于每个负载都有多个候选需要联合排序。</p>
         <dl class="rule">
           <dt>可以优先启用</dt><dd>已确认独立的工具与子任务；稳定长等待内的付费前瞻；确认过期且无租约、无在途依赖的回收。</dd>
@@ -401,6 +518,7 @@
           <li id="ref-trace">轨迹：<a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-reference.json">四臂参考</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-independent-confirm.json">独立留出报告</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/independent-figures/arms.csv">调度 CSV</a>。</li>
           <li id="ref-state">状态：<a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-compaction-e3.json">E3 等待扫描</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-hicache-expired.json">E4 HiCache 回执</a>。</li>
           <li id="ref-forecast">预测：<a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-deterministic-short-forecast.json">短等待校准对照</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-deterministic-paced-long.json">长窗与早返、确定性留一</a>。</li>
+          <li id="ref-cache">缓存工程：<a href="CACHE_ENGINEERING.md">机制、16 周画像、三臂回放与开销剖析</a> · <a href="results/cache-engineering/replay.json">三臂回放 v1</a> · <a href="results/cache-engineering/replay-v2.json">控制优化后重跑 v2</a> · <a href="results/cache-engineering/figs/">折线图 SVG</a>。</li>
         </ol>
       </section>
     </main>
