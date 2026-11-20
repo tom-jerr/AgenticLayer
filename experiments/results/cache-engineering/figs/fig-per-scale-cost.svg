@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 430" role="img">
+<text x="78" y="26" font-size="15" font-weight="600" fill="var(--fg)">每次丢弃的成本随上下文规模（repos 旋转 vs 冷预填同一紧凑序列）</text>
+<line x1="78" y1="384.0" x2="836" y2="384.0" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="388.0" font-size="11" fill="var(--muted)" text-anchor="end">0</text>
+<line x1="78" y1="316.4" x2="836" y2="316.4" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="320.4" font-size="11" fill="var(--muted)" text-anchor="end">68</text>
+<line x1="78" y1="248.8" x2="836" y2="248.8" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="252.8" font-size="11" fill="var(--muted)" text-anchor="end">136</text>
+<line x1="78" y1="181.2" x2="836" y2="181.2" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="185.2" font-size="11" fill="var(--muted)" text-anchor="end">204</text>
+<line x1="78" y1="113.6" x2="836" y2="113.6" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="117.6" font-size="11" fill="var(--muted)" text-anchor="end">272</text>
+<line x1="78" y1="46.0" x2="836" y2="46.0" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="50.0" font-size="11" fill="var(--muted)" text-anchor="end">340</text>
+<text x="78.0" y="402" font-size="12" fill="var(--muted)" text-anchor="middle">1,024</text>
+<text x="402.9" y="402" font-size="12" fill="var(--muted)" text-anchor="middle">4,096</text>
+<text x="836.0" y="402" font-size="12" fill="var(--muted)" text-anchor="middle">8,192</text>
+<text x="457.0" y="422" font-size="13" fill="var(--muted)" text-anchor="middle">源前缀长度（token，丢弃 25% 中段）</text>
+<text x="16" y="215.0" font-size="13" fill="var(--muted)" text-anchor="middle" transform="rotate(-90 16 215.0)">耗时（ms）</text>
+<text x="78" y="420" font-size="11" fill="var(--muted)">注：1K 处 222 ms 含首次 Triton/torch 编译；稳定态旋转 10–40 ms 级，随保留量线性增长。</text>
+<polyline fill="none" stroke="var(--c1)" stroke-width="2.2" stroke-linejoin="round" points="78.0,163.3 402.9,342.1 836.0,254.7"/>
+<circle cx="78.0" cy="163.3" r="3.4" fill="var(--c1)"/>
+<circle cx="402.9" cy="342.1" r="3.4" fill="var(--c1)"/>
+<circle cx="836.0" cy="254.7" r="3.4" fill="var(--c1)"/>
+<text x="78" y="26" font-size="12.5" fill="var(--c1)">repos 键旋转 (CE)</text>
+<polyline fill="none" stroke="var(--c2)" stroke-width="2.2" stroke-linejoin="round" points="78.0,299.1 402.9,229.4 836.0,92.3"/>
+<circle cx="78.0" cy="299.1" r="3.4" fill="var(--c2)"/>
+<circle cx="402.9" cy="229.4" r="3.4" fill="var(--c2)"/>
+<circle cx="836.0" cy="92.3" r="3.4" fill="var(--c2)"/>
+<text x="268" y="26" font-size="12.5" fill="var(--c2)">冷预填紧凑序列 (trim)</text>
+<polyline fill="none" stroke="var(--c3)" stroke-width="2.2" stroke-linejoin="round" points="78.0,82.2 402.9,260.6 836.0,171.8"/>
+<circle cx="78.0" cy="82.2" r="3.4" fill="var(--c3)"/>
+<circle cx="402.9" cy="260.6" r="3.4" fill="var(--c3)"/>
+<circle cx="836.0" cy="171.8" r="3.4" fill="var(--c3)"/>
+<text x="458" y="26" font-size="12.5" fill="var(--c3)">CE 总计（旋转+32 token 预填）</text>
+</svg>

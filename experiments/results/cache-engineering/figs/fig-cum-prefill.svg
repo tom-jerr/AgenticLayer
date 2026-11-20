@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 430" role="img">
+<text x="78" y="26" font-size="15" font-weight="600" fill="var(--fg)">三臂累计 re-prefill token（128 会话逐轮均值累计）</text>
+<line x1="78" y1="384.0" x2="836" y2="384.0" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="388.0" font-size="11" fill="var(--muted)" text-anchor="end">0</text>
+<line x1="78" y1="316.4" x2="836" y2="316.4" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="320.4" font-size="11" fill="var(--muted)" text-anchor="end">68000</text>
+<line x1="78" y1="248.8" x2="836" y2="248.8" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="252.8" font-size="11" fill="var(--muted)" text-anchor="end">136000</text>
+<line x1="78" y1="181.2" x2="836" y2="181.2" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="185.2" font-size="11" fill="var(--muted)" text-anchor="end">204000</text>
+<line x1="78" y1="113.6" x2="836" y2="113.6" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="117.6" font-size="11" fill="var(--muted)" text-anchor="end">272000</text>
+<line x1="78" y1="46.0" x2="836" y2="46.0" stroke="var(--border)" stroke-width="1"/>
+<text x="70" y="50.0" font-size="11" fill="var(--muted)" text-anchor="end">340000</text>
+<text x="78.0" y="402" font-size="11" fill="var(--muted)" text-anchor="middle">0</text>
+<text x="339.4" y="402" font-size="11" fill="var(--muted)" text-anchor="middle">10</text>
+<text x="600.8" y="402" font-size="11" fill="var(--muted)" text-anchor="middle">20</text>
+<text x="836.0" y="402" font-size="11" fill="var(--muted)" text-anchor="middle">29</text>
+<text x="457.0" y="422" font-size="13" fill="var(--muted)" text-anchor="middle">会话内轮次序号</text>
+<text x="16" y="215.0" font-size="13" fill="var(--muted)" text-anchor="middle" transform="rotate(-90 16 215.0)">累计 re-prefill token</text>
+<text x="78" y="420" font-size="11" fill="var(--muted)">同 30 轮后：cache-eng 9.2 万 vs full 27.5 万（2.99×）vs trim 32.0 万（3.48×），总表数字为全量轮次加和。</text>
+<polyline fill="none" stroke="var(--c1)" stroke-width="2.2" stroke-linejoin="round" points="78.0,370.5 104.1,368.9 130.3,367.6 156.4,366.4 182.6,364.3 208.7,362.0 234.8,359.2 261.0,356.1 287.1,353.1 313.2,349.9 339.4,345.9 365.5,340.5 391.7,334.6 417.8,328.1 443.9,321.2 470.1,313.4 496.2,304.3 522.3,294.2 548.5,282.5 574.6,270.8 600.8,257.2 626.9,243.1 653.0,227.9 679.2,212.7 705.3,197.2 731.4,181.5 757.6,165.8 783.7,148.9 809.9,130.0 836.0,110.8"/>
+<text x="78" y="26" font-size="12.5" fill="var(--c1)">full（累计 274.8K）</text>
+<polyline fill="none" stroke="var(--c2)" stroke-width="2.2" stroke-linejoin="round" points="78.0,370.5 104.1,368.9 130.3,359.5 156.4,350.4 182.6,340.5 208.7,330.1 234.8,319.6 261.0,308.7 287.1,298.3 313.2,287.9 339.4,277.5 365.5,266.4 391.7,255.5 417.8,245.2 443.9,234.5 470.1,222.8 496.2,211.5 522.3,200.8 548.5,189.8 574.6,178.6 600.8,167.5 626.9,156.1 653.0,145.0 679.2,134.2 705.3,123.2 731.4,112.4 757.6,101.4 783.7,89.2 809.9,76.9 836.0,65.9"/>
+<text x="268" y="26" font-size="12.5" fill="var(--c2)">trim（累计 320.0K）</text>
+<polyline fill="none" stroke="var(--c3)" stroke-width="2.2" stroke-linejoin="round" points="78.0,370.5 104.1,368.9 130.3,367.6 156.4,366.3 182.6,364.8 208.7,362.5 234.8,360.3 261.0,357.7 287.1,355.4 313.2,353.2 339.4,351.0 365.5,348.2 391.7,345.5 417.8,342.9 443.9,340.5 470.1,337.5 496.2,334.5 522.3,331.7 548.5,328.9 574.6,325.9 600.8,322.8 626.9,319.5 653.0,316.2 679.2,313.2 705.3,310.2 731.4,306.9 757.6,304.1 783.7,300.5 809.9,295.9 836.0,292.6"/>
+<text x="458" y="26" font-size="12.5" fill="var(--c3)">cache-eng（累计 91.9K）</text>
+</svg>

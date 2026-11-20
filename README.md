@@ -11,6 +11,7 @@
 | `agenticlayer/DESIGN.md`、`RUNBOOK.md` | 机制设计与部署/执行手册 |
 | `experiments/` | 实验脚本、合同、报告，以及论文式 HTML 展示 |
 | `experiments/CACHE_ENGINEERING.md` | KV drop/repos（键旋转复用）、ActKV 保留策略、全量画像与三臂回放 |
+| `experiments/THESIS_REVISIONS.md` | `main（1）.pdf` 修改清单：新机制/数据/图表与逐处文字改动建议 |
 | `experiments/results/` | 四个 run 的紧凑回执（summary/paired/report JSON、CSV、图表）；不含日志与回放语料 |
 | `main.pdf` | 第三至五章的设计合同（生命周期、版本转移、跨层联合控制） |
 
