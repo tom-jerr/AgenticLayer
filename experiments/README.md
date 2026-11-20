@@ -10,6 +10,8 @@
 
 [固定 Graph 论文机制实验](FIXED_GRAPH_CAMPAIGN.md) 单独验证 E1–E6；所有基线、单开与组合臂都固定 `decode=full`、`prefill=disabled`，并核对实际捕获桶。
 
+[缓存工程（drop/repos、动作感知保留、全量回放）](CACHE_ENGINEERING.md) 记录 AKV/ActKV 机制在本引擎上的落点、现场验证与三臂回放口径。
+
 [论文式 HTML 展示](agenticlayer-paper.html)：从动机和三层技术路径讲到主实验、敏感性、留一消融和原始事件案例；图表内嵌，直接打开或打印即可阅读。
 
 ## 1. 执行顺序与门禁

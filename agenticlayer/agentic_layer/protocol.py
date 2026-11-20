@@ -45,6 +45,7 @@ class EngineOp(StrEnum):
     RESTORE = "restore"
     OFFLOAD = "offload"
     RECLAIM = "reclaim"
+    REPOS = "repos"
     CANCEL = "cancel"
     SNAPSHOT = "snapshot"
 

@@ -409,3 +409,78 @@ def assert_transfer_hooks_applied() -> None:
     missing = set(_TARGETS) - HookRegistry._patched
     if missing:
         raise RuntimeError("Triton transfer hooks not applied: " + ", ".join(sorted(missing)))
+
+
+# ---------------------------------------------------------------------------
+# Cache engineering: reposition KV without re-prefill.
+#
+# ``drop`` removes tokens from the visible sequence; ``repos`` moves the
+# surviving keys to their new positions. RoPE makes that cheap: a key already
+# rotated to position p_s needs only R(p_t - p_s), which is a rotation of the
+# first ``rotary_dim`` channels in interleaved pairs. Values are copied as-is.
+# The rotation is done with eager torch on the scheduler thread because the
+# op runs once per drop (not per token); the pool copy uses the same row
+# gather/scatter shape as ``copy_rows``.
+# ---------------------------------------------------------------------------
+
+
+def _rope_tables(rotary_dim: int, theta: float, device: torch.device) -> torch.Tensor:
+    key = (rotary_dim, float(theta), str(device))
+    table = _ROPE_TABLES.get(key)
+    if table is None:
+        inv_freq = 1.0 / (theta ** (torch.arange(0, rotary_dim, 2, device=device, dtype=torch.float32) / rotary_dim))
+        table = inv_freq
+        _ROPE_TABLES[key] = table
+    return table
+
+
+_ROPE_TABLES: dict[tuple[int, float, str], torch.Tensor] = {}
+
+
+def rotate_kv(src_slots: torch.Tensor, dst_slots: torch.Tensor, k_buffer, v_buffer,
+              old_positions: torch.Tensor, *, rotary_dim: int, theta: float) -> None:
+    """Copy ``src_slots`` to ``dst_slots`` and rotate each key by the position delta.
+
+    ``old_positions[i]`` is the position the source slot was written at; the
+    destination slot ``i`` must mean position ``i`` (the compacted sequence is
+    contiguous from zero). Only the first ``rotary_dim`` channels rotate.
+    """
+    with torch.no_grad():
+        n = int(dst_slots.numel())
+        assert n == int(src_slots.numel()) == int(old_positions.numel()), "repos slot count mismatch"
+        delta = (torch.arange(n, device=dst_slots.device, dtype=torch.float32) - old_positions.float())
+        inv_freq = _rope_tables(rotary_dim, theta, dst_slots.device)
+        angle = delta[:, None] * inv_freq[None, :]
+        cos = torch.cos(angle)[:, None, :]
+        sin = torch.sin(angle)[:, None, :]
+        for k_tensor, v_tensor in zip(k_buffer, v_buffer):
+            v_tensor[dst_slots] = v_tensor[src_slots]
+            x = k_tensor[src_slots].clone()
+            pairs = x[..., :rotary_dim].reshape(n, x.shape[1], -1, 2)
+            a, b = pairs[..., 0], pairs[..., 1]
+            out = torch.empty_like(pairs)
+            out[..., 0] = a * cos - b * sin
+            out[..., 1] = a * sin + b * cos
+            x[..., :rotary_dim] = out.reshape(n, x.shape[1], rotary_dim)
+            k_tensor[dst_slots] = x
+        torch.cuda.current_stream().synchronize()
+
+
+def copy_state_rows(src: int, dst: int, conv, temporal) -> None:
+    """Copy one recurrent (Mamba) state slot; the summary keeps its original history.
+
+    The pool lays its tensors out as ``[layers, slots, ...]`` on some builds and
+    ``[slots, ...]`` on others, so the slot axis is the first one large enough
+    to contain both indices.
+    """
+    with torch.no_grad():
+        for tensor in (*conv, *temporal):
+            axis = next((i for i, size in enumerate(tensor.shape) if size > max(src, dst)), None)
+            if axis is None:
+                raise RuntimeError(f'state tensor has no slot axis: {tuple(tensor.shape)}')
+            take = [slice(None)] * tensor.dim()
+            put = [slice(None)] * tensor.dim()
+            take[axis] = src
+            put[axis] = dst
+            tensor[tuple(put)] = tensor[tuple(take)]
+        torch.cuda.current_stream().synchronize()

@@ -453,3 +453,42 @@ class Policy:
         chosen = replace(selected, accepted=True, reason="selected")
         final = tuple(chosen if d.action_id == candidate.action_id else replace(d, reason="not_selected") if not d.reason else d for d in decisions)
         return Selection(chosen, final)
+
+
+# ---------------------------------------------------------------------------
+# ActKV-style retention for cache engineering.
+#
+# ActKV observes that action-critical KV entries live in a small, stable part of
+# the history, that recency-only eviction deletes them, and that a model short
+# on context signals it by shrinking its generation ("wait", "I guess"). The
+# two helpers below turn that into the span a ``repos`` call drops: keep the
+# stable head and the recent tail, spend the budget on the oldest middle
+# entries, and widen the budget after a low-confidence turn.
+# ---------------------------------------------------------------------------
+
+
+def retention_budget(budget: int, *, low_confidence: bool, cap: int = 256) -> int:
+    """Grow the drop budget 1.75x after a turn the model could not complete."""
+    if not low_confidence:
+        return budget
+    return min(cap, max(1, int(budget * 1.75)))
+
+
+def select_drop(length: int, budget: int, *, head_fraction: float = 0.125,
+                tail_fraction: float = 0.25) -> tuple[int, int] | None:
+    """Half-open ``[start, end)`` middle span to drop, or None when it fits.
+
+    ``length`` is in KV blocks/tokens; the head holds the task and tool schema,
+    the tail the current turn, and the middle is what a trim would rewrite at
+    full re-prefill cost. Dropping the oldest middle entries first matches
+    ActKV's LRFU ordering: an intermittently referenced entry survives longer
+    than a stale contiguous run.
+    """
+    if length <= 0:
+        raise ValueError('length must be positive')
+    head = min(max(1, int(length * head_fraction)), length)
+    tail = min(max(1, int(length * tail_fraction)), length)
+    start, end = head, length - tail
+    if end - start <= budget or budget <= 0:
+        return None
+    return start, start + budget

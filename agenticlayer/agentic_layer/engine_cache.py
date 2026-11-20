@@ -174,7 +174,7 @@ class EngineCache:
         if self.cache.host_pool_group:
             host_capacity = sum(getattr(e.host_pool, 'logical_size', e.host_pool.size) *
                                 e.host_pool.size_per_token for e in self.cache.host_pool_group.entries)
-        details = dict(protocol=1, capabilities=dict(bind=True, lease=True, release=True,
+        details = dict(protocol=1, capabilities=dict(bind=True, lease=True, release=True, repos=True,
                        prepare=True, offload=self.cache.cache_controller is not None,
                        restore=self.cache.cache_controller is not None, reclaim=True,
                        completion_paging=True), pools=pools, completions=completions,
@@ -456,6 +456,127 @@ class EngineCache:
             'freed_full_slots': before['full']['owned'] - after['full']['owned'],
             'freed_recurrent_slots': before['recurrent']['owned'] - after['recurrent']['owned'],
             'residency': 'host' if backed else 'absent'})
+
+    def _rope(self) -> tuple[int, float]:
+        text = self.scheduler.model_config.hf_text_config
+        head_dim = int(getattr(text, 'head_dim', 0) or 0)
+        params = getattr(text, 'rope_parameters', None) or {}
+        theta = float(params.get('rope_theta', getattr(text, 'rope_theta', 1_000_000.0)))
+        partial = float(params.get('partial_rotary_factor', getattr(text, 'partial_rotary_factor', 1.0)))
+        rotary_dim = int(head_dim * partial)
+        if rotary_dim <= 0 or rotary_dim % 2:
+            raise RuntimeError('model has no even partial rotary dimension')
+        return rotary_dim, theta
+
+    def _chain_slots(self, handle: Handle, component_type: Any):
+        import torch
+        node = self.cache.tree_core.node_by_id(handle.node)
+        chunks = []
+        while node is not None and node.parent is not None:
+            value = node.component_data[component_type].value
+            if value is None:
+                return None
+            chunks.append(value)
+            node = node.parent
+        if not chunks:
+            return None
+        return torch.cat(list(reversed(chunks)))
+
+    def _op_repos(self, cmd: dict[str, Any]) -> dict[str, Any]:
+        """Materialise the surviving KV of ``handle`` at compacted positions.
+
+        Drops token spans from the visible sequence while every retained key
+        keeps its computed value: only RoPE is re-applied, so no re-prefill is
+        paid for the suffix. The result is inserted under a fresh cache salt,
+        and the next bind for the compacted sequence matches it natively.
+        """
+        h = self.handles.get(cmd.get('handle') or '')
+        if h is None:
+            raise ValueError('unknown handle')
+        payload = cmd.get('payload') or {}
+        s = payload.get('cache_salt')
+        if not isinstance(s, str) or len(s) != 64 or any(c not in '0123456789abcdef' for c in s):
+            raise ValueError('cache_salt must be a lowercase SHA-256 digest')
+        if s == h.salt:
+            raise ValueError('repos requires a fresh cache salt')
+        ids = token_ids(payload.get('expected_ids'))
+        spans = payload.get('dropped')
+        if not isinstance(spans, list) or not spans:
+            raise ValueError('repos requires dropped spans')
+        spans = sorted((int(a), int(b)) for a, b in spans)
+        cursor = 0
+        for start, end in spans:
+            if start < cursor or end <= start or end > len(h.ids):
+                raise ValueError('dropped spans must be sorted, disjoint and in range')
+            cursor = end
+        keep = [i for i in range(len(h.ids)) if not any(a <= i < b for a, b in spans)]
+        if len(keep) != len(ids) or tuple(h.ids[i] for i in keep) != ids:
+            raise ValueError('compacted ids do not match the source minus dropped spans')
+        import torch
+        from sglang.srt.mem_cache.base_prefix_cache import InsertParams
+        from sglang.srt.mem_cache.radix_cache import RadixKey
+        from sglang.srt.mem_cache.unified_cache.components import ComponentType
+        match = self._match(h.ids, h.salt)
+        if match.device_prefix_len != len(h.ids):
+            return self._reply(cmd, 'unavailable',
+                               error=f'source chain was evicted ({match.device_prefix_len} of {len(h.ids)})')
+        core = self.cache.tree_core
+        source = core.node_by_id(h.node)
+        src_slots = self._chain_slots(h, ComponentType.FULL)
+        src_state = source.component_data[ComponentType.MAMBA].value
+        if src_slots is None or len(src_slots) != len(h.ids):
+            have = 'missing' if src_slots is None else str(len(src_slots))
+            return self._reply(cmd, 'unavailable',
+                               error=f'source KV is not fully device resident ({have} of {len(h.ids)})')
+        if src_state is None:
+            return self._reply(cmd, 'unavailable', error='source has no recurrent checkpoint')
+        n = len(ids)
+        allocator = self.cache.token_to_kv_pool_allocator
+        dst = allocator.alloc(n)
+        if dst is None:
+            return self._reply(cmd, 'unavailable', error='insufficient arena capacity')
+        mamba_allocator = self.cache.req_to_token_pool.mamba_allocator
+        dst_state = mamba_allocator.alloc(1)
+        if dst_state is None:
+            allocator.free(dst)
+            return self._reply(cmd, 'unavailable', error='insufficient recurrent capacity')
+        inserted = False
+        try:
+            full_pool = allocator.get_kvcache().full_kv_pool
+            rotary_dim, theta = self._rope()
+            from .kernels import copy_state_rows, rotate_kv
+            old = torch.tensor(keep, dtype=torch.int64, device=dst.device)
+            rotate_kv(src_slots[old], dst, full_pool.k_buffer, full_pool.v_buffer,
+                      old, rotary_dim=rotary_dim, theta=theta)
+            state = self.cache.req_to_token_pool.mamba_pool.mamba_cache
+            copy_state_rows(int(src_state.reshape(-1)[0]), int(dst_state.reshape(-1)[0]),
+                            state.conv, state.temporal)
+            result = self.cache.insert(InsertParams(
+                key=RadixKey(array('q', ids), cache_salt=s), value=dst,
+                mamba_value=dst_state, inserted_len=0))
+            inserted = True
+        except Exception:
+            if inserted:
+                raise
+            allocator.free(dst)
+            mamba_allocator.free(dst_state)
+            raise
+        matched = self._match(ids, s)
+        if matched.device_prefix_len != n or matched.last_device_node is None:
+            allocator.free(dst)
+            mamba_allocator.free(dst_state)
+            return self._reply(cmd, 'unavailable', error='materialised chain is not device resident')
+        node = matched.last_device_node
+        handle = uuid.uuid4().hex
+        # No lock: the materialised chain is a normal evictable tree node, so
+        # the cache's own path-state cleanup stays authoritative.
+        self.handles[handle] = Handle(version=cmd['version_id'], ids=ids, salt=s, node=node,
+                                      device_lock=None, leases=1)
+        slot_bytes, _ = self._slot_bytes()
+        return self._reply(cmd, 'completed', handle=handle, matched=n, details={
+            'source_tokens': len(h.ids), 'kept_tokens': n,
+            'dropped_tokens': len(h.ids) - n, 'rotated_bytes': n * slot_bytes,
+            'rotary_dim': rotary_dim})
 
     def observe_acks(self, kind: str, acks: list[Any]) -> None:
         for ack in acks:

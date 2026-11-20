@@ -1,0 +1,38 @@
+[
+ {
+  "size": 1024,
+  "dropped": 256,
+  "kept": 768,
+  "prompt": 800,
+  "repos_ms": 222.1,
+  "ce_ms": 81.5,
+  "trim_ms": 85.4,
+  "ce_matched": 768,
+  "trim_matched": 0,
+  "rotated_bytes": 25165824
+ },
+ {
+  "size": 4096,
+  "dropped": 1024,
+  "kept": 3072,
+  "prompt": 3104,
+  "repos_ms": 42.1,
+  "ce_ms": 82.0,
+  "trim_ms": 155.5,
+  "ce_matched": 3072,
+  "trim_matched": 0,
+  "rotated_bytes": 100663296
+ },
+ {
+  "size": 8192,
+  "dropped": 2048,
+  "kept": 6144,
+  "prompt": 6176,
+  "repos_ms": 130.1,
+  "ce_ms": 83.4,
+  "trim_ms": 293.4,
+  "ce_matched": 6144,
+  "trim_matched": 0,
+  "rotated_bytes": 201326592
+ }
+]
