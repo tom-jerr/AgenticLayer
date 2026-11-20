@@ -12,8 +12,8 @@ AKV 的 cache engineering（drop + repos + 扩展 radix 复用）与 ActKV 的�
 | AKV `repos`：键旋转替代 re-prefill | `kernels.py:rotate_kv`（部分 RoPE：Qwen3.5 rotary_dim=64/head_dim=256，交错对） | 已实现并实测 |
 | AKV 扩展 radix tree 的 drop/reposition 分支 | 紧凑链以新 `cache_salt` 插入原生 UnifiedTreeCore；后续请求按 token 前缀原生命中 | 已实现（用命名空间区分操作历史） |
 | AKV segment-batch attention | 紧凑化后“保留段”连续排布，普通 causal attention 即等价于分段注意力，无需稠密掩码 | 由构造保证 |
-| ActKV 动作感知保留（LRFU + 间歇条目保护） | `experiments/cache_engineering_replay.py:drop_plan`：保留头部与最近尾部，按预算从中段最旧条目开始丢弃 | 已实现（回放中） |
-| ActKV 置信度驱动预算 | 上一轮输出 ≤2 token 视为低置信，预算 ×1.75（上限 256 block） | 已实现（回放中） |
+| ActKV 动作感知保留（LRFU + 间歇条目保护） | `policy.py:select_drop_messages`：按消息边界丢弃——任务锚点与最新轮次保留，中段最旧消息按预算丢弃，从不切开一条消息 | 已实现（回放 + 中间层共用） |
+| ActKV 置信度驱动预算 | `policy.py:retention_budget`：上一轮低置信时预算 ×1.75（上限 256 block）；回放轨迹无模型反馈，用锚点 + 最新轮次的全保留语义 | 已实现（中间层） |
 | ActKV 分页原语/kernel | 本实现沿用 `page_size=1` 的槽位 gather/scatter；旋转是每次 drop 一次的 eager 拷贝 | 部分（未写专用 Triton 旋转核） |
 
 与论文的自觉差异：
@@ -63,28 +63,41 @@ AKV 的 cache engineering（drop + repos + 扩展 radix 复用）与 ActKV 的�
 若换成一次 48 MiB/1.5K token 的键旋转拷贝，同样的量约 7.4×10¹³ byte，按 1 TB/s 量级只需
 **~74 秒** GPU 时间。这是投影，不是端到端测量，但量级差（10³ 倍）与 AKV 的结论一致。
 
-## 3.1 三臂回放（16 周真实会话）
+## 3.1 三臂回放（16 周真实会话，真实尺度窗口）
 
 `experiments/cache_engineering_replay.py` 在 16 周各取真实根会话，按 `full / trim / cache-eng`
-三臂重放同一 token 流（16-token block 投影）。每轮以 prefill-only 请求物化候选前缀（与中间层
-`prepare` 一致），读取实际 `matched` 与 prefill 时间：
+三臂重放同一 token 流（8 ids/block 投影）。窗口即真实约束：初始视图 = 会话最后 2,750 block
+（22K token，轨迹 16-token block 压缩投影），引擎上限内窗口滑落保护 32K token，每会话最多 30 轮。
+**丢弃对齐 DSH 消息边界**：每个轨迹请求是一条消息，`select_drop_messages` 只整消息丢弃
+（任务锚点 + 最新轮次保留、中段最旧消息按预算丢），保留视图即 DSH 消息级丢弃会发出的紧凑序列。
+每轮以 prefill-only 请求物化候选前缀（与中间层 `prepare` 一致），收据的 `full_kv_hit_length`
+是实际命中，其余是真实 prefill：
 
-- `full`：不丢弃，原生前缀复用；
-- `trim`：丢弃中段后冷启动（今日压缩路径）；
-- `cache-eng`：丢弃同一段后 `repos` 旋转复用。
+- `full`：不丢弃、原生前缀复用；窗口溢出时滑落（guard 截头 → 整窗冷预填）；
+- `trim`：丢弃中段后冷启动（今日压缩路径，每轮重预填保留视图）；
+- `cache-eng`：丢弃同一段后 `repos` 旋转复用（旋转 ~530 MiB KV，重预填仅增量）。
 
-结果见 `experiments/results/cache-engineering/replay.json`：
+真实尺度回放（16 周 × 每周 8 会话 × 最多 30 轮，128 会话，三臂各 3,145 轮，
+原始数据 `experiments/results/cache-engineering/replay.json`）：
 
-| 臂 | turns | prefill token | 复用 token | TTFT P50 | TTFT P95 |
-|---|---|---|---|---|---|
-| full（不丢弃） | 381 | 77,192 | 468,222 | 68.8 ms | 75.2 ms |
-| trim（丢弃后冷启动） | 381 | 84,860 | 460,296 | 68.5 ms | 73.4 ms |
-| cache-eng（丢弃后旋转复用） | 381 | 82,924 | 462,232 | 68.5 ms | 73.0 ms |
+| 臂 | turns | prefill token | 复用 token | prefill 墙钟 | TTFT P50 | TTFT P95 |
+|---|---|---|---|---|---|---|
+| full（不丢弃，窗口滑落） | 3,145 | 26,063,160 | 44,362,000 | 1,580.1 s | 74.0 ms | 1,715.2 ms |
+| trim（丢弃后冷启动） | 3,145 | 33,166,136 | 22,793,992 | 1,648.7 s | 154.7 ms | 1,383.2 ms |
+| cache-eng（丢弃后旋转复用） | 3,145 | **9,592,952** | 46,367,176 | **687.9 s** | **72.0 ms** | **955.3 ms** |
 
-16 周 × 2 个真实会话、每会话 12 轮。该样本每轮增量很小（窗口 ~1.5K token），
-丢弃预算 32 block，因此只发生 10 次丢弃；`trim` 为丢弃多付 7,668 token，
-`cache-eng` 只多付 5,732 token，**回收 25% 的裁剪代价**，P95 略低 0.4 ms。
-收益由“丢弃量/轮”决定，所以下表用更大的前缀量级单独测每次丢弃的成本。
+- **re-prefill：cache-eng 比 full 少 2.7×、比 trim 少 3.5×**；1,120 次消息级丢弃全部经 `repos`
+  旋转复用，无一回退（丢弃轮实际命中保留视图、只预填增量）。
+- **TTFT P95：955.3 ms vs full 1,715.2 ms（1.8×）vs trim 1,383.2 ms（1.4×）**；prefill 墙钟
+  687.9 s vs 1,580.1 s（2.3×）vs 1,648.7 s（2.4×）。full 的 P95 由窗口滑落冷预填主导
+  （811/3,145 轮整窗 32K 重预填），这正是 AKV 观察到的“改前缀即全量 re-prefill”；
+  cache-eng 靠键旋转把同一滑落变成拷贝。
+- trim 每轮丢弃都要把保留视图重新 prefill，墙钟是 cache-eng 的 2.4 倍；cache-eng 的旋转随上下文
+  增长的字节拷贝远便宜于重算（§3.2），且保留视图不再重算。
+
+> 修正记录：真实尺度下 `repos` 的目标槽位分配在竞技场填满时失败（旧链按新 salt 累积），
+> `_op_repos` 已改为分配失败先按 LRU 驱逐陈旧命名空间再重试（对齐 `_op_bind`）；首次全量冒烟
+> 中 11/12 会话回退冷启动，修复后 1,120/1,120 成功。
 
 ## 3.2 每次丢弃的成本（repos vs 冷预填）
 
@@ -118,8 +131,8 @@ python experiments/repos_probe.py
 # 3) 全量画像（16 周，流式）
 python experiments/full_profile.py --out "$RUN/full-profile.json"
 
-# 4) 三臂回放（full / trim / cache-eng）
-python experiments/cache_engineering_replay.py --per-week 1 --cap-blocks 192
+# 4) 三臂回放（full / trim / cache-eng，真实尺度窗口 + 消息边界丢弃）
+python experiments/cache_engineering_replay.py --per-week 8 --cap-blocks 2750 --turns 30
 ```
 
 回放与画像的原始输出都落在 `$RUN`，仓库只保留结论文件。
@@ -128,12 +141,15 @@ python experiments/cache_engineering_replay.py --per-week 1 --cap-blocks 192
 
 - **机制成立**：混合模型上 drop + 键旋转可完全避免后缀 re-prefill（6,144 token 保留、只 prefill 32 token），
   由原生前缀匹配接续复用；每次丢弃的拷贝/旋转在 4K 以上已快于冷预填，且随上下文增长。
+- **真实尺度回放**：16 周 × 8 真实会话、22K 初始窗口、30 轮消息级丢弃，cache-eng 的 re-prefill 比
+  full 少 2.7×、比 trim 少 3.5×，TTFT P95 955.3 ms（full 1,715.2 ms / trim 1,383.2 ms）；
+  1,120 次丢弃全部旋转复用、零回退。full 的 P95 由窗口滑落整窗冷预填主导——正是 AKV 的核心动机。
 - **量级**：全量数据的上下文 P50 为 118K token、改写事件 53,798 次，文本裁剪的重复 prefill 约 6.2×10⁹ token；
   旋转方案把同样工作量压到 TB 级拷贝（~10² 秒量级），这是数量级的差异。
-- **为什么回放样本收益只有 25%**：该样本 12 轮内只增长约 2K token、丢弃预算 512 token/次，共 10 次丢弃；
-  收益与“可丢 token 占窗口比例”成正比。真实 118K 上下文会话的丢弃量会高两个数量级。
-- **已修正的两个实现陷阱**：长期锁住新链会阻断引擎的路径状态回收（idle 不变式中止服务），改为普通可驱逐节点；
-  Mamba 状态池在不同构建下是 `[layers, slots, …]` 或 `[slots, …]`，拷贝按“第一个足够大的轴”定位。
-- **未完成**：把丢弃决策接到 DSH 消息边界（当前由回放器构造紧凑消息）、专用 Triton 旋转核、
+- **已修正的实现陷阱**：长期锁住新链会阻断引擎的路径状态回收（idle 不变式中止服务），改为普通可驱逐节点；
+  Mamba 状态池在不同构建下是 `[layers, slots, …]` 或 `[slots, …]`，拷贝按“第一个足够大的轴”定位；
+  真实尺度下竞技场被逐次新 salt 的旧链填满，`repos` 分配失败需先 LRU 驱逐再重试（对齐 `bind`）。
+- **未完成**：丢弃决策在真实 DSH 侧接线（`dsh-agentic` 已有消息视图/版本原语与 controller，repos 经
+  `/agentic/v1/events` 下发尚未接通——当前丢弃由回放器在轨迹消息边界构造）、专用 Triton 旋转核、
   以及任务质量评测（fixture 通过率/动作正确性）；Mamba 状态保留原历史摘要，与 AKV 的“保留 KV 携带
   被丢历史”同源，但不是对紧凑序列的精确重算。

@@ -31,7 +31,7 @@ import httpx
 import zstandard
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from agentic_layer.policy import retention_budget, select_drop  # noqa: E402
+from agentic_layer.policy import select_drop_messages  # noqa: E402
 from agentic_layer.protocol import decode_line, encode_line  # noqa: E402
 
 
@@ -109,33 +109,29 @@ def sessions(dataset: str, per_week: int, min_turns: int = 5):
     return chosen
 
 
-def drop_plan(length: int, budget: int) -> tuple[int, int] | None:
-    """ActKV-style span selection, shared with the shipped policy module."""
-    return select_drop(length, budget)
-
-
 def run_arm(client: httpx.Client, engine: Engine, week: str, line: dict, arm: str,
-            max_new: int, cap_blocks: int) -> dict:
+            cap_blocks: int, max_turns: int) -> dict:
     """Materialise each turn's view with a prefill-only request and read its cost.
 
     The finish path of a generating request does not checkpoint a hybrid chain
     with ``mamba_radix_cache_strategy=no_buffer`` (the live state cannot be
     shortened), so the harness prepares the candidate prefix exactly as the
-    middleware does. The prepare request's ``matched`` is the reuse the turn
-    enjoys; the rest is its prefill.
+    middleware does. Each trace request is one message; drops remove whole
+    messages only (``select_drop_messages``), so the kept view is what a DSH
+    message-boundary drop would emit. The receipt's ``full_kv_hit_length`` is
+    the reuse the turn enjoys; the rest is its prefill.
     """
     salt_prefix = f"{arm}:{week}:{line['session_id']}"
     view_blocks: list[int] = []
     view_tokens: list[int] = []
+    message_blocks: list[int] = []  # blocks per whole message, append order
     previous_request: list[int] = []
     salt = digest(salt_prefix + ":0")
     handle = None
     handle_len = 0
-    budget = 32
-    short_last = False
     turns = []
     base = engine.snapshot(0)["seq"]
-    for index, request in enumerate((line.get("requests") or [])[:12]):
+    for index, request in enumerate((line.get("requests") or [])[:max_turns]):
         request_blocks = list(request.get("block_ids") or [])
         if not view_blocks:
             start_at = max(0, len(request_blocks) - cap_blocks)
@@ -145,27 +141,28 @@ def run_arm(client: httpx.Client, engine: Engine, week: str, line: dict, arm: st
         else:
             delta = request_blocks[-1:]
         previous_request = request_blocks
+        if not delta:
+            continue
         view_blocks.extend(delta)
         view_tokens.extend(tid for bid in delta for tid in project(bid, week))
-        drop = None
-        if arm != "full" and handle is not None and len(view_blocks) > cap_blocks:
-            plan = drop_plan(len(view_blocks), budget)
-            if plan is not None:
-                cut_from, cut_to = plan[0] * 16, min(plan[1] * 16, handle_len)
-                if cut_to > cut_from:
-                    drop = (cut_from, cut_to)
-                    budget = retention_budget(budget, low_confidence=short_last)
-        if len(view_tokens) > 28000:
-            keep = len(view_tokens) - 28000
+        message_blocks.append(len(delta))
+        if len(view_tokens) > 32000:
+            keep = len(view_tokens) - 32000
             view_tokens = view_tokens[keep:]
-            view_blocks = view_blocks[-3500:]
+            view_blocks = view_blocks[keep // 8:]
+            message_blocks = [len(view_blocks)]
             handle, handle_len = None, 0
             salt = digest(f"{salt_prefix}:{index}:window")
+        drop = None
+        if arm != "full" and handle is not None and len(view_blocks) > cap_blocks:
+            plan = select_drop_messages(message_blocks, sum(message_blocks))
+            if plan is not None:
+                drop = (plan[0], plan[1])  # block offsets, message-aligned
         prompt = view_tokens
         rid = f"{arm}-{index}-{uuid.uuid4().hex[:8]}"
         used_salt = salt
         if drop is not None:
-            cut_from, cut_to = drop
+            cut_from, cut_to = drop[0] * 8, drop[1] * 8  # token offsets
             kept = view_tokens[:cut_from] + view_tokens[cut_to:]
             if arm == "cache-eng" and handle is not None:
                 new_salt = digest(f"{salt_prefix}:{index}:drop")
@@ -188,7 +185,15 @@ def run_arm(client: httpx.Client, engine: Engine, week: str, line: dict, arm: st
                 prompt = kept
                 used_salt = digest(f"{salt_prefix}:{index}:cold")
             view_blocks = view_blocks[:drop[0]] + view_blocks[drop[1]:]
-            view_tokens = prompt
+            view_tokens = kept
+            kept_messages: list[int] = []
+            offset = 0
+            for size in message_blocks:
+                next_offset = offset + size
+                if next_offset <= drop[0] or offset >= drop[1]:
+                    kept_messages.append(size)
+                offset = next_offset
+            message_blocks = kept_messages
         bound = engine.op("bind", rid, f"v-{index}", None, {
             "expected_ids": prompt, "cache_salt": used_salt, "kind": "prepare", "hold": False,
             "max_new_tokens": 0, "session_id": line["session_id"], "branch_id": rid})
@@ -208,15 +213,15 @@ def run_arm(client: httpx.Client, engine: Engine, week: str, line: dict, arm: st
         receipts = {r["rid"]: r for r in snap["details"]["completions"]}
         base = snap["seq"]
         receipt = receipts.get(rid) or {}
+        hit = receipt.get("full_kv_hit_length") or receipt.get("matched_tokens") or 0
         handle = receipt.get("handle") or handle
         handle_len = len(prompt)
         turns.append({
-            "turn": index, "tokens": len(prompt), "matched": receipt.get("matched_tokens") or 0,
-            "dropped": (drop[1] - drop[0]) if drop else 0,
+            "turn": index, "tokens": len(prompt), "hit": hit,
+            "dropped": (drop[1] - drop[0]) * 8 if drop else 0,
             "ttft": ttft if ttft > 0 else None, "wall": wall,
             "out": [],
         })
-        short_last = False
     return {"week": week, "session": line["session_id"], "arm": arm, "turns": turns}
 
 
@@ -225,14 +230,18 @@ def summarise(rows: list[dict]) -> dict:
     for arm in ("full", "trim", "cache-eng"):
         arm_rows = [r for r in rows if r["arm"] == arm]
         ttfts = [t["ttft"] for r in arm_rows for t in r["turns"] if t["ttft"]]
-        prefills = [t["tokens"] - t["matched"] for r in arm_rows for t in r["turns"]]
-        reuse = [t["matched"] for r in arm_rows for t in r["turns"]]
+        prefills = [max(0, t["tokens"] - t["hit"]) for r in arm_rows for t in r["turns"]]
+        reuse = [t["hit"] for r in arm_rows for t in r["turns"]]
+        walls = [t["wall"] for r in arm_rows for t in r["turns"]]
+        dropped = [t["dropped"] for r in arm_rows for t in r["turns"]]
         ttfts.sort()
         per_arm[arm] = {
             "sessions": len(arm_rows),
             "turns": sum(len(r["turns"]) for r in arm_rows),
             "prefill_tokens": sum(prefills),
             "reused_tokens": sum(reuse),
+            "dropped_tokens": sum(dropped),
+            "prefill_wall_s": sum(walls),
             "ttft_p50_ms": (ttfts[len(ttfts) // 2] * 1000) if ttfts else None,
             "ttft_p95_ms": (ttfts[min(len(ttfts) - 1, int(len(ttfts) * 0.95))] * 1000) if ttfts else None,
         }
@@ -244,8 +253,8 @@ def main() -> int:
     parser.add_argument("--dataset", default="/root/autodl-tmp")
     parser.add_argument("--socket", default="/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/engine.sock")
     parser.add_argument("--per-week", type=int, default=1)
-    parser.add_argument("--cap-blocks", type=int, default=256)
-    parser.add_argument("--max-new", type=int, default=4)
+    parser.add_argument("--cap-blocks", type=int, default=2750)
+    parser.add_argument("--turns", type=int, default=30)
     parser.add_argument("--out", default="/root/autodl-tmp/agentic-layer-runs/cache-eng-replay.json")
     args = parser.parse_args()
     engine = Engine(args.socket)
@@ -256,7 +265,7 @@ def main() -> int:
         for week, line in chosen:
             for arm in ("full", "trim", "cache-eng"):
                 print(f"{arm} {week} {line['session_id'][:8]}", file=sys.stderr, flush=True)
-                rows.append(run_arm(client, engine, week, line, arm, args.max_new, args.cap_blocks))
+                rows.append(run_arm(client, engine, week, line, arm, args.cap_blocks, args.turns))
     report = {"sessions": len(chosen), "elapsed_s": time.monotonic() - started,
               "summary": summarise(rows), "rows": rows}
     with open(args.out, "w") as handle:

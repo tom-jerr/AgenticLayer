@@ -531,15 +531,24 @@ class EngineCache:
         if src_state is None:
             return self._reply(cmd, 'unavailable', error='source has no recurrent checkpoint')
         n = len(ids)
+        from sglang.srt.mem_cache.base_prefix_cache import EvictParams
         allocator = self.cache.token_to_kv_pool_allocator
         dst = allocator.alloc(n)
         if dst is None:
-            return self._reply(cmd, 'unavailable', error='insufficient arena capacity')
+            # Reclaim stale namespaces like a bind does; the source chain is the
+            # freshest insert, so LRU eviction cannot take it.
+            self.cache.evict(EvictParams(num_tokens=n))
+            dst = allocator.alloc(n)
+            if dst is None:
+                return self._reply(cmd, 'unavailable', error='insufficient arena capacity')
         mamba_allocator = self.cache.req_to_token_pool.mamba_allocator
         dst_state = mamba_allocator.alloc(1)
         if dst_state is None:
-            allocator.free(dst)
-            return self._reply(cmd, 'unavailable', error='insufficient recurrent capacity')
+            self.cache.evict(EvictParams(mamba_num=1))
+            dst_state = mamba_allocator.alloc(1)
+            if dst_state is None:
+                allocator.free(dst)
+                return self._reply(cmd, 'unavailable', error='insufficient recurrent capacity')
         inserted = False
         try:
             full_pool = allocator.get_kvcache().full_kv_pool

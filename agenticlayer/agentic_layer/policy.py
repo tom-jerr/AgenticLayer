@@ -492,3 +492,41 @@ def select_drop(length: int, budget: int, *, head_fraction: float = 0.125,
     if end - start <= budget or budget <= 0:
         return None
     return start, start + budget
+
+
+def select_drop_messages(block_sizes: Sequence[int], budget: int, *,
+                         head_fraction: float = 0.125) -> tuple[int, int] | None:
+    """Half-open ``[start_block, end_block)`` span dropping whole messages only.
+
+    The harness owns message boundaries: ``block_sizes[i]`` is the block count
+    of message ``i`` in append order. Message 0 is the task anchor (initial
+    view) and the newest message is the live turn; both are kept whole. The
+    protected head is the anchor itself or the earliest ``head_fraction`` of
+    the view, whichever is larger (at real scale the anchor covers the ActKV
+    head fraction), and the oldest middle messages are dropped up to
+    ``budget`` blocks, never splitting one. Returns block offsets, or None
+    when no whole message fits the middle.
+    """
+    if len(block_sizes) < 3 or budget <= 0 or any(size < 0 for size in block_sizes):
+        return None
+    total = sum(block_sizes)
+    if total == 0:
+        return None
+    head_cut = max(block_sizes[0], int(total * head_fraction))
+    offset = block_sizes[0]
+    start: int | None = None
+    end = 0
+    for size in block_sizes[1:-1]:
+        next_offset = offset + size
+        if offset < head_cut:
+            offset = next_offset  # inside or straddling the protected head
+            continue
+        if end + size > budget:
+            break  # a later message is newer; the span stays contiguous
+        if start is None:
+            start = offset
+        end += size
+        offset = next_offset
+    if start is None:
+        return None
+    return start, start + end
