@@ -76,10 +76,35 @@ function requirePermit(permit: Permit, branch: Branch): void {
   }
 }
 
-export interface Config { mode?: 'controlled' | 'native'; isolationDomain?: string }
+interface Retention { view: View; dropped: string[]; last: number }
+
+/** AKV/ActKV message-boundary drop: keep the task anchor and the newest turn,
+ *  drop the oldest middle messages whole. The kept view stays template-legal
+ *  because a turn's user→assistant→tool block is removed as one unit. */
+function retention(messages: GenerateOptions['messages'], view: View, threshold: number): Retention | undefined {
+  if (view.ids.length <= threshold) return undefined
+  let last = view.ids.length - 1
+  for (let index = view.ids.length - 1; index > 0; index--) {
+    const role = messages[index].role
+    if (role === 'user' || role === 'system') { last = index; break }
+  }
+  // A user rendered right after a tool block gets no turn header, so the kept
+  // tail would re-render differently; only drop at a clean turn boundary.
+  if (messages[last - 1]?.role === 'tool') return undefined
+  const dropped = view.ids.slice(1, last)
+  if (dropped.length === 0) return undefined
+  return {
+    view: { ids: [view.ids[0], ...view.ids.slice(last)], hashes: [view.hashes[0], ...view.hashes.slice(last)], envelope: view.envelope },
+    dropped,
+    last,
+  }
+}
+
+export interface Config { mode?: 'controlled' | 'native'; isolationDomain?: string; dropAfterMessages?: number }
 
 export function apply(ctx: Context, config: Config = {}): void {
   const controlled = config.mode !== 'native'
+  const dropAfter = config.dropAfterMessages ?? 32
   const token = process.env.AGENTIC_LOCAL_TOKEN ?? ''
   const runId = process.env.AGENTIC_RUN_ID ?? ''
   const domain = config.isolationDomain ?? process.env.AGENTIC_ISOLATION_DOMAIN
@@ -290,11 +315,17 @@ export function apply(ctx: Context, config: Config = {}): void {
         enqueue(entry, (async () => {
           await Promise.all(preceding)
           if (view) {
-            const change = surfaceChange(previous, view)
-            if (change) await entry.branch.event(change, {
-              message_ids: view.ids, surface_hash: digest([view.hashes, view.envelope]), isolation_domain: domain,
-            })
-            entry.view = view
+            const kept = retention(messages, view, dropAfter)
+            const surface = kept?.view ?? view
+            const change = surfaceChange(previous, surface)
+            if (change) {
+              await entry.branch.event(kept ? 'repos' : change, {
+                message_ids: surface.ids,
+                ...(kept ? { dropped_message_ids: kept.dropped } : {}),
+                surface_hash: digest([surface.hashes, surface.envelope]), isolation_domain: domain,
+              })
+              entry.view = surface
+            }
           }
           const ack = await entry.branch.event('commit', { turn_id: turn, turn_end: true })
           entry.lastEndedVersion = ack.version_id
@@ -338,12 +369,23 @@ export function apply(ctx: Context, config: Config = {}): void {
         const entry = state(session, branchId)
         await barrier(entry)
         const view = messageView(options)
-        const change = surfaceChange(entry.view, view)
+        const kept = retention(options.messages, view, dropAfter)
+        const surface = kept?.view ?? view
+        const change = surfaceChange(entry.view, surface)
         if (change) {
-          await entry.branch.event(change, { message_ids: view.ids, surface_hash: digest([view.hashes, view.envelope]), isolation_domain: domain }, options.signal)
-          entry.view = view
+          // repos rotates the retained prefix; a rewritten surface that cannot
+          // align cold-rebuilds (the middleware validates the subsequence).
+          await entry.branch.event(kept ? 'repos' : change, {
+            message_ids: surface.ids,
+            ...(kept ? { dropped_message_ids: kept.dropped } : {}),
+            surface_hash: digest([surface.hashes, surface.envelope]), isolation_domain: domain,
+          }, options.signal)
+          entry.view = surface
         }
         const action = id(), rid = id()
+        const effective = kept
+          ? { ...options, messages: [options.messages[0], ...options.messages.slice(kept.last)] }
+          : options
         const permit = await entry.branch.permit({ action_id: action, rid, turn_id: entry.turn,
           call_id: action, ordinal: 0, action_kind: options.purpose ? 'summary' : 'model' }, options.signal)
         requirePermit(permit, entry.branch)
@@ -352,7 +394,11 @@ export function apply(ctx: Context, config: Config = {}): void {
         let status = 'error'
         try {
           requirePermit(permit, entry.branch)
-          const iterator = next()[Symbol.asyncIterator]()
+          // The drop sends the kept view downstream; the emit-time options are
+          // frozen, so the derived copy is forwarded as the next handler's own
+          // options argument (the type omits it but dispatch forwards args).
+          const forward = next as unknown as (options: GenerateOptions) => AsyncIterable<StreamChunk>
+          const iterator = forward(effective)[Symbol.asyncIterator]()
           try {
             for (;;) {
               const step = await local.run({ session, branch: branchId, version: permit.version_id, rid }, () => iterator.next())

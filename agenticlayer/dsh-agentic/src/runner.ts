@@ -22,6 +22,7 @@ export interface RunnerOptions {
   toolCache?: boolean
   delegation?: boolean
   fixedSummary?: string
+  dropAfterMessages?: number
 }
 
 /** Owns the real SDK subprocess; callers must await harness.close(). */
@@ -65,6 +66,7 @@ export function createHarness(options: RunnerOptions): DeepSeekHarness {
     AGENTIC_TOOL_CACHE: options.toolCache ? 'on' : 'off',
     AGENTIC_DELEGATION: options.delegation ? '1' : '0',
     ...(options.fixedSummary === undefined ? {} : { AGENTIC_FIXED_SUMMARY: options.fixedSummary }),
+    ...(options.dropAfterMessages === undefined ? {} : { AGENTIC_DROP_AFTER_MESSAGES: String(options.dropAfterMessages) }),
   })
   return new DeepSeekHarness({ profile: 'sdk', patches: [patch],
     dshHome: home, cwd: resolve(options.cwd), dshBin: resolve(options.dshBin), env,

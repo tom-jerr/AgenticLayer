@@ -437,13 +437,59 @@ def _rope_tables(rotary_dim: int, theta: float, device: torch.device) -> torch.T
 _ROPE_TABLES: dict[tuple[int, float, str], torch.Tensor] = {}
 
 
+_ROTATE_MODE = os.environ.get("AGENTIC_TRITON_ROTATE", "0")
+if _ROTATE_MODE not in ("0", "1"):
+    raise ValueError("AGENTIC_TRITON_ROTATE must be 0 or 1")
+
+
+@triton.jit
+def _rotate_kv_kernel(K_PTR, V_PTR, SRC_SLOTS, DST_SLOTS, COS, SIN,
+                      POOL_SLOT_K, POOL_SLOT_V, SLOT_ELEMS_K, SLOT_ELEMS_V,
+                      H: tl.constexpr, HEAD_DIM: tl.constexpr, RHALF: tl.constexpr,
+                      BLOCK: tl.constexpr):
+    """Copy one pool row to its destination slot and rotate the RoPE pairs in place.
+
+    ``SRC_SLOTS``/``DST_SLOTS`` are pool slot indices; the flat row copy covers
+    the tail channels too, then only the first ``rotary_dim`` interleaved
+    channels of each head are re-rotated at the destination.
+    """
+    row = tl.program_id(1)
+    src = tl.load(SRC_SLOTS + row)
+    dst = tl.load(DST_SLOTS + row)
+    offs = tl.arange(0, BLOCK)
+    v_src = src * POOL_SLOT_V
+    v_dst = dst * POOL_SLOT_V
+    for start in range(0, SLOT_ELEMS_V, BLOCK):
+        idx = start + offs
+        mask = idx < SLOT_ELEMS_V
+        tl.store(V_PTR + v_dst + idx, tl.load(V_PTR + v_src + idx, mask=mask), mask=mask)
+    k_src = src * POOL_SLOT_K
+    k_dst = dst * POOL_SLOT_K
+    for start in range(0, SLOT_ELEMS_K, BLOCK):
+        idx = start + offs
+        mask = idx < SLOT_ELEMS_K
+        tl.store(K_PTR + k_dst + idx, tl.load(K_PTR + k_src + idx, mask=mask), mask=mask)
+    for h in tl.static_range(H):
+        for start in range(0, RHALF, BLOCK):
+            idx = start + offs
+            pair_mask = idx < RHALF
+            cos = tl.load(COS + row * RHALF + idx, mask=pair_mask, other=1.0).to(tl.float32)
+            sin = tl.load(SIN + row * RHALF + idx, mask=pair_mask, other=0.0).to(tl.float32)
+            p = k_dst + h * HEAD_DIM + idx * 2
+            a = tl.load(K_PTR + p, mask=pair_mask).to(tl.float32)
+            b = tl.load(K_PTR + p + 1, mask=pair_mask).to(tl.float32)
+            tl.store(K_PTR + p, (a * cos - b * sin).to(tl.bfloat16), mask=pair_mask)
+            tl.store(K_PTR + p + 1, (a * sin + b * cos).to(tl.bfloat16), mask=pair_mask)
+
+
 def rotate_kv(src_slots: torch.Tensor, dst_slots: torch.Tensor, k_buffer, v_buffer,
               old_positions: torch.Tensor, *, rotary_dim: int, theta: float) -> None:
     """Copy ``src_slots`` to ``dst_slots`` and rotate each key by the position delta.
 
-    ``old_positions[i]`` is the position the source slot was written at; the
-    destination slot ``i`` must mean position ``i`` (the compacted sequence is
-    contiguous from zero). Only the first ``rotary_dim`` channels rotate.
+    ``src_slots``/``dst_slots`` are pool slot indices; ``old_positions[i]`` is
+    the position the source slot was written at, and the destination slot ``i``
+    means position ``i`` (the compacted sequence is contiguous from zero).
+    Only the first ``rotary_dim`` channels rotate.
     """
     with torch.no_grad():
         n = int(dst_slots.numel())
@@ -451,8 +497,22 @@ def rotate_kv(src_slots: torch.Tensor, dst_slots: torch.Tensor, k_buffer, v_buff
         delta = (torch.arange(n, device=dst_slots.device, dtype=torch.float32) - old_positions.float())
         inv_freq = _rope_tables(rotary_dim, theta, dst_slots.device)
         angle = delta[:, None] * inv_freq[None, :]
-        cos = torch.cos(angle)[:, None, :]
-        sin = torch.sin(angle)[:, None, :]
+        cos = torch.cos(angle).contiguous()
+        sin = torch.sin(angle).contiguous()
+        if (_ROTATE_MODE == "1" and all(t.ndim == 3 and t.is_contiguous()
+                                        for t in (*k_buffer, *v_buffer))):
+            for k_pool, v_pool in zip(k_buffer, v_buffer):
+                heads, head_dim = int(k_pool.shape[1]), int(k_pool.shape[2])
+                _rotate_kv_kernel[(1, n)](
+                    k_pool, v_pool, src_slots, dst_slots, cos, sin,
+                    int(k_pool.stride(0)), int(v_pool.stride(0)),
+                    heads * head_dim, int(v_pool[0].numel()),
+                    H=heads, HEAD_DIM=head_dim, RHALF=rotary_dim // 2, BLOCK=256,
+                    num_warps=4)
+            torch.cuda.current_stream().synchronize()
+            return
+        cos = cos[:, None, :]
+        sin = sin[:, None, :]
         for k_tensor, v_tensor in zip(k_buffer, v_buffer):
             v_tensor[dst_slots] = v_tensor[src_slots]
             x = k_tensor[src_slots].clone()

@@ -149,7 +149,20 @@ python experiments/cache_engineering_replay.py --per-week 8 --cap-blocks 2750 --
 - **已修正的实现陷阱**：长期锁住新链会阻断引擎的路径状态回收（idle 不变式中止服务），改为普通可驱逐节点；
   Mamba 状态池在不同构建下是 `[layers, slots, …]` 或 `[slots, …]`，拷贝按“第一个足够大的轴”定位；
   真实尺度下竞技场被逐次新 salt 的旧链填满，`repos` 分配失败需先 LRU 驱逐再重试（对齐 `bind`）。
-- **未完成**：丢弃决策在真实 DSH 侧接线（`dsh-agentic` 已有消息视图/版本原语与 controller，repos 经
-  `/agentic/v1/events` 下发尚未接通——当前丢弃由回放器在轨迹消息边界构造）、专用 Triton 旋转核、
-  以及任务质量评测（fixture 通过率/动作正确性）；Mamba 状态保留原历史摘要，与 AKV 的“保留 KV 携带
-  被丢历史”同源，但不是对紧凑序列的精确重算。
+- **未完成**：任务质量评测（fixture 通过率/动作正确性）仍是边界；Mamba 状态保留原历史摘要，与 AKV 的
+  “保留 KV 携带被丢历史”同源，但不是对紧凑序列的精确重算。
+
+### 5.1 真实 DSH 闭环与 Triton 旋转核（本阶段的补充）
+
+- **DSH 消息级丢弃闭环已接通**：`dsh-agentic` 在 `llm/stream` 按消息数阈值（`dropAfterMessages`，默认 32）
+  做保留决策（任务锚点 + 最新轮，从不切开工具往返），发 `repos` 事件经 `/agentic/v1/events` 下发；
+  中间层以消息级 token range（递增前缀 tokenize + 引擎校验兜底）计算丢弃 spans、必要时先
+  `prepare` 物化源链（no_buffer 下 chat 不入树）、再执行引擎 `repos`；保留视图经 `next(derived options)`
+  传给 provider。`dsh_bench.mjs --suite drop`（双轮 fixture：17 → 42 + marker）全门禁通过，
+  真实视图 drop 后 391/1102 token 旋转复用。边界：丢弃边界必须落在模板干净处（user 前一条消息非
+  tool——Qwen3 模板把 tool 块与其后 user 合并渲染，落在 tool 后则保留尾重渲染不同、自动冷回退）。
+- **Triton 键旋转核已交付**：`kernels.py` 的 `_rotate_kv_kernel`（每行拷贝 + 原地 RoPE 对旋转，
+  `AGENTIC_TRITON_ROTATE=1` 启用、非 3D 布局自动回退 eager），与 eager 逐位一致（bf16 下 max|ΔK|=0），
+  24K×8 层旋转 2.5×、8K 3.7×。但**旋转拷贝本身只占 repos 墙钟的 1–3 ms**：实测 22K 链 repos 共
+  29–57 ms（旋转 687 MiB），主开销在 TreeCore 插入与 RPC，Triton 化对端到端 P95 的增益有限；
+  更狠的 P95 需优化插入/匹配路径。

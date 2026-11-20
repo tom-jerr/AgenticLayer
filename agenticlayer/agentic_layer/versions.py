@@ -42,6 +42,7 @@ class Version:
     parent: Version | None = None
     fork_prefix: tuple[int, ...] | None = None
     tokens: tuple[int, ...] | None = None
+    ranges: tuple[tuple[int, int], ...] | None = None
     handle: str | None = None
     residency: str = "absent"
     matched: int = 0
@@ -206,7 +207,7 @@ class Directory:
         kind, payload = event.kind, event.payload
         if branch.lifecycle == "expired" and kind not in {EventKind.CANCEL, EventKind.END, EventKind.FINISH, EventKind.COMMIT}:
             raise conflict("branch already ended")
-        if kind in {EventKind.APPEND, EventKind.REPLACE, EventKind.REMOVE}:
+        if kind in {EventKind.APPEND, EventKind.REPLACE, EventKind.REMOVE, EventKind.REPOS}:
             self._change_view(branch, event)
         elif kind == EventKind.FORK:
             self._fork(branch, payload)

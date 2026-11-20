@@ -7,7 +7,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-const usage = `Usage: node experiments/dsh_bench.mjs --run-dir DIR --suite smoke|e1|e2|allof|allof-pair [--mode native|controlled] [--token TOKEN] [--dsh-bin FILE] [--runner FILE] [--events FILE] [--repeats N]
+const usage = `Usage: node experiments/dsh_bench.mjs --run-dir DIR --suite smoke|e1|e2|allof|allof-pair|drop [--mode native|controlled] [--token TOKEN] [--dsh-bin FILE] [--runner FILE] [--events FILE] [--repeats N]
 Uses an already running SGLang (30080) or controller (30081); starts no server.
 Each invocation creates a new directory under DIR/dsh-bench. --events optionally
 names the controller's JSONL event trace; controlled mode needs --token or
@@ -24,7 +24,7 @@ function options(argv) {
         || result[key] !== undefined || !argv[i + 1] || argv[i + 1].startsWith('--')) throw new Error(`Invalid argument: ${key}\n${usage}`)
     result[key] = argv[++i]
   }
-  if (!result['--run-dir'] || !['smoke', 'e1', 'e2', 'allof', 'allof-pair'].includes(result['--suite'])) throw new Error(usage)
+  if (!result['--run-dir'] || !['smoke', 'e1', 'e2', 'allof', 'allof-pair', 'drop'].includes(result['--suite'])) throw new Error(usage)
   result['--mode'] ??= 'native'
   if (!['native', 'controlled'].includes(result['--mode'])) throw new Error('Invalid mode')
   if (result['--repeats'] !== undefined) {
@@ -321,6 +321,51 @@ async function collectCase(report, name, run) {
   }
 }
 
+async function dropCase(createHarness, config, base, name) {
+  const f = await fixture(base, name), gates = []
+  const harness = createHarness({ cwd: f.workspace, dshHome: f.home, dshBin: config.bin, isolationDomain: name,
+    mode: config.mode, serial: false, token: config.token, runId: `${config.id}-${name}`, files: f.state.files,
+    marker: 'commit.marker', dataVersion: f.state.dataVersion, permissionScope: f.state.permissionScope,
+    stateFile: f.stateFile, toolCache: false, dropAfterMessages: 4 })
+  try {
+    const session = harness.session()
+    const phase1 = await runTurn(session,
+      'Call fixture_read exactly once for the bare filename a.txt with delay_ms 0, then answer only with the integer you read.',
+      f, 'phase1')
+    assertGate(gates, 'drop.phase1_answer', phase1.finishReason === 'completed' && phase1.finalResponse.trim() === '17',
+      { finishReason: phase1.finishReason, answer: phase1.finalResponse })
+    const phase2 = await runTurn(session,
+      'Call fixture_read exactly once for the bare filename b.txt with delay_ms 0. ' +
+      'Then pass the two integers 17 and 25 in that order as values to fixture_sum. ' +
+      'After the sum returns, pass that integer as value to fixture_write_marker once, then answer only with the integer.',
+      f, 'phase2')
+    const calls = callsOf(phase2)
+    assertGate(gates, 'drop.phase2_sequence', exact(calls.map(c => [c.name, c.args]), [
+      ['fixture_read', { path: 'b.txt', delay_ms: 0 }],
+      ['fixture_sum', { values: [17, 25] }],
+      ['fixture_write_marker', { value: 42 }],
+    ]), calls.map(c => [c.name, c.args]))
+    assertGate(gates, 'drop.phase2_answer', phase2.finishReason === 'completed' && phase2.finalResponse.trim() === '42',
+      { finishReason: phase2.finishReason, answer: phase2.finalResponse })
+    await markerGate(f, gates)
+    return { gates, sessionId: phase2.sessionId }
+  } finally { await harness.close() }
+}
+
+async function reposTrace(path, runId) {
+  if (!path) return []
+  const rows = []
+  for (const line of (await readFile(path, 'utf8')).split('\n')) {
+    const match = line.match(/(?:^|:)agentic_layer:repos materialised (\{.*\})$/)
+    if (!match) continue
+    try {
+      const row = JSON.parse(match[1])
+      if (row.run_id === runId) rows.push(row)
+    } catch { /* not a repos row */ }
+  }
+  return rows
+}
+
 async function runE1(createHarness, config, report, repeats) {
   const pairs = []
   report.repeats = repeats
@@ -420,6 +465,12 @@ async function main() {
           await collectCase(report, name, () => allofCase(createHarness, config, base, name, serial, true))
         }
       }
+    } else if (opt['--suite'] === 'drop') {
+      const name = 'drop'
+      report.cases[name] = await dropCase(createHarness, config, base, name)
+      const materialised = await reposTrace(report.events, `${config.id}-${name}`)
+      assertGate(report.gates, 'drop.repos_materialised', materialised.length >= 1 && materialised[0].kept_tokens > 0,
+        { materialised, note: 'controller log must show the engine repos op completed for this run' })
     } else report.cases.allof = await allofCase(createHarness, config, base, 'allof')
   } catch (error) { report.error = errorDetail(error) }
   report.pass = !report.error && report.gates.every(g => g.pass) && Object.values(report.cases).every(c => c.gates.every(g => g.pass))

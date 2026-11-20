@@ -451,7 +451,8 @@ class Coordinator:
 
     async def tokenize(self, body: dict[str, Any]) -> tuple[int, ...]:
         native_fields = ("model", "messages", "tools", "tool_choice", "chat_template_kwargs", "reasoning_effort",
-                         "continue_final_message", "parallel_tool_calls", "response_format", "thinking")
+                         "continue_final_message", "parallel_tool_calls", "response_format", "thinking",
+                         "add_generation_prompt")
         result = await self.http.post("/v1/tokenize", json={k: body[k] for k in native_fields if k in body})
         if result.is_error:
             raise invalid(f"native tokenizer rejected request ({result.status_code})")
@@ -756,6 +757,177 @@ class Coordinator:
         self.directory._discard(branch, candidate)
         return None
 
+    async def message_ranges(self, body: dict[str, Any], version: Version, ids: tuple[int, ...]) -> None:
+        """Record each message's token span in ``ids`` for later message-boundary drops.
+
+        The chat template renders messages additively for this carrier; the spans
+        are optimistic and the engine's ``repos`` validation is the authoritative
+        check — on any mismatch the drop falls back to a cold rebuild. Ranges are
+        only maintained once a session grows large enough for a drop to be
+        plausible, then incrementally for the messages each turn adds.
+        """
+        messages = body.get("messages") or []
+        parent = version.parent
+        base = parent.ranges if parent is not None and parent.ranges is not None else ()
+        if len(messages) != len(version.message_ids) or len(base) > len(messages):
+            return
+        if not base and len(messages) < 4:
+            # Below four messages no middle exists for a drop to remove.
+            return
+        kwargs = dict(body.get("chat_template_kwargs") or {})
+        ranges = list(base)
+        prefix_end = sum(end - start for start, end in base)
+        dummy = {"role": "user", "content": "Continue."}
+        dummy_tokens = None
+        # Tokenize growing prefixes of the real message list; the template is
+        # prefix-stable for this carrier, so message j's span is the delta
+        # between adjacent prefix lengths. The engine repos validation remains
+        # the authoritative check of every boundary. A leading system message
+        # is rendered before a trailing dummy user because the engine rejects
+        # lists without a user query.
+        for index in range(len(base), len(messages)):
+            try:
+                if index == 0 and messages[0].get("role") in ("system", "developer"):
+                    if dummy_tokens is None:
+                        dummy_tokens = await self.tokenize({"messages": [dummy], "chat_template_kwargs": kwargs,
+                                                            "add_generation_prompt": False})
+                    rendered = await self.tokenize({"messages": [messages[0], dummy],
+                                                    "chat_template_kwargs": kwargs,
+                                                    "add_generation_prompt": False})
+                    end = len(rendered) - len(dummy_tokens)
+                else:
+                    rendered = await self.tokenize({"messages": messages[:index + 1], "tools": body.get("tools"),
+                                                    "tool_choice": body.get("tool_choice"),
+                                                    "chat_template_kwargs": kwargs,
+                                                    "add_generation_prompt": False})
+                    end = len(rendered)
+            except WireError:
+                return
+            ranges.append((prefix_end, end))
+            prefix_end = end
+        version.ranges = tuple(ranges)
+
+    async def materialize_source(self, branch: Branch, source: Version) -> bool:
+        """Checkpoint the committed view so a repos op has a source handle.
+
+        Completed chat requests do not enter the hybrid tree under
+        ``mamba_radix_cache_strategy=no_buffer``; the prepare path materialises
+        the chain and returns a handle. The prepare hits the previous chain, so
+        only the un-checkpointed delta is prefilled.
+        """
+        aid = uuid.uuid4().hex
+        rid = uuid.uuid4().hex
+        salt = self.directory.salt(branch, source, source.tokens or ())
+        try:
+            reply, = await self.engine.rpc([{
+                "op": "bind", "action_id": aid, "rid": rid, "run_id": branch.run_id,
+                "version_id": source.id, "handle": None,
+                "payload": {"expected_ids": list(source.tokens or ()), "cache_salt": salt,
+                            "kind": "prepare", "session_id": branch.key[0], "branch_id": branch.key[1],
+                            "max_new_tokens": 0, "hold": False}}])
+        except EngineUnavailable:
+            return False
+        if reply.get("status") != "ok":
+            return False
+        future = self.engine.watch(aid)
+        native = self.http.build_request("POST", "/generate", json={
+            "input_ids": list(source.tokens or ()), "rid": rid, "cache_salt": salt,
+            "sampling_params": {"max_new_tokens": 0, "temperature": 0, "ignore_eos": True}})
+        try:
+            response = await self.http.send(native)
+            response.raise_for_status()
+            receipt = await future
+        except (httpx.HTTPError, EngineUnavailable):
+            self.engine.unwatch(aid)
+            return False
+        finally:
+            self.engine.unwatch(aid)
+        if receipt.get("status") != "ready" or not receipt.get("handle"):
+            return False
+        source.handle = receipt["handle"]
+        source.residency = (receipt.get("details") or {}).get("residency", "hbm")
+        source.full_hit = (receipt.get("details") or {}).get("full_kv_hit_length", 0)
+        LOG.info("repos source prepared %s", json.dumps({
+            "run_id": branch.run_id, "session_id": branch.key[0], "branch_id": branch.key[1],
+            "version_id": source.id, "tokens": len(source.tokens or ()), "full_hit": source.full_hit}))
+        return True
+
+    async def materialize_repos(self, branch: Branch) -> bool:
+        """Execute the harness's message-level drop via the engine ``repos`` op.
+
+        The kept view's token sequence is the source minus the dropped messages'
+        recorded spans, so no re-tokenization happens here; the engine validates
+        the spans against the source chain before rotating. Every failure mode
+        (no source tokens/ranges, invalid subsequence, engine rejection) leaves
+        the version cold — the next request rebuilds it honestly.
+        """
+        version = branch.current
+        source = version.parent
+        if (source is None or source.tokens is None
+                or not source.ranges or len(source.ranges) != len(source.message_ids)
+                or not self.engine.capabilities.get("repos")):
+            LOG.info("repos cold fallback %s", json.dumps({
+                "run_id": branch.run_id, "session_id": branch.key[0], "branch_id": branch.key[1],
+                "version_id": version.id, "reason": "source not fully materialised"}))
+            return False
+        if (source.handle is None or source.residency != "hbm") and not await self.materialize_source(branch, source):
+            LOG.info("repos cold fallback %s", json.dumps({
+                "run_id": branch.run_id, "session_id": branch.key[0], "branch_id": branch.key[1],
+                "version_id": version.id, "reason": "source prepare failed"}))
+            return False
+        kept_ids = version.message_ids
+        by_id = dict(zip(source.message_ids, source.ranges))
+        kept_source = [mid for mid in source.message_ids if mid in set(kept_ids)]
+        appended = [mid for mid in kept_ids if mid not in by_id]
+        if tuple(kept_ids) != tuple(kept_source + appended):
+            LOG.info("repos cold fallback %s", json.dumps({
+                "run_id": branch.run_id, "session_id": branch.key[0], "branch_id": branch.key[1],
+                "version_id": version.id, "reason": "kept messages are not a clean subsequence plus appended tail"}))
+            return False
+        spans: list[tuple[int, int]] = []
+        kept_ranges: list[tuple[int, int]] = []
+        offset = 0
+        for mid in source.message_ids:
+            start, end = by_id[mid]
+            if mid in set(kept_ids):
+                kept_ranges.append((offset, offset + end - start))
+                offset += end - start
+            else:
+                spans.append((start, end))
+        if not spans:
+            return False
+        compact = tuple(token for index, token in enumerate(source.tokens)
+                        if not any(start <= index < end for start, end in spans))
+        if len(compact) == len(source.tokens):
+            LOG.info("repos cold fallback %s", json.dumps({
+                "run_id": branch.run_id, "session_id": branch.key[0], "branch_id": branch.key[1],
+                "version_id": version.id, "reason": "message spans covered no tokens"}))
+            return False
+        command = {"op": "repos", "action_id": uuid.uuid4().hex, "rid": uuid.uuid4().hex,
+                   "run_id": branch.run_id, "version_id": source.id, "handle": source.handle,
+                   "payload": {"expected_ids": list(compact), "cache_salt": self.directory.salt(branch, version, compact),
+                               "dropped": [list(span) for span in spans]}}
+        try:
+            reply, = await self.engine.rpc([command])
+        except EngineUnavailable:
+            return False
+        if reply.get("status") != "completed":
+            LOG.info("repos cold fallback %s", json.dumps({
+                "run_id": branch.run_id, "session_id": branch.key[0], "branch_id": branch.key[1],
+                "version_id": version.id, "reason": reply.get("error") or "repos rejected"}))
+            return False
+        version.tokens = compact
+        version.ranges = tuple(kept_ranges)
+        version.residency = "hbm"
+        version.matched = reply.get("matched") or 0
+        version.full_hit = reply.get("matched") or 0
+        version.handle = reply.get("handle")
+        LOG.info("repos materialised %s", json.dumps({
+            "run_id": branch.run_id, "session_id": branch.key[0], "branch_id": branch.key[1],
+            "version_id": version.id, "kept_tokens": len(compact), "source_tokens": len(source.tokens),
+            "dropped_spans": spans, "rotated_bytes": (reply.get("details") or {}).get("rotated_bytes")}))
+        return True
+
 
 def _chat_body(value: Any) -> dict[str, Any]:
     body = object_value(value, "chat request").copy()
@@ -875,6 +1047,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     service.spawn(service.pretokenize(action))
             else:
                 await _connected(request, service.grant(action), lambda: service.cancel(action, "ready caller disconnected"))
+        if not duplicate and event.kind == EventKind.REPOS:
+            branch = service.directory.branch((event.session_id, event.branch_id))
+            if await service.materialize_repos(branch):
+                record.status = "ready"
         ack = record.ack()
         if event.kind == EventKind.FORK:
             key = (event.payload.get("child_session_id", event.session_id), event.payload["child_branch_id"])
@@ -912,6 +1088,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             ids = await _connected(request, service.tokenize(body), lambda: service.cancel(action, "client disconnected"))
             _context(ids, budget)
             cutover = service.cutover(branch, ids)
+            await service.message_ranges(body, version, ids)
             dispatch = await service.bind(action, version, ids, budget)
             native = service.http.build_request("POST", "/v1/chat/completions", json={**body, "rid": rid, "cache_salt": dispatch.salt})
             upstream = await _connected(request, service.http.send(native, stream=body.get("stream", False)),

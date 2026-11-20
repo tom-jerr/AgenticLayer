@@ -26,6 +26,7 @@ class EventKind(StrEnum):
     APPEND = "append"
     REPLACE = "replace"
     REMOVE = "remove"
+    REPOS = "repos"
     FORK = "fork"
     END = "end"
     SUSPEND = "suspend"

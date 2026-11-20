@@ -77,3 +77,4 @@
       name: "__AGENTIC_PLUGIN_MODULE__"
       config:
         mode: !!js process.env.AGENTIC_MODE ?? 'controlled'
+        dropAfterMessages: !!js "Number(process.env.AGENTIC_DROP_AFTER_MESSAGES ?? '32')"

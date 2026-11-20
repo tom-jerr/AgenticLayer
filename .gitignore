@@ -6,6 +6,9 @@ node_modules/
 .pytest_cache/
 .DS_Store
 
+# Plugin build output is produced per run by the RUNBOOK tsc step.
+agenticlayer/dsh-agentic/lib/
+
 # Pinned upstream trees are cloned/untarred per run, never vendored here.
 deepseek-harness/
 sglang
