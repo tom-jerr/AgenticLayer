@@ -513,10 +513,18 @@ class EngineCache:
         if len(keep) != len(ids) or tuple(h.ids[i] for i in keep) != ids:
             raise ValueError('compacted ids do not match the source minus dropped spans')
         import torch
+        import time as _time
+        phases: dict[str, float] = {}
+        t0 = _time.monotonic()
+
+        def _tick(name: str) -> None:
+            phases[name] = round((_time.monotonic() - t0) * 1000, 3)
+
         from sglang.srt.mem_cache.base_prefix_cache import InsertParams
         from sglang.srt.mem_cache.radix_cache import RadixKey
         from sglang.srt.mem_cache.unified_cache.components import ComponentType
         match = self._match(h.ids, h.salt)
+        _tick('match_source')
         if match.device_prefix_len != len(h.ids):
             return self._reply(cmd, 'unavailable',
                                error=f'source chain was evicted ({match.device_prefix_len} of {len(h.ids)})')
@@ -524,6 +532,7 @@ class EngineCache:
         source = core.node_by_id(h.node)
         src_slots = self._chain_slots(h, ComponentType.FULL)
         src_state = source.component_data[ComponentType.MAMBA].value
+        _tick('chain_slots')
         if src_slots is None or len(src_slots) != len(h.ids):
             have = 'missing' if src_slots is None else str(len(src_slots))
             return self._reply(cmd, 'unavailable',
@@ -549,6 +558,7 @@ class EngineCache:
             if dst_state is None:
                 allocator.free(dst)
                 return self._reply(cmd, 'unavailable', error='insufficient recurrent capacity')
+        _tick('alloc')
         inserted = False
         try:
             full_pool = allocator.get_kvcache().full_kv_pool
@@ -560,9 +570,11 @@ class EngineCache:
             state = self.cache.req_to_token_pool.mamba_pool.mamba_cache
             copy_state_rows(int(src_state.reshape(-1)[0]), int(dst_state.reshape(-1)[0]),
                             state.conv, state.temporal)
+            _tick('rotate')
             result = self.cache.insert(InsertParams(
                 key=RadixKey(array('q', ids), cache_salt=s), value=dst,
                 mamba_value=dst_state, inserted_len=0))
+            _tick('insert')
             inserted = True
         except Exception:
             if inserted:
@@ -570,7 +582,10 @@ class EngineCache:
             allocator.free(dst)
             mamba_allocator.free(dst_state)
             raise
+        # The post-insert match is required: its walk participates in the
+        # native evictable-accounting ledgers the idle invariant checks.
         matched = self._match(ids, s)
+        _tick('match_result')
         if matched.device_prefix_len != n or matched.last_device_node is None:
             allocator.free(dst)
             mamba_allocator.free(dst_state)
@@ -585,7 +600,7 @@ class EngineCache:
         return self._reply(cmd, 'completed', handle=handle, matched=n, details={
             'source_tokens': len(h.ids), 'kept_tokens': n,
             'dropped_tokens': len(h.ids) - n, 'rotated_bytes': n * slot_bytes,
-            'rotary_dim': rotary_dim})
+            'rotary_dim': rotary_dim, 'phases_ms': phases})
 
     def observe_acks(self, kind: str, acks: list[Any]) -> None:
         for ack in acks:

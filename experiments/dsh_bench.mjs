@@ -326,11 +326,14 @@ async function dropCase(createHarness, config, base, name) {
   const harness = createHarness({ cwd: f.workspace, dshHome: f.home, dshBin: config.bin, isolationDomain: name,
     mode: config.mode, serial: false, token: config.token, runId: `${config.id}-${name}`, files: f.state.files,
     marker: 'commit.marker', dataVersion: f.state.dataVersion, permissionScope: f.state.permissionScope,
-    stateFile: f.stateFile, toolCache: false, dropAfterMessages: 4 })
+    stateFile: f.stateFile, toolCache: false, dropAfterMessages: 3 })
   try {
     const session = harness.session()
+    // Phase 1 is tool-free so the phase-2 drop boundary is always template-clean:
+    // a tool-call turn may merge its final answer into the tool message, which
+    // leaves the retained tail re-rendered differently and (correctly) skips the drop.
     const phase1 = await runTurn(session,
-      'Call fixture_read exactly once for the bare filename a.txt with delay_ms 0, then answer only with the integer you read.',
+      'Answer only with the integer 17. Do not call any tool.',
       f, 'phase1')
     assertGate(gates, 'drop.phase1_answer', phase1.finishReason === 'completed' && phase1.finalResponse.trim() === '17',
       { finishReason: phase1.finishReason, answer: phase1.finalResponse })

@@ -7,6 +7,7 @@ import os
 import queue
 import socket
 import threading
+import time
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -259,6 +260,28 @@ def build_cache(ctx):
     return cache
 
 
+_last_idle_housekeeping = 0.0
+
+
+def _around_on_idle(original, scheduler, *args, **kwargs):
+    # Idle housekeeping (idle invariant checks, load snapshot publishing) is
+    # the bulk of the idle iteration; control work waiting on the socket must
+    # not sit behind it every iteration. Skip it whenever control is queued,
+    # and otherwise throttle it to once per second so an arriving op waits at
+    # most one housekeeping pass. The busy-phase invariants are untouched.
+    global _last_idle_housekeeping
+    socket_ = getattr(scheduler, '_agentic_socket', None)
+    if socket_ is not None:
+        if not socket_.queue.empty():
+            return None
+        now = time.monotonic()
+        if now - _last_idle_housekeeping < 1.0:
+            time.sleep(0.0005)
+            return None
+        _last_idle_housekeeping = now
+    return original(scheduler, *args, **kwargs)
+
+
 def register() -> None:
     from sglang.srt.mem_cache.registry import register_radix_cache_backend
     from sglang.srt.plugins.hook_registry import HookRegistry, HookType
@@ -274,5 +297,6 @@ def register() -> None:
                        ('handle_generate_request', _before_generate),
                        ('process_batch_result', _after_batch),
                        ('abort_request', _around_abort),
-                       ('_create_generation_req', _after_create_req)):
+                       ('_create_generation_req', _after_create_req),
+                       ('on_idle', _around_on_idle)):
         HookRegistry.register(prefix + name, hook, HookType.AROUND)

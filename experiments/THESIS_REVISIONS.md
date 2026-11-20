@@ -211,6 +211,9 @@ PDF 重画建议：图 4-6/4-7/4-8 的折线坐标与图注直接取自 SVG 内�
    模板干净处——Qwen3 模板把 tool 块与其后的 user 合并渲染，若丢弃边界落在 tool 之后，保留尾重渲染不同、
    键旋转不可能，系统自动冷回退（诚实路径）。
 6. **混合模型语义**：linear attention 状态保留原历史摘要（见第 2 节第 5 条），与 AKV 同源而非精确重算。
-7. **旋转成本真相**：Triton 旋转核已完成（逐位等价、2.5–3.7×），但旋转拷贝只占 repos 墙钟 1–3 ms；
-   实测 22K 链 repos 共 29–57 ms，主开销在 Python TreeCore 插入与 RPC——论文写「键旋转成本」时应引用
-   总墙钟而非拷贝字节数，Triton 化对 P95 的增益有限，插入/匹配路径才是下一个优化点。
+7. **旋转成本真相（已优化后更新）**：Triton 旋转核已完成（逐位等价、2.5–3.7×）。22K 链 repos 阶段剖析：
+    rotate 2.7–3.5 ms、insert 3.2–4.0 ms、post-match 3.6–4.6 ms、RPC 曾是最大项（空闲时控制命令等调度器
+    迭代，p50 34.7 ms）——经 idle housekeeping 节流修复后 RPC p50 0.89 ms，repos 客户端墙钟 22K 由
+    29–57 ms 降到 14.7–18.3 ms（2–3×）。负结果：post-insert match 不可用 InsertResult 替代（其 walk 参与
+    原生 evictable 记账，省略会触发 idle 不变式池泄漏中止）；剩余 insert+match ≈ 7–9 ms 为 pinned
+    Python TreeCore walk 成本。论文写「键旋转成本」应引用总墙钟与上述分解。

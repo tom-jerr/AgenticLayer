@@ -369,7 +369,9 @@ export function apply(ctx: Context, config: Config = {}): void {
         const entry = state(session, branchId)
         await barrier(entry)
         const view = messageView(options)
-        const kept = retention(options.messages, view, dropAfter)
+        // No drop before the branch has a committed view: the first model
+        // call must open with a plain append.
+        const kept = entry.view === undefined ? undefined : retention(options.messages, view, dropAfter)
         const surface = kept?.view ?? view
         const change = surfaceChange(entry.view, surface)
         if (change) {
