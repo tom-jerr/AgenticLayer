@@ -1,0 +1,19 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": null,
+  "scope": "GPU projected trace replay",
+  "run_summaries": [
+    {
+      "native-radix": {
+        "name": "checkpoint-l3-smoke-1-native-radix",
+        "statuses": {
+          "completed": 4
+        },
+        "p50_ms": 7794.492445886135,
+        "p95_ms": 31729.786328971386,
+        "p99_ms": 31729.786328971386
+      }
+    }
+  ],
+  "paired": null
+}

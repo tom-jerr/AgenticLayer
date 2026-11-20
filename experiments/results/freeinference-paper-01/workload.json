@@ -1,0 +1,42 @@
+{
+  "dataset": "/root/autodl-tmp/release",
+  "thesis_sha256": "d1d7bececb64b51736aed6dfb213f964c8205be797b97b2dbe9c72e2c1656e34",
+  "source_sample_sha256": "10db5b2078fdd861256842013dff6871fc08785298b6c5628dc9fb849f828264",
+  "eligible_limit": {
+    "max_turn_decode": 768,
+    "turns_per_stratum": 3
+  },
+  "selected": {
+    "subsession": 3,
+    "multi_call": 3,
+    "ordinary": 3,
+    "mutation_switch": 3
+  },
+  "weeks": [
+    "2026-08-09_2026-08-15",
+    "2026-08-16_2026-08-22",
+    "2026-08-23_2026-08-29",
+    "2026-08-30_2026-09-05"
+  ],
+  "sessions": 12,
+  "turns": 12,
+  "model_requests": 43,
+  "tool_barriers": 29,
+  "prompt_tokens": 656370,
+  "output_tokens": 5100,
+  "max_input_tokens": 27240,
+  "selected_turn_hashes": [
+    "0776a153c24d3e38494f9a4dc6a9e87ca1d3a61219c4cb0f01eacb35cabce24e",
+    "002e0666adde72fff5e644de25c3694860d2ef812c02313e7d4d4ee859f25509",
+    "07e7de7d7bdcbc5406f8a1497643fbbf9dba3c256a4f654186f23d5dbef2ddb2",
+    "0035c6ba79cebddb9473f36adb1c8748c129eb9b720085fa8868029ce642017e",
+    "00029fcb08ad0c6494d48070a2caeea2f5762b35c4ccbb2ada80db47e7ea5efd",
+    "000731e70bd3fe3155095dc8f4b88a230f2e76df114c39dc0815e7317c3a55d9",
+    "0013164ac58779d21f67430b9f618b9315cee8820af66aca857d942466d70549",
+    "0009bc4fbd1d8530881acecde435640a664e65ed923e40a72a6d5e7cd2848d18",
+    "002478a22688996ecb3c2cacbdbde9d9804269af30be15c446e226eb9ae87834",
+    "003b04a388e570c03300040304f4b84bcd8943d7bcb70d148adcc48a42ff1fae",
+    "08907b6f9e23350a6199050defdd0ad6c9430663385316d7dac04c706c66e528",
+    "001523d7466cf017d665f9c0973e761964520a2f49b112c16b521a981438fd70"
+  ]
+}

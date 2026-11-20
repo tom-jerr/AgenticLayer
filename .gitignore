@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+node_modules/
+.pytest_cache/
+.DS_Store
+
+# Pinned upstream trees are cloned/untarred per run, never vendored here.
+deepseek-harness/
+sglang
+
+# Raw run artifacts stay on the experiment host; compact receipts live in experiments/results/.
+*.jsonl
+*.jsonl.zst
+*.log

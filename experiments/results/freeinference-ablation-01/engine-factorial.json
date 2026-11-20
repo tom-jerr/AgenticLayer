@@ -1,0 +1,138 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "arms": [
+    {
+      "config": "graph-l3",
+      "repeat": 1,
+      "launch_name": "engine-factorial-1-graph-l3",
+      "decode_graph": "full",
+      "checkpoint_level": 3,
+      "decode_log_samples_with_graph": 63,
+      "pool_capacity": {
+        "full_tokens": 278241,
+        "mamba_states": 157
+      },
+      "summary": {
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 9031.565148383379,
+        "p95_ms": 21697.60947301984,
+        "p99_ms": 21697.60947301984
+      },
+      "elapsed_ms": 41149.124743,
+      "model": {
+        "requests": 43,
+        "cached_prompt_tokens": 373414,
+        "requests_with_hits": 24,
+        "median_ms": {
+          "ttft_ms": 187.16315552592278,
+          "prefill_finish_to_request_finish_ms": 1275.3229141235352
+        }
+      },
+      "exact_trace_sequences_vs_first": 43,
+      "isolated_greedy_same_vs_first": true,
+      "isolated_max_logprob_delta_vs_first": 0.0
+    },
+    {
+      "config": "graph-l2",
+      "repeat": 1,
+      "launch_name": "engine-factorial-1-graph-l2",
+      "decode_graph": "full",
+      "checkpoint_level": 2,
+      "decode_log_samples_with_graph": 51,
+      "pool_capacity": {
+        "full_tokens": 278241,
+        "mamba_states": 157
+      },
+      "summary": {
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 13063.229996711016,
+        "p95_ms": 31813.222344964743,
+        "p99_ms": 31813.222344964743
+      },
+      "elapsed_ms": 55396.712402,
+      "model": {
+        "requests": 43,
+        "cached_prompt_tokens": 0,
+        "requests_with_hits": 0,
+        "median_ms": {
+          "ttft_ms": 796.711839735508,
+          "prefill_finish_to_request_finish_ms": 1721.597671508789
+        }
+      },
+      "exact_trace_sequences_vs_first": 15,
+      "isolated_greedy_same_vs_first": true,
+      "isolated_max_logprob_delta_vs_first": 0.0
+    },
+    {
+      "config": "eager-l2",
+      "repeat": 1,
+      "launch_name": "engine-factorial-1-eager-l2",
+      "decode_graph": "disabled",
+      "checkpoint_level": 2,
+      "decode_log_samples_with_graph": 0,
+      "pool_capacity": {
+        "full_tokens": 278241,
+        "mamba_states": 157
+      },
+      "summary": {
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 29794.132076203823,
+        "p95_ms": 59747.93642759323,
+        "p99_ms": 59747.93642759323
+      },
+      "elapsed_ms": 110277.767632,
+      "model": {
+        "requests": 43,
+        "cached_prompt_tokens": 0,
+        "requests_with_hits": 0,
+        "median_ms": {
+          "ttft_ms": 724.1847328841686,
+          "prefill_finish_to_request_finish_ms": 6713.11092376709
+        }
+      },
+      "exact_trace_sequences_vs_first": 15,
+      "isolated_greedy_same_vs_first": true,
+      "isolated_max_logprob_delta_vs_first": 0.0
+    },
+    {
+      "config": "eager-l3",
+      "repeat": 1,
+      "launch_name": "engine-factorial-1-eager-l3",
+      "decode_graph": "disabled",
+      "checkpoint_level": 3,
+      "decode_log_samples_with_graph": 0,
+      "pool_capacity": {
+        "full_tokens": 278241,
+        "mamba_states": 157
+      },
+      "summary": {
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 24007.524885237217,
+        "p95_ms": 50989.17191103101,
+        "p99_ms": 50989.17191103101
+      },
+      "elapsed_ms": 99466.38179,
+      "model": {
+        "requests": 43,
+        "cached_prompt_tokens": 373414,
+        "requests_with_hits": 24,
+        "median_ms": {
+          "ttft_ms": 116.34674295783043,
+          "prefill_finish_to_request_finish_ms": 6230.726957321167
+        }
+      },
+      "exact_trace_sequences_vs_first": 35,
+      "isolated_greedy_same_vs_first": true,
+      "isolated_max_logprob_delta_vs_first": 0.0
+    }
+  ],
+  "diagnosis": "single SGLang engine per arm; matched Full and Mamba pool capacities, two orthogonal toggles"
+}

@@ -1,0 +1,28 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": null,
+  "scope": "GPU projected trace replay",
+  "run_summaries": [
+    {
+      "native-radix": {
+        "name": "paper-native-1-native-radix",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 29985.647831112146,
+        "p95_ms": 60542.009852826595,
+        "p99_ms": 60542.009852826595
+      },
+      "native-hicache": {
+        "name": "paper-native-1-native-hicache",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 30340.449079871178,
+        "p95_ms": 61090.48407897353,
+        "p99_ms": 61090.48407897353
+      }
+    }
+  ],
+  "paired": null
+}

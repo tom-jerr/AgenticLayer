@@ -1,0 +1,75 @@
+{
+  "scope": "exploratory; fixed fixture, pair-level resampling within one run per policy; does not cover between-run variance",
+  "seed": 20261118,
+  "draws": 10000,
+  "arms": {
+    "strong": {
+      "pairs": 20,
+      "metrics": {
+        "cold_ms/early_ms/p50": {
+          "early_minus_cold_ms": -168.1583710000001,
+          "ci95_ms": [
+            -297.895522,
+            -95.79258999999996
+          ]
+        },
+        "cold_ms/early_ms/p95": {
+          "early_minus_cold_ms": -298.80237999999997,
+          "ci95_ms": [
+            -596.67807,
+            -90.97840999999994
+          ]
+        },
+        "cold_total_ms/early_total_ms/p50": {
+          "early_minus_cold_ms": -162.98741199999995,
+          "ci95_ms": [
+            -292.47568349999983,
+            -90.7947959999999
+          ]
+        },
+        "cold_total_ms/early_total_ms/p95": {
+          "early_minus_cold_ms": -293.35568899999976,
+          "ci95_ms": [
+            -592.0740040000001,
+            -85.49896899999999
+          ]
+        }
+      },
+      "source": "prepare-strong-window.json"
+    },
+    "joint": {
+      "pairs": 20,
+      "metrics": {
+        "cold_ms/early_ms/p50": {
+          "early_minus_cold_ms": -211.21098149999995,
+          "ci95_ms": [
+            -290.0038579999999,
+            -156.91009299999996
+          ]
+        },
+        "cold_ms/early_ms/p95": {
+          "early_minus_cold_ms": 11.454887999999983,
+          "ci95_ms": [
+            -394.140093,
+            428.11570600000005
+          ]
+        },
+        "cold_total_ms/early_total_ms/p50": {
+          "early_minus_cold_ms": -206.16038099999992,
+          "ci95_ms": [
+            -285.044527,
+            -151.56942850000019
+          ]
+        },
+        "cold_total_ms/early_total_ms/p95": {
+          "early_minus_cold_ms": 16.63970900000004,
+          "ci95_ms": [
+            -389.40948000000003,
+            432.9357719999998
+          ]
+        }
+      },
+      "source": "prepare-joint-window.json"
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "buckets": [
+    {
+      "token_count": 8192,
+      "batch_size": 1,
+      "prefill_ms": 283.526967,
+      "d2h_ms": 0,
+      "h2d_ms": 0,
+      "recurrent_ms": 0,
+      "samples": 20
+    }
+  ],
+  "waits": {
+    "fixed_fixture_wait": [
+      {
+        "duration_ms": 800.911659,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.00476,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.004499,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.978105,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.000332,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.993662,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.028139,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.24566,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.992664,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.995102,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.991106,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.996245,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.451249,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.997325,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.908727,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.995286,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.957313,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.997956,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.980913,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.992253,
+        "completed": true
+      }
+    ]
+  },
+  "evictions": {
+    "low": [
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      }
+    ]
+  },
+  "scope": "fixed low-pressure prepare fixture only; no host moves",
+  "target_tokens": 7065
+}

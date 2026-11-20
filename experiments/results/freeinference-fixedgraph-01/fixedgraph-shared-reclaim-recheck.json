@@ -1,0 +1,1402 @@
+{
+  "observation_window_ms": 600,
+  "driver": "native lease and ACK; authenticated wire, fixed branch fixture",
+  "summary": [
+    {
+      "length": 4096,
+      "pairs": 5,
+      "retained_byte_seconds": 111437414.4,
+      "reclaimed_byte_seconds": 12892863.282151423,
+      "reduction_pct": 88.43039983333334
+    },
+    {
+      "length": 16384,
+      "pairs": 5,
+      "retained_byte_seconds": 353029324.8,
+      "reclaimed_byte_seconds": 6611076.021878784,
+      "reduction_pct": 98.1273295
+    }
+  ],
+  "pairs": [
+    {
+      "length": 4096,
+      "pair": 0,
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 194.234514,
+        "expired_owned_byte_seconds": 111437414.4,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "fb7022e5859e46c187071f7c65a2e6d6",
+          "receipt_seq": 4,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 236.701903,
+          "forward_e2e_ms": 159.78285670280457,
+          "forward_first_token_ms": 157.61377662420273
+        },
+        "new_view": {
+          "rid": "06c12fef30c24322ae1c43f34ab1ec02",
+          "receipt_seq": 8,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 195.000714,
+          "forward_e2e_ms": 145.39243653416634,
+          "forward_first_token_ms": 143.2081088423729
+        },
+        "child": {
+          "rid": "25c3f2bdcabb45328808ea8c7272f1f2",
+          "receipt_seq": 13,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 104.324424,
+          "forward_e2e_ms": 69.9654072523117,
+          "forward_first_token_ms": 67.61625781655312
+        },
+        "parent_followup": {
+          "rid": "fd63715d8a1c474983d6cc0b1b03a29c",
+          "receipt_seq": 19,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 115.827248,
+          "forward_e2e_ms": 71.14945352077484,
+          "forward_first_token_ms": 68.70139762759209
+        }
+      },
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 323.229639,
+        "expired_owned_byte_seconds": 12892863.282151423,
+        "expired_fw_ms": 69.417601,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 185729024,
+          "host_bytes": 0,
+          "full_slots": 4096,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "80fd9230edb1444d8eadcf0336f06247",
+          "receipt_seq": 23,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 189.062368,
+          "forward_e2e_ms": 147.12654426693916,
+          "forward_first_token_ms": 144.9231654405594
+        },
+        "new_view": {
+          "rid": "ad035e6938bd4b9a8f73d00205c0403c",
+          "receipt_seq": 27,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 212.22729,
+          "forward_e2e_ms": 146.10686525702477,
+          "forward_first_token_ms": 143.8354328274727
+        },
+        "child": {
+          "rid": "310a6eaf1d4042b0a392a932f3ebdcde",
+          "receipt_seq": 32,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 167.582016,
+          "forward_e2e_ms": 69.68598812818527,
+          "forward_first_token_ms": 67.47398152947426
+        },
+        "parent_followup": {
+          "rid": "216b632b62364f608876ee0f2df6633e",
+          "receipt_seq": 39,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 119.939071,
+          "forward_e2e_ms": 71.17990404367447,
+          "forward_first_token_ms": 68.82891431450844
+        }
+      }
+    },
+    {
+      "length": 4096,
+      "pair": 1,
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 264.216462,
+        "expired_owned_byte_seconds": 2133952.565608448,
+        "expired_fw_ms": 11.489602,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 185729024,
+          "host_bytes": 0,
+          "full_slots": 4096,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "99a93aeb3a044ba9a060cf6aff531ae4",
+          "receipt_seq": 43,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 167.968248,
+          "forward_e2e_ms": 145.76563984155655,
+          "forward_first_token_ms": 143.66623014211655
+        },
+        "new_view": {
+          "rid": "fd75e3b35e934e9cb4b0256d919dcff0",
+          "receipt_seq": 47,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 345.099341,
+          "forward_e2e_ms": 143.81112530827522,
+          "forward_first_token_ms": 141.7502798140049
+        },
+        "child": {
+          "rid": "54952f57af9d4986beceb470f62d54b4",
+          "receipt_seq": 52,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 139.922475,
+          "forward_e2e_ms": 69.83128562569618,
+          "forward_first_token_ms": 67.57375970482826
+        },
+        "parent_followup": {
+          "rid": "c075616a538249878067a84b5259d2eb",
+          "receipt_seq": 59,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 156.645854,
+          "forward_e2e_ms": 71.45146653056145,
+          "forward_first_token_ms": 69.12211328744888
+        }
+      },
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 313.797053,
+        "expired_owned_byte_seconds": 111437414.4,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "537b0f35ff9d476d9cc11f43d99f3421",
+          "receipt_seq": 63,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 202.077158,
+          "forward_e2e_ms": 147.738229483366,
+          "forward_first_token_ms": 145.6313170492649
+        },
+        "new_view": {
+          "rid": "1e715eeaee4e44f3b94fe9e376616e4a",
+          "receipt_seq": 67,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 241.978922,
+          "forward_e2e_ms": 147.61388674378395,
+          "forward_first_token_ms": 145.54277434945107
+        },
+        "child": {
+          "rid": "edee49733aee44db8ce143bca1ac1d68",
+          "receipt_seq": 72,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 151.492143,
+          "forward_e2e_ms": 70.0891725718975,
+          "forward_first_token_ms": 67.7763931453228
+        },
+        "parent_followup": {
+          "rid": "047a2a70dd034ff085caf333a947d374",
+          "receipt_seq": 78,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 143.539058,
+          "forward_e2e_ms": 70.49805298447609,
+          "forward_first_token_ms": 68.37555021047592
+        }
+      }
+    },
+    {
+      "length": 4096,
+      "pair": 2,
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 256.541609,
+        "expired_owned_byte_seconds": 111437414.4,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "ba52e6c5952e4621ba2d3a85da5d7292",
+          "receipt_seq": 82,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 224.164049,
+          "forward_e2e_ms": 151.61706507205963,
+          "forward_first_token_ms": 149.72646161913872
+        },
+        "new_view": {
+          "rid": "167a40e5ba144c9c98c4ebd6a48f4cee",
+          "receipt_seq": 86,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 250.445741,
+          "forward_e2e_ms": 143.67177709937096,
+          "forward_first_token_ms": 141.54350757598877
+        },
+        "child": {
+          "rid": "42689fefc9bc42fb8f1f6b297b2f8cc5",
+          "receipt_seq": 91,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 148.913409,
+          "forward_e2e_ms": 69.52523440122604,
+          "forward_first_token_ms": 67.24776327610016
+        },
+        "parent_followup": {
+          "rid": "1749fba0020f486e90eb2dd5714ebbf2",
+          "receipt_seq": 97,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 154.994955,
+          "forward_e2e_ms": 72.90980592370033,
+          "forward_first_token_ms": 70.57581469416618
+        }
+      },
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 383.788462,
+        "expired_owned_byte_seconds": 10043892.048592895,
+        "expired_fw_ms": 54.078204,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 185729024,
+          "host_bytes": 0,
+          "full_slots": 4096,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "1955f386866f4b9ab705bfb21f817f27",
+          "receipt_seq": 101,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 278.26808,
+          "forward_e2e_ms": 147.70237356424332,
+          "forward_first_token_ms": 145.57106420397758
+        },
+        "new_view": {
+          "rid": "fc110a25a6d94326b0172d737db3f08b",
+          "receipt_seq": 105,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 204.562695,
+          "forward_e2e_ms": 144.89399269223213,
+          "forward_first_token_ms": 142.746202647686
+        },
+        "child": {
+          "rid": "08ba5ef1bf1e4b328c42e4a1f33a56be",
+          "receipt_seq": 110,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 254.919346,
+          "forward_e2e_ms": 71.59774750471115,
+          "forward_first_token_ms": 69.18276473879814
+        },
+        "parent_followup": {
+          "rid": "bd458ce31c5747e9a1b1cca37aababf0",
+          "receipt_seq": 117,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 121.120357,
+          "forward_e2e_ms": 70.32900676131248,
+          "forward_first_token_ms": 67.99407675862312
+        }
+      }
+    },
+    {
+      "length": 4096,
+      "pair": 3,
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 601.765181,
+        "expired_owned_byte_seconds": 18322916.70556672,
+        "expired_fw_ms": 98.65403,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 185729024,
+          "host_bytes": 0,
+          "full_slots": 4096,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "c33e048be2cc4f0f99de966131052aa0",
+          "receipt_seq": 121,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 228.737476,
+          "forward_e2e_ms": 148.4471894800663,
+          "forward_first_token_ms": 146.09450474381447
+        },
+        "new_view": {
+          "rid": "71bfff4dfb3441baa556a525ea3cecb1",
+          "receipt_seq": 125,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 254.427214,
+          "forward_e2e_ms": 144.31007206439972,
+          "forward_first_token_ms": 141.99621602892876
+        },
+        "child": {
+          "rid": "211db5f5fdca4f0a926d60aa3c2db2ed",
+          "receipt_seq": 130,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 220.871123,
+          "forward_e2e_ms": 68.84390115737915,
+          "forward_first_token_ms": 66.46984815597534
+        },
+        "parent_followup": {
+          "rid": "575dd096eb554ecea96db00adba35f73",
+          "receipt_seq": 137,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 188.718865,
+          "forward_e2e_ms": 70.76309993863106,
+          "forward_first_token_ms": 68.53237003087997
+        }
+      },
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 567.503167,
+        "expired_owned_byte_seconds": 111437414.4,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "cda3f07a7afd4fb9b42abf260c627053",
+          "receipt_seq": 141,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 165.901442,
+          "forward_e2e_ms": 145.3031450510025,
+          "forward_first_token_ms": 143.27886700630188
+        },
+        "new_view": {
+          "rid": "c57823c68eef4df5b625213b0e6a6cb2",
+          "receipt_seq": 145,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 240.319136,
+          "forward_e2e_ms": 144.47889849543571,
+          "forward_first_token_ms": 142.48653128743172
+        },
+        "child": {
+          "rid": "e8bd7def5c5140bbb17808dd8988d678",
+          "receipt_seq": 150,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 366.551127,
+          "forward_e2e_ms": 70.28664276003838,
+          "forward_first_token_ms": 68.26839223504066
+        },
+        "parent_followup": {
+          "rid": "c7d4ac14ec314833a3fbdf4f6f84e7f2",
+          "receipt_seq": 156,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 95.891617,
+          "forward_e2e_ms": 71.91193103790283,
+          "forward_first_token_ms": 69.66275349259377
+        }
+      }
+    },
+    {
+      "length": 4096,
+      "pair": 4,
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 211.936976,
+        "expired_owned_byte_seconds": 111437414.4,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "d40d1f85d864422291dfda9f9063a8ce",
+          "receipt_seq": 160,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 178.8494,
+          "forward_e2e_ms": 147.42108434438705,
+          "forward_first_token_ms": 144.92174983024597
+        },
+        "new_view": {
+          "rid": "09f9dfc0477e40d9aef7d9ab4e2764d6",
+          "receipt_seq": 164,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 186.833032,
+          "forward_e2e_ms": 144.63583379983902,
+          "forward_first_token_ms": 142.5315886735916
+        },
+        "child": {
+          "rid": "b4fe92f56b3843769dfa2d5cc68d9420",
+          "receipt_seq": 169,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 185.490948,
+          "forward_e2e_ms": 69.38974931836128,
+          "forward_first_token_ms": 67.22787395119667
+        },
+        "parent_followup": {
+          "rid": "4d11ff0f02ae4fcf9957e82ca4669d38",
+          "receipt_seq": 175,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 157.480344,
+          "forward_e2e_ms": 72.67054170370102,
+          "forward_first_token_ms": 70.26856020092964
+        }
+      },
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 185729024,
+        "live_child_ms": 172.276722,
+        "expired_owned_byte_seconds": 14051399.330562048,
+        "expired_fw_ms": 75.655377,
+        "before": {
+          "hbm_bytes": 371458048,
+          "host_bytes": 0,
+          "full_slots": 8192,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 185729024,
+          "host_bytes": 0,
+          "full_slots": 4096,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "aa520f24720f4c1ea6acb8eb55f24b04",
+          "receipt_seq": 179,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 300.036719,
+          "forward_e2e_ms": 149.33065697550774,
+          "forward_first_token_ms": 147.1499502658844
+        },
+        "new_view": {
+          "rid": "d0d305a855664df0b0fcc9da6b219293",
+          "receipt_seq": 183,
+          "prompt_tokens": 4096,
+          "cached_tokens": 0,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 203.413197,
+          "forward_e2e_ms": 148.61007034778595,
+          "forward_first_token_ms": 146.65481448173523
+        },
+        "child": {
+          "rid": "505bd6f85d484c74b67de5dbd8b6f821",
+          "receipt_seq": 188,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 141.018412,
+          "forward_e2e_ms": 68.01483035087585,
+          "forward_first_token_ms": 65.99966436624527
+        },
+        "parent_followup": {
+          "rid": "59ee62c957b3435bb7391673ab035e51",
+          "receipt_seq": 195,
+          "prompt_tokens": 4097,
+          "cached_tokens": 4096,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 134.747709,
+          "forward_e2e_ms": 70.49044966697693,
+          "forward_first_token_ms": 68.05073842406273
+        }
+      }
+    },
+    {
+      "length": 16384,
+      "pair": 0,
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 191.245565,
+        "expired_owned_byte_seconds": 353029324.8,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "dec9ffcf6b944fe5917cda5cef75550d",
+          "receipt_seq": 199,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 716.334235,
+          "forward_e2e_ms": 634.8797976970673,
+          "forward_first_token_ms": 632.0947594940662
+        },
+        "new_view": {
+          "rid": "9c49ae17495041c0ba8b0da03ff6e737",
+          "receipt_seq": 203,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 701.580062,
+          "forward_e2e_ms": 627.8459653258324,
+          "forward_first_token_ms": 625.7002092897892
+        },
+        "child": {
+          "rid": "dc38cb8b3a254f04bbda66f42243e079",
+          "receipt_seq": 208,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 153.531662,
+          "forward_e2e_ms": 74.67225939035416,
+          "forward_first_token_ms": 70.49792632460594
+        },
+        "parent_followup": {
+          "rid": "7cd0e5d5462b4ade9303adc5c9d28393",
+          "receipt_seq": 214,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 171.097992,
+          "forward_e2e_ms": 75.49562305212021,
+          "forward_first_token_ms": 72.89063930511475
+        }
+      },
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 403.643302,
+        "expired_owned_byte_seconds": 10754386.452545537,
+        "expired_fw_ms": 18.277892,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 588382208,
+          "host_bytes": 0,
+          "full_slots": 16384,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "bdc17bf23cfd4031abb6d36da9e07550",
+          "receipt_seq": 218,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 769.847499,
+          "forward_e2e_ms": 631.4279139041901,
+          "forward_first_token_ms": 629.2636431753635
+        },
+        "new_view": {
+          "rid": "54a8ed7c0f9c41ae8cba2d545bc5282d",
+          "receipt_seq": 222,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 750.626676,
+          "forward_e2e_ms": 626.3843476772308,
+          "forward_first_token_ms": 623.3900636434555
+        },
+        "child": {
+          "rid": "1b8033e9374942bba7953124980fe604",
+          "receipt_seq": 227,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 257.244772,
+          "forward_e2e_ms": 87.77449280023575,
+          "forward_first_token_ms": 84.85037460923195
+        },
+        "parent_followup": {
+          "rid": "f45d063dbf6c4184885a808db2f532d8",
+          "receipt_seq": 234,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 170.640756,
+          "forward_e2e_ms": 80.07911220192909,
+          "forward_first_token_ms": 77.00806111097336
+        }
+      }
+    },
+    {
+      "length": 16384,
+      "pair": 1,
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 192.785601,
+        "expired_owned_byte_seconds": 6611076.021878784,
+        "expired_fw_ms": 11.236023,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 588382208,
+          "host_bytes": 0,
+          "full_slots": 16384,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "dc82da86b57a4352a9fc86c7d217c33c",
+          "receipt_seq": 238,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 743.146126,
+          "forward_e2e_ms": 644.1347002983093,
+          "forward_first_token_ms": 641.5123008191586
+        },
+        "new_view": {
+          "rid": "0edb3159bffa4ecca60823ac2955687a",
+          "receipt_seq": 242,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 800.311383,
+          "forward_e2e_ms": 643.846582621336,
+          "forward_first_token_ms": 641.0917714238167
+        },
+        "child": {
+          "rid": "4e4560a1cc0e41c58ff3238b5527aa7d",
+          "receipt_seq": 247,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 147.540126,
+          "forward_e2e_ms": 75.57594031095505,
+          "forward_first_token_ms": 73.05585592985153
+        },
+        "parent_followup": {
+          "rid": "d89920527a4c4381b7cdbcaa34b13755",
+          "receipt_seq": 254,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 199.273622,
+          "forward_e2e_ms": 80.70898801088333,
+          "forward_first_token_ms": 78.19367572665215
+        }
+      },
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 231.273064,
+        "expired_owned_byte_seconds": 353029324.8,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "41771bc69cfc4e81acba6d3510cea97d",
+          "receipt_seq": 258,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 730.676768,
+          "forward_e2e_ms": 648.1938324868679,
+          "forward_first_token_ms": 644.557349383831
+        },
+        "new_view": {
+          "rid": "d4912ec68b9642fbbc4b30cae11603aa",
+          "receipt_seq": 262,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 713.693187,
+          "forward_e2e_ms": 645.7208655774593,
+          "forward_first_token_ms": 642.5666399300098
+        },
+        "child": {
+          "rid": "fb3fd8e76674498280481813bbf63159",
+          "receipt_seq": 267,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 160.331668,
+          "forward_e2e_ms": 75.91753080487251,
+          "forward_first_token_ms": 73.57646152377129
+        },
+        "parent_followup": {
+          "rid": "dfbd5578cfa0454196bb142de1cf0050",
+          "receipt_seq": 273,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 124.859718,
+          "forward_e2e_ms": 75.95135271549225,
+          "forward_first_token_ms": 73.42208549380302
+        }
+      }
+    },
+    {
+      "length": 16384,
+      "pair": 2,
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 144.273039,
+        "expired_owned_byte_seconds": 353029324.8,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "72a76ec01d3440fc819603269de0d66f",
+          "receipt_seq": 277,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 693.218095,
+          "forward_e2e_ms": 644.2557498812675,
+          "forward_first_token_ms": 641.8091021478176
+        },
+        "new_view": {
+          "rid": "408a64fa2c7b4fba985d936b9bb1ee79",
+          "receipt_seq": 281,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 699.183491,
+          "forward_e2e_ms": 636.6349756717682,
+          "forward_first_token_ms": 633.9318975806236
+        },
+        "child": {
+          "rid": "3f015f9703d9483f8bbff742bf9c29a0",
+          "receipt_seq": 286,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 121.38367,
+          "forward_e2e_ms": 75.05940273404121,
+          "forward_first_token_ms": 72.68211618065834
+        },
+        "parent_followup": {
+          "rid": "b317c118b6dd4a489f0436ed4fc881f4",
+          "receipt_seq": 292,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 136.351139,
+          "forward_e2e_ms": 77.62573659420013,
+          "forward_first_token_ms": 75.10366290807724
+        }
+      },
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 215.349275,
+        "expired_owned_byte_seconds": 4514873.206636544,
+        "expired_fw_ms": 7.673368,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 588382208,
+          "host_bytes": 0,
+          "full_slots": 16384,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "0e70312c382a415bb701e8c0b33ad9e9",
+          "receipt_seq": 296,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 683.975378,
+          "forward_e2e_ms": 634.5734484493732,
+          "forward_first_token_ms": 632.039301097393
+        },
+        "new_view": {
+          "rid": "31c8c54c406c4d77914f36d82f0e7752",
+          "receipt_seq": 300,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 707.445396,
+          "forward_e2e_ms": 635.8860097825527,
+          "forward_first_token_ms": 633.4597319364548
+        },
+        "child": {
+          "rid": "9a8e1a776b234057b815934c07e852a5",
+          "receipt_seq": 305,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 149.921525,
+          "forward_e2e_ms": 73.73923063278198,
+          "forward_first_token_ms": 71.49791717529297
+        },
+        "parent_followup": {
+          "rid": "29b29b1b3bc8464ca91c583597296de5",
+          "receipt_seq": 312,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 120.463111,
+          "forward_e2e_ms": 73.53773713111877,
+          "forward_first_token_ms": 71.31310179829597
+        }
+      }
+    },
+    {
+      "length": 16384,
+      "pair": 3,
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 188.77344,
+        "expired_owned_byte_seconds": 7901029.876760576,
+        "expired_fw_ms": 13.428397,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 588382208,
+          "host_bytes": 0,
+          "full_slots": 16384,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "9ca7ff3b9142486f8b166e11f5bf75e4",
+          "receipt_seq": 316,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 708.996043,
+          "forward_e2e_ms": 639.2451003193855,
+          "forward_first_token_ms": 636.701188981533
+        },
+        "new_view": {
+          "rid": "1f9a916a7b604ed1bd7ffbeff4284444",
+          "receipt_seq": 320,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 707.443074,
+          "forward_e2e_ms": 635.2720223367214,
+          "forward_first_token_ms": 632.6700039207935
+        },
+        "child": {
+          "rid": "c63dbd37f1074533b434b986bbebfa20",
+          "receipt_seq": 325,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 155.761339,
+          "forward_e2e_ms": 77.7633860707283,
+          "forward_first_token_ms": 75.1333236694336
+        },
+        "parent_followup": {
+          "rid": "5c7e861724584113b1dc376166c135fa",
+          "receipt_seq": 332,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 164.31801,
+          "forward_e2e_ms": 75.47242194414139,
+          "forward_first_token_ms": 73.30780476331711
+        }
+      },
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 217.947298,
+        "expired_owned_byte_seconds": 353029324.8,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "8194c2b84c08457dab0784ec5ce5445b",
+          "receipt_seq": 336,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 693.213316,
+          "forward_e2e_ms": 637.1528692543507,
+          "forward_first_token_ms": 634.891539812088
+        },
+        "new_view": {
+          "rid": "bc7fd96a12c744a2a60f27a47f5a076e",
+          "receipt_seq": 340,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 709.901165,
+          "forward_e2e_ms": 634.3743801116943,
+          "forward_first_token_ms": 632.3125623166561
+        },
+        "child": {
+          "rid": "a698943af5ce4695a34b8e87d53e0197",
+          "receipt_seq": 345,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 155.294187,
+          "forward_e2e_ms": 74.07486066222191,
+          "forward_first_token_ms": 72.24104553461075
+        },
+        "parent_followup": {
+          "rid": "25d2e1ef2f144aaa8db9f4cf9dbac15e",
+          "receipt_seq": 351,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 151.97059,
+          "forward_e2e_ms": 77.34500244259834,
+          "forward_first_token_ms": 74.93945211172104
+        }
+      }
+    },
+    {
+      "length": 16384,
+      "pair": 4,
+      "retain": {
+        "explicit_reclaim": false,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 395.987862,
+        "expired_owned_byte_seconds": 353029324.8,
+        "expired_fw_ms": 600.0,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "old_view": {
+          "rid": "35ae9d85453b4a48b1f1d7db2e03e1c1",
+          "receipt_seq": 355,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 699.236571,
+          "forward_e2e_ms": 636.4342719316483,
+          "forward_first_token_ms": 634.2173367738724
+        },
+        "new_view": {
+          "rid": "0c2c1c5ae0d944ac8280e1d647083f0b",
+          "receipt_seq": 359,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 735.97638,
+          "forward_e2e_ms": 630.467988550663,
+          "forward_first_token_ms": 628.3850967884064
+        },
+        "child": {
+          "rid": "ad6ceb7eb6d045fa881832e411aadc60",
+          "receipt_seq": 364,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 208.837986,
+          "forward_e2e_ms": 72.34563678503036,
+          "forward_first_token_ms": 70.03886252641678
+        },
+        "parent_followup": {
+          "rid": "ed413390e19140b09ee57d40ee9a349f",
+          "receipt_seq": 370,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 178.958901,
+          "forward_e2e_ms": 74.52096045017242,
+          "forward_first_token_ms": 71.95417582988739
+        }
+      },
+      "reclaim": {
+        "explicit_reclaim": true,
+        "protected_remaining_bytes": 588382208,
+        "live_child_ms": 165.543948,
+        "expired_owned_byte_seconds": 6273338.750664704,
+        "expired_fw_ms": 10.662013,
+        "before": {
+          "hbm_bytes": 1176764416,
+          "host_bytes": 0,
+          "full_slots": 32768,
+          "recurrent_slots": 2
+        },
+        "after": {
+          "hbm_bytes": 588382208,
+          "host_bytes": 0,
+          "full_slots": 16384,
+          "recurrent_slots": 1
+        },
+        "old_view": {
+          "rid": "e7b8fdb7b5a848f79d67d2e3059e50ba",
+          "receipt_seq": 374,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 723.512828,
+          "forward_e2e_ms": 639.3135711550713,
+          "forward_first_token_ms": 636.9398050010204
+        },
+        "new_view": {
+          "rid": "ae1aaf09a3de40d7ad26c9cd603f854e",
+          "receipt_seq": 378,
+          "prompt_tokens": 16384,
+          "cached_tokens": 0,
+          "output_ids": [
+            220
+          ],
+          "forward_wall_ms": 688.109493,
+          "forward_e2e_ms": 632.7573843300343,
+          "forward_first_token_ms": 630.7300925254822
+        },
+        "child": {
+          "rid": "5a1caffcb2574fa5b1e43aab9866e4cf",
+          "receipt_seq": 383,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 132.653064,
+          "forward_e2e_ms": 73.56736063957214,
+          "forward_first_token_ms": 71.35841995477676
+        },
+        "parent_followup": {
+          "rid": "8ef941bc796345e0987155fa002a28c0",
+          "receipt_seq": 390,
+          "prompt_tokens": 16385,
+          "cached_tokens": 16384,
+          "output_ids": [
+            82
+          ],
+          "forward_wall_ms": 133.684405,
+          "forward_e2e_ms": 72.65689224004745,
+          "forward_first_token_ms": 70.78933715820312
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "name": "heldout-gpu-connection-1-joint",
+  "mode": "controlled",
+  "sample_sha256": "10db5b2078fdd861256842013dff6871fc08785298b6c5628dc9fb849f828264",
+  "tested_turn_hashes": [
+    "0776a153c24d3e38494f9a4dc6a9e87ca1d3a61219c4cb0f01eacb35cabce24e",
+    "00029fcb08ad0c6494d48070a2caeea2f5762b35c4ccbb2ada80db47e7ea5efd",
+    "000731e70bd3fe3155095dc8f4b88a230f2e76df114c39dc0815e7317c3a55d9",
+    "003b04a388e570c03300040304f4b84bcd8943d7bcb70d148adcc48a42ff1fae"
+  ],
+  "turns_per_stratum_limit": 1,
+  "smoke_max_decode": 512,
+  "tested_strata": {
+    "subsession": 1,
+    "ordinary": 1,
+    "multi_call": 1,
+    "mutation_switch": 1
+  },
+  "summary": {
+    "statuses": {
+      "completed": 4
+    },
+    "p50_ms": 8156.497605144978,
+    "p95_ms": 35745.98367139697,
+    "p99_ms": 35745.98367139697
+  },
+  "turns": [
+    {
+      "identity": [
+        "2026-08-23_2026-08-29",
+        "15552d84c23ea6c5ec92e2c1dc66590d",
+        32
+      ],
+      "stratum": "ordinary",
+      "arrival": 20568018.55307808,
+      "status": "completed",
+      "wall_ms": 8156.497605144978
+    },
+    {
+      "identity": [
+        "2026-08-30_2026-09-05",
+        "ae97522090e597029373df8c5ceeae10",
+        24
+      ],
+      "stratum": "mutation_switch",
+      "arrival": 20568020.55307808,
+      "status": "completed",
+      "wall_ms": 7210.959304124117
+    },
+    {
+      "identity": [
+        "2026-08-09_2026-08-15",
+        "762a6937e26260aa09cf288c39616e76",
+        3
+      ],
+      "stratum": "subsession",
+      "arrival": 20568017.55307808,
+      "status": "completed",
+      "wall_ms": 35745.98367139697
+    },
+    {
+      "identity": [
+        "2026-08-23_2026-08-29",
+        "215659568f7f629a7df60991f75fdd4c",
+        2
+      ],
+      "stratum": "multi_call",
+      "arrival": 20568019.55307808,
+      "status": "completed",
+      "wall_ms": 35311.803966760635
+    }
+  ]
+}

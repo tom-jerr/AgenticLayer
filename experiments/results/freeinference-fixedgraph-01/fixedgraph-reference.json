@@ -1,0 +1,56 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": "d41c84a18c51ec52614b045828b5bd5d8367c6fd846dec36f2831be063515ed6",
+  "scope": "GPU projected trace replay",
+  "run_summaries": [
+    {
+      "native-radix": {
+        "name": "fixedgraph-reference-1-native-radix",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 13344.167914241552,
+        "p95_ms": 32508.355908095837,
+        "p99_ms": 32508.355908095837
+      },
+      "native-hicache": {
+        "name": "fixedgraph-reference-1-native-hicache",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 13521.849777549505,
+        "p95_ms": 32564.145665615797,
+        "p99_ms": 32564.145665615797
+      },
+      "strong": {
+        "name": "fixedgraph-reference-1-strong",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14163.852117955685,
+        "p95_ms": 33582.80500397086,
+        "p99_ms": 33582.80500397086
+      },
+      "joint": {
+        "name": "fixedgraph-reference-1-joint",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 15471.427906304598,
+        "p95_ms": 36072.75439426303,
+        "p99_ms": 36072.75439426303
+      }
+    }
+  ],
+  "paired": {
+    "joint_minus_strong_p95_ms": 2489.9493902921677,
+    "ci95_ms": [
+      2135.6026753783226,
+      4190.490044653416
+    ],
+    "clusters": 12,
+    "bootstrap_repeats": 10000,
+    "seed": 20261118,
+    "unavailable_bootstrap_draws": 0
+  }
+}

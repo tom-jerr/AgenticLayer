@@ -1,0 +1,5494 @@
+{
+  "name": "fixedgraph-state",
+  "requested_repetitions": 5,
+  "warmups": 1,
+  "hbm_measurement": "native Full KV and recurrent allocator owned bytes; not process VRAM",
+  "wall_measurement": "Driver bind + native HTTP generate + completion; plus metrics sum separate wall intervals",
+  "scopes": {
+    "lifecycle": {
+      "engine_arm": "extended",
+      "wire": "logs/fixedgraph-state-lifecycle-wire.jsonl",
+      "engine_log": "logs/fixedgraph-state-lifecycle.log",
+      "rows": [
+        {
+          "length": 4096,
+          "repetition": -1,
+          "warmup": true,
+          "order": [
+            "retain",
+            "reclaim"
+          ],
+          "conditions": {
+            "retain": {
+              "branches": [
+                {
+                  "rid": "8622d29ce7e041e28193f14406bb1cc3",
+                  "receipt_seq": 4,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 167.280813,
+                  "forward_e2e_ms": 149.28846061229706,
+                  "forward_first_token_ms": 147.4614031612873,
+                  "handle": "2242fce4121146539d8785c892d539b7"
+                },
+                {
+                  "rid": "0c5994f60d0040d69418df3098101dc3",
+                  "receipt_seq": 7,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 517.174497,
+                  "forward_e2e_ms": 137.53047585487366,
+                  "forward_first_token_ms": 135.60757040977478,
+                  "handle": "727b7f9210574cb497af898f89f57b08"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 557187072,
+                "host_bytes": 0,
+                "full_slots": 12288,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 371458048,
+                "hbm_after_forward_bytes": 557187072,
+                "reclaim_plus_forward_wall_ms": 187.902384,
+                "forward_wall_ms": 187.902384,
+                "forward_e2e_ms": 136.49173453450203,
+                "forward_first_token_ms": 134.3173235654831
+              },
+              "unrelated_forward": {
+                "rid": "51e550e3c9d74c51a776940eb01ec424",
+                "receipt_seq": 12,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 187.902384,
+                "forward_e2e_ms": 136.49173453450203,
+                "forward_first_token_ms": 134.3173235654831
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "3c3c41c5ec3044ef9a70402b3f95114d",
+                  "receipt_seq": 17,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 260.199336,
+                  "forward_e2e_ms": 139.36404511332512,
+                  "forward_first_token_ms": 137.6361846923828,
+                  "handle": "d26d9fd58c724f8898ae73bbdad232b2"
+                },
+                {
+                  "rid": "8c44f9f099b046b7b75ef3fe89735415",
+                  "receipt_seq": 20,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 272.576373,
+                  "forward_e2e_ms": 136.48797199130058,
+                  "forward_first_token_ms": 134.67254862189293,
+                  "handle": "cb59b8270bef4eddbd377afef8df7b02"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "dda16b4fdc0a40c0a0bef62f48072dc0",
+                  "seq": 23,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "593bb56f65f54e42876acba0a6740fad",
+                  "seq": 24,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 797.01805,
+                "reclaimed_hbm_bytes": 371458048,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 185729024,
+                "reclaim_plus_forward_wall_ms": 983.381084,
+                "forward_wall_ms": 186.363034,
+                "forward_e2e_ms": 137.73168995976448,
+                "forward_first_token_ms": 135.7821524143219
+              },
+              "unrelated_forward": {
+                "rid": "55022a2a29a94670bc2816ba461f2ea1",
+                "receipt_seq": 27,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 186.363034,
+                "forward_e2e_ms": 137.73168995976448,
+                "forward_first_token_ms": 135.7821524143219
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 16384,
+          "repetition": -1,
+          "warmup": true,
+          "order": [
+            "reclaim",
+            "retain"
+          ],
+          "conditions": {
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "22f02c569f86449397102beb7356a3a2",
+                  "receipt_seq": 32,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 756.853538,
+                  "forward_e2e_ms": 614.7383004426956,
+                  "forward_first_token_ms": 612.6880645751953,
+                  "handle": "5525570f59794b508e39ed18155107b6"
+                },
+                {
+                  "rid": "1c6f6e6a317a4553b36f3a5798baa05e",
+                  "receipt_seq": 35,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 2117.452443,
+                  "forward_e2e_ms": 610.2584600448608,
+                  "forward_first_token_ms": 607.8758500516415,
+                  "handle": "8f0fba5fb21e4be089ca771f46dda187"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "7252b0aec98c476891746163498686f6",
+                  "seq": 38,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "e07e3bc40f2845cc817160db1e711e51",
+                  "seq": 39,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 106.452707,
+                "reclaimed_hbm_bytes": 1176764416,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 588382208,
+                "reclaim_plus_forward_wall_ms": 1100.5132469999999,
+                "forward_wall_ms": 994.06054,
+                "forward_e2e_ms": 608.2896739244461,
+                "forward_first_token_ms": 606.3370890915394
+              },
+              "unrelated_forward": {
+                "rid": "f9f389e2b0af4a9cbceddaf5bff99a2c",
+                "receipt_seq": 42,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 994.06054,
+                "forward_e2e_ms": 608.2896739244461,
+                "forward_first_token_ms": 606.3370890915394
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "retain": {
+              "branches": [
+                {
+                  "rid": "732a7278f39c44548a32ed3ff85a8899",
+                  "receipt_seq": 47,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 753.407027,
+                  "forward_e2e_ms": 617.5895482301712,
+                  "forward_first_token_ms": 615.1619590818882,
+                  "handle": "e31a975f40904825bbf4ae601a520e75"
+                },
+                {
+                  "rid": "5d4903568d0847719dcdecc3b65c9fe5",
+                  "receipt_seq": 50,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 841.687982,
+                  "forward_e2e_ms": 610.2556549012661,
+                  "forward_first_token_ms": 608.1976816058159,
+                  "handle": "cd0fa60f499e47a2847c4733661dd56d"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 1765146624,
+                "host_bytes": 0,
+                "full_slots": 49152,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 1176764416,
+                "hbm_after_forward_bytes": 1765146624,
+                "reclaim_plus_forward_wall_ms": 653.686995,
+                "forward_wall_ms": 653.686995,
+                "forward_e2e_ms": 612.4029010534286,
+                "forward_first_token_ms": 610.194556415081
+              },
+              "unrelated_forward": {
+                "rid": "3410bf40b8c24aa0885aba94471c2ab1",
+                "receipt_seq": 55,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 653.686995,
+                "forward_e2e_ms": 612.4029010534286,
+                "forward_first_token_ms": 610.194556415081
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 4096,
+          "repetition": 0,
+          "warmup": false,
+          "order": [
+            "reclaim",
+            "retain"
+          ],
+          "conditions": {
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "a7313535a42f4cf09386c4b7b50cd4e6",
+                  "receipt_seq": 60,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 208.066881,
+                  "forward_e2e_ms": 141.49266853928566,
+                  "forward_first_token_ms": 139.56109806895256,
+                  "handle": "2c9834277022402187ee90cd7cd78ef1"
+                },
+                {
+                  "rid": "a1dd4ddce6974f7a82a4caa01a83f986",
+                  "receipt_seq": 63,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 201.160468,
+                  "forward_e2e_ms": 144.30413022637367,
+                  "forward_first_token_ms": 142.47295260429382,
+                  "handle": "09bdbabaf1914edba4e18201411ba85f"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "d59d0c4a30aa48d080c6d62c14595346",
+                  "seq": 66,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "7df447df5a9e49819b5a19371949a563",
+                  "seq": 67,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 17.015696,
+                "reclaimed_hbm_bytes": 371458048,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 185729024,
+                "reclaim_plus_forward_wall_ms": 350.652546,
+                "forward_wall_ms": 333.63685,
+                "forward_e2e_ms": 137.56810873746872,
+                "forward_first_token_ms": 135.5488859117031
+              },
+              "unrelated_forward": {
+                "rid": "09b7cae2f3294e6c92293f39664ce5aa",
+                "receipt_seq": 70,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 333.63685,
+                "forward_e2e_ms": 137.56810873746872,
+                "forward_first_token_ms": 135.5488859117031
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "retain": {
+              "branches": [
+                {
+                  "rid": "7abada4cf75449db97f4ca595f9aa55a",
+                  "receipt_seq": 75,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 229.489872,
+                  "forward_e2e_ms": 139.79537412524223,
+                  "forward_first_token_ms": 137.68529146909714,
+                  "handle": "3f7efce6cca24e59af78a0ef7f6d8abb"
+                },
+                {
+                  "rid": "fa279f8c2f2f4e3baa6ce55ce9e6b1dd",
+                  "receipt_seq": 78,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 173.162157,
+                  "forward_e2e_ms": 137.26698979735374,
+                  "forward_first_token_ms": 135.40085405111313,
+                  "handle": "18006c0cf31543d9a0bf1dddd79cf868"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 557187072,
+                "host_bytes": 0,
+                "full_slots": 12288,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 371458048,
+                "hbm_after_forward_bytes": 557187072,
+                "reclaim_plus_forward_wall_ms": 180.399428,
+                "forward_wall_ms": 180.399428,
+                "forward_e2e_ms": 136.90970465540886,
+                "forward_first_token_ms": 135.1219192147255
+              },
+              "unrelated_forward": {
+                "rid": "6438feece804480b8e9fdbc9cbc78a6e",
+                "receipt_seq": 83,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 180.399428,
+                "forward_e2e_ms": 136.90970465540886,
+                "forward_first_token_ms": 135.1219192147255
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 16384,
+          "repetition": 0,
+          "warmup": false,
+          "order": [
+            "retain",
+            "reclaim"
+          ],
+          "conditions": {
+            "retain": {
+              "branches": [
+                {
+                  "rid": "7190a5870d584cba9a74ef1ff1d8a0ad",
+                  "receipt_seq": 88,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 2503.030359,
+                  "forward_e2e_ms": 613.5491877794266,
+                  "forward_first_token_ms": 611.483734101057,
+                  "handle": "95a92ea119424c98b210c5ff8c173dba"
+                },
+                {
+                  "rid": "57e28c80a02e4f50b422adbf44071e66",
+                  "receipt_seq": 91,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 861.841833,
+                  "forward_e2e_ms": 616.5319532155991,
+                  "forward_first_token_ms": 614.2401695251465,
+                  "handle": "f9621b3d0fe249b3bbdd07a6c78e460e"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 1765146624,
+                "host_bytes": 0,
+                "full_slots": 49152,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 1176764416,
+                "hbm_after_forward_bytes": 1765146624,
+                "reclaim_plus_forward_wall_ms": 678.066949,
+                "forward_wall_ms": 678.066949,
+                "forward_e2e_ms": 611.4964671432972,
+                "forward_first_token_ms": 609.1649942100048
+              },
+              "unrelated_forward": {
+                "rid": "3f55c35bdf4f40b0a909a2ddd6febfcd",
+                "receipt_seq": 96,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 678.066949,
+                "forward_e2e_ms": 611.4964671432972,
+                "forward_first_token_ms": 609.1649942100048
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "45b978ca8d784c0a9cd0d6844be8d553",
+                  "receipt_seq": 101,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 700.955719,
+                  "forward_e2e_ms": 619.2211881279945,
+                  "forward_first_token_ms": 617.2437779605389,
+                  "handle": "bbc5d1b5665f4822a4806c4657212155"
+                },
+                {
+                  "rid": "34262475eb644686ba93bb6506bb2546",
+                  "receipt_seq": 104,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 661.84689,
+                  "forward_e2e_ms": 611.4658191800117,
+                  "forward_first_token_ms": 609.5045655965805,
+                  "handle": "20ec3157248643eeb88dc19aaae99ff8"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "c5bb3954172e41078c0c1798d40fa451",
+                  "seq": 107,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "6c63ad35eda046a18957e5c65602033e",
+                  "seq": 108,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 6.680951,
+                "reclaimed_hbm_bytes": 1176764416,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 588382208,
+                "reclaim_plus_forward_wall_ms": 679.6650360000001,
+                "forward_wall_ms": 672.984085,
+                "forward_e2e_ms": 622.339241206646,
+                "forward_first_token_ms": 620.3269995748997
+              },
+              "unrelated_forward": {
+                "rid": "3b37f720a81d43a3956f3a878a258aac",
+                "receipt_seq": 111,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 672.984085,
+                "forward_e2e_ms": 622.339241206646,
+                "forward_first_token_ms": 620.3269995748997
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 4096,
+          "repetition": 1,
+          "warmup": false,
+          "order": [
+            "retain",
+            "reclaim"
+          ],
+          "conditions": {
+            "retain": {
+              "branches": [
+                {
+                  "rid": "91d48978729e488f823d1dbdb458ff18",
+                  "receipt_seq": 116,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 259.389229,
+                  "forward_e2e_ms": 140.59384167194366,
+                  "forward_first_token_ms": 138.37414234876633,
+                  "handle": "308f5a3894fa4088b605a324c10ba6fb"
+                },
+                {
+                  "rid": "8dcaf7627a66445da0acd51f04074eed",
+                  "receipt_seq": 119,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 187.887763,
+                  "forward_e2e_ms": 137.28169351816177,
+                  "forward_first_token_ms": 135.38778573274612,
+                  "handle": "c7036eb3d3de46d3ac9ef2b4b2c872cc"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 557187072,
+                "host_bytes": 0,
+                "full_slots": 12288,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 371458048,
+                "hbm_after_forward_bytes": 557187072,
+                "reclaim_plus_forward_wall_ms": 210.40609,
+                "forward_wall_ms": 210.40609,
+                "forward_e2e_ms": 144.9619010090828,
+                "forward_first_token_ms": 142.99847185611725
+              },
+              "unrelated_forward": {
+                "rid": "e0574ce78beb49ee8c2bc0228cfb2407",
+                "receipt_seq": 124,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 210.40609,
+                "forward_e2e_ms": 144.9619010090828,
+                "forward_first_token_ms": 142.99847185611725
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "286a73b98fc64ec48b999c38a0c90d2f",
+                  "receipt_seq": 129,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 168.492883,
+                  "forward_e2e_ms": 144.2253813147545,
+                  "forward_first_token_ms": 142.32878386974335,
+                  "handle": "9190598a9ae547e68308210db2a9b952"
+                },
+                {
+                  "rid": "0cc4d0f258964acba40f1dbd9937db68",
+                  "receipt_seq": 132,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 196.605646,
+                  "forward_e2e_ms": 137.9486881196499,
+                  "forward_first_token_ms": 136.04789227247238,
+                  "handle": "a6e48d87f09348a38b040dc56e6b7426"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "5bd658b6818c4d0f91c761c42deda7bc",
+                  "seq": 135,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "8554fb163ef941e9847b5124eee6386e",
+                  "seq": 136,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 3.474551,
+                "reclaimed_hbm_bytes": 371458048,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 185729024,
+                "reclaim_plus_forward_wall_ms": 413.488248,
+                "forward_wall_ms": 410.013697,
+                "forward_e2e_ms": 137.56227865815163,
+                "forward_first_token_ms": 135.68206876516342
+              },
+              "unrelated_forward": {
+                "rid": "6002237c948545de9a40779a3d2a4971",
+                "receipt_seq": 139,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 410.013697,
+                "forward_e2e_ms": 137.56227865815163,
+                "forward_first_token_ms": 135.68206876516342
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 16384,
+          "repetition": 1,
+          "warmup": false,
+          "order": [
+            "reclaim",
+            "retain"
+          ],
+          "conditions": {
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "addfc1a52df44a228c64c8072caccf0a",
+                  "receipt_seq": 144,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 833.480226,
+                  "forward_e2e_ms": 628.07796895504,
+                  "forward_first_token_ms": 626.1767223477364,
+                  "handle": "4dfc901c82ce4acd9ba1739f02610b84"
+                },
+                {
+                  "rid": "7b0a0cec00914034a3225f5ed57921c2",
+                  "receipt_seq": 147,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 659.840506,
+                  "forward_e2e_ms": 612.6736775040627,
+                  "forward_first_token_ms": 610.6761433184147,
+                  "handle": "8a232080079d407399127033923ee0b1"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "4abb19391cc64864807f092a09b59cb3",
+                  "seq": 150,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "78711e062eca45ffa7e63479e1f18622",
+                  "seq": 151,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 38.825134,
+                "reclaimed_hbm_bytes": 1176764416,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 588382208,
+                "reclaim_plus_forward_wall_ms": 700.7363150000001,
+                "forward_wall_ms": 661.911181,
+                "forward_e2e_ms": 616.0401329398155,
+                "forward_first_token_ms": 614.26567658782
+              },
+              "unrelated_forward": {
+                "rid": "41082609f9634e59a8ecb639c1a698db",
+                "receipt_seq": 154,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 661.911181,
+                "forward_e2e_ms": 616.0401329398155,
+                "forward_first_token_ms": 614.26567658782
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "retain": {
+              "branches": [
+                {
+                  "rid": "a0acb6e44b3a462991cd616ddd77e305",
+                  "receipt_seq": 159,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 681.818576,
+                  "forward_e2e_ms": 613.1263189017773,
+                  "forward_first_token_ms": 611.3721951842308,
+                  "handle": "3000c494a7ba46fcaf2308ee363c6cbe"
+                },
+                {
+                  "rid": "c17bb1eda84c48cc9778584e89968984",
+                  "receipt_seq": 162,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 678.240508,
+                  "forward_e2e_ms": 623.5898993909359,
+                  "forward_first_token_ms": 620.7221113145351,
+                  "handle": "ce0d75e508d14b04a981b92019e6c324"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 1765146624,
+                "host_bytes": 0,
+                "full_slots": 49152,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 1176764416,
+                "hbm_after_forward_bytes": 1765146624,
+                "reclaim_plus_forward_wall_ms": 820.022669,
+                "forward_wall_ms": 820.022669,
+                "forward_e2e_ms": 615.9566007554531,
+                "forward_first_token_ms": 613.4566739201546
+              },
+              "unrelated_forward": {
+                "rid": "79b43293288246908ac5fce6fad483f3",
+                "receipt_seq": 167,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 820.022669,
+                "forward_e2e_ms": 615.9566007554531,
+                "forward_first_token_ms": 613.4566739201546
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 4096,
+          "repetition": 2,
+          "warmup": false,
+          "order": [
+            "reclaim",
+            "retain"
+          ],
+          "conditions": {
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "61595ade5d854fdfa42b915a931d835b",
+                  "receipt_seq": 172,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 209.669949,
+                  "forward_e2e_ms": 152.64007076621056,
+                  "forward_first_token_ms": 150.53339302539825,
+                  "handle": "29c22afecafe4d069d4609c4c9cecbf6"
+                },
+                {
+                  "rid": "42c078a2016941929198e18862324d5c",
+                  "receipt_seq": 175,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 162.445973,
+                  "forward_e2e_ms": 139.41607996821404,
+                  "forward_first_token_ms": 137.49835640192032,
+                  "handle": "2bb6a66fbd8341a5b8f06de75edb86f9"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "e26656f7262d4945a1fdb5fc7c95c82a",
+                  "seq": 178,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "3a34a128fb054594bb8ff408bf1b3a9e",
+                  "seq": 179,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 24.790559,
+                "reclaimed_hbm_bytes": 371458048,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 185729024,
+                "reclaim_plus_forward_wall_ms": 247.215947,
+                "forward_wall_ms": 222.425388,
+                "forward_e2e_ms": 150.47502517700195,
+                "forward_first_token_ms": 148.27831834554672
+              },
+              "unrelated_forward": {
+                "rid": "947cd9e65e2643f8b7f967b88e5d8e28",
+                "receipt_seq": 182,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 222.425388,
+                "forward_e2e_ms": 150.47502517700195,
+                "forward_first_token_ms": 148.27831834554672
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "retain": {
+              "branches": [
+                {
+                  "rid": "494325efd6ac4165abbfa132419090c1",
+                  "receipt_seq": 187,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 197.029948,
+                  "forward_e2e_ms": 146.06758952140808,
+                  "forward_first_token_ms": 144.1732496023178,
+                  "handle": "e72f738b8ab84b299428649c44394d5e"
+                },
+                {
+                  "rid": "6bcb85d3f1eb44a1b39b60ef175acb6e",
+                  "receipt_seq": 190,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 293.734804,
+                  "forward_e2e_ms": 141.29453524947166,
+                  "forward_first_token_ms": 138.87932151556015,
+                  "handle": "1bf69a7586da407a8b3bfa006de6dddf"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 557187072,
+                "host_bytes": 0,
+                "full_slots": 12288,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 371458048,
+                "hbm_after_forward_bytes": 557187072,
+                "reclaim_plus_forward_wall_ms": 214.390445,
+                "forward_wall_ms": 214.390445,
+                "forward_e2e_ms": 140.41577652096748,
+                "forward_first_token_ms": 138.5214515030384
+              },
+              "unrelated_forward": {
+                "rid": "db2ad8a26ec747bfbbe59bfdf7389c68",
+                "receipt_seq": 195,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 214.390445,
+                "forward_e2e_ms": 140.41577652096748,
+                "forward_first_token_ms": 138.5214515030384
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 16384,
+          "repetition": 2,
+          "warmup": false,
+          "order": [
+            "retain",
+            "reclaim"
+          ],
+          "conditions": {
+            "retain": {
+              "branches": [
+                {
+                  "rid": "d10eb621cec6408685de3a18509008e7",
+                  "receipt_seq": 200,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 896.708688,
+                  "forward_e2e_ms": 624.0389086306095,
+                  "forward_first_token_ms": 621.7023432254791,
+                  "handle": "9241f55b92a146fab4655e23fbe7f688"
+                },
+                {
+                  "rid": "63acefc42b9549aa9edd09106366311b",
+                  "receipt_seq": 203,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 804.698674,
+                  "forward_e2e_ms": 616.2949465215206,
+                  "forward_first_token_ms": 613.5621406137943,
+                  "handle": "e6d6f15b956542f9ab2aeb8dedb7a9aa"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 1765146624,
+                "host_bytes": 0,
+                "full_slots": 49152,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 1176764416,
+                "hbm_after_forward_bytes": 1765146624,
+                "reclaim_plus_forward_wall_ms": 676.362792,
+                "forward_wall_ms": 676.362792,
+                "forward_e2e_ms": 623.1543906033039,
+                "forward_first_token_ms": 620.7739114761353
+              },
+              "unrelated_forward": {
+                "rid": "8fb8dd601658423aa49f4982938450d4",
+                "receipt_seq": 208,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 676.362792,
+                "forward_e2e_ms": 623.1543906033039,
+                "forward_first_token_ms": 620.7739114761353
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "0b6a48bd55f44d5e96dda0d1539e0ac1",
+                  "receipt_seq": 213,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 719.655996,
+                  "forward_e2e_ms": 618.3212473988533,
+                  "forward_first_token_ms": 616.0464808344841,
+                  "handle": "328c239301744bdc9ef9574793c91ce4"
+                },
+                {
+                  "rid": "1b8229f45e7f41a292f666dca7e0fc0e",
+                  "receipt_seq": 216,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 955.398598,
+                  "forward_e2e_ms": 617.3826530575752,
+                  "forward_first_token_ms": 614.9641275405884,
+                  "handle": "8e85adad3230413ca94228f8f2ca3792"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "e2c1a168a4544d10a4f17373ee351b8c",
+                  "seq": 219,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "98863cd5afd8428fb76840c116406e33",
+                  "seq": 220,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 233.966353,
+                "reclaimed_hbm_bytes": 1176764416,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 588382208,
+                "reclaim_plus_forward_wall_ms": 954.937445,
+                "forward_wall_ms": 720.971092,
+                "forward_e2e_ms": 612.5385761260986,
+                "forward_first_token_ms": 610.46501994133
+              },
+              "unrelated_forward": {
+                "rid": "1858dcdcec8f45f593ec93799abb0802",
+                "receipt_seq": 223,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 720.971092,
+                "forward_e2e_ms": 612.5385761260986,
+                "forward_first_token_ms": 610.46501994133
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 4096,
+          "repetition": 3,
+          "warmup": false,
+          "order": [
+            "retain",
+            "reclaim"
+          ],
+          "conditions": {
+            "retain": {
+              "branches": [
+                {
+                  "rid": "ed6d07767d3b489883779527d226156f",
+                  "receipt_seq": 228,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 193.655334,
+                  "forward_e2e_ms": 143.1140974164009,
+                  "forward_first_token_ms": 141.39962196350098,
+                  "handle": "057608ada71e42b9bde73fa7954af9d2"
+                },
+                {
+                  "rid": "d46e8635962a4300911cf4b43896bf89",
+                  "receipt_seq": 231,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 194.216974,
+                  "forward_e2e_ms": 135.77289134263992,
+                  "forward_first_token_ms": 134.36467945575714,
+                  "handle": "b4b7fb84a35c4eeba1478e2ee0bca335"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 557187072,
+                "host_bytes": 0,
+                "full_slots": 12288,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 371458048,
+                "hbm_after_forward_bytes": 557187072,
+                "reclaim_plus_forward_wall_ms": 220.201953,
+                "forward_wall_ms": 220.201953,
+                "forward_e2e_ms": 137.38351315259933,
+                "forward_first_token_ms": 135.83610206842422
+              },
+              "unrelated_forward": {
+                "rid": "06a6415940594f67a06dfe7ffc52613f",
+                "receipt_seq": 236,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 220.201953,
+                "forward_e2e_ms": 137.38351315259933,
+                "forward_first_token_ms": 135.83610206842422
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "1e29fa283e8b465e85561ee0c98cc125",
+                  "receipt_seq": 241,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 193.857793,
+                  "forward_e2e_ms": 141.65548980236053,
+                  "forward_first_token_ms": 139.41333815455437,
+                  "handle": "33cc5d566d1140f6b88e008eacb70863"
+                },
+                {
+                  "rid": "c1719d613bc04e1bab2aa6693781053b",
+                  "receipt_seq": 244,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 187.883721,
+                  "forward_e2e_ms": 137.88023591041565,
+                  "forward_first_token_ms": 136.21240481734276,
+                  "handle": "49c71d11e7764812b6a5021266af357b"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "037367356e3a48159e6d1d14be75fe5e",
+                  "seq": 247,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "601f9a008bbb4fa5a20a1da8988c1a16",
+                  "seq": 248,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 71.577109,
+                "reclaimed_hbm_bytes": 371458048,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 185729024,
+                "reclaim_plus_forward_wall_ms": 262.486467,
+                "forward_wall_ms": 190.909358,
+                "forward_e2e_ms": 138.68894800543785,
+                "forward_first_token_ms": 136.88673451542854
+              },
+              "unrelated_forward": {
+                "rid": "59f5ad62da6843179c50b945d7c7bfbb",
+                "receipt_seq": 251,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 190.909358,
+                "forward_e2e_ms": 138.68894800543785,
+                "forward_first_token_ms": 136.88673451542854
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 16384,
+          "repetition": 3,
+          "warmup": false,
+          "order": [
+            "reclaim",
+            "retain"
+          ],
+          "conditions": {
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "f10f5fbf7f4746f689dbc07c71bdb2f8",
+                  "receipt_seq": 256,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 758.655947,
+                  "forward_e2e_ms": 620.919231325388,
+                  "forward_first_token_ms": 618.2769425213337,
+                  "handle": "8c26c3373d86460591073f1932f3cb64"
+                },
+                {
+                  "rid": "be12968d53354d66a7ecd41c729c4313",
+                  "receipt_seq": 259,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 660.925245,
+                  "forward_e2e_ms": 617.5711937248707,
+                  "forward_first_token_ms": 614.9616576731205,
+                  "handle": "953dcea0db9545848426e8a64cf82e87"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "f0b0dc2bdb934adba6ef058f58c53aa6",
+                  "seq": 262,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "6f589307c65840768683b6e00477d19e",
+                  "seq": 263,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 5.623636,
+                "reclaimed_hbm_bytes": 1176764416,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 588382208,
+                "reclaim_plus_forward_wall_ms": 752.042863,
+                "forward_wall_ms": 746.419227,
+                "forward_e2e_ms": 617.7614033222198,
+                "forward_first_token_ms": 615.2666099369526
+              },
+              "unrelated_forward": {
+                "rid": "3d7a54df3eda4a92935f861aba576322",
+                "receipt_seq": 266,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 746.419227,
+                "forward_e2e_ms": 617.7614033222198,
+                "forward_first_token_ms": 615.2666099369526
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "retain": {
+              "branches": [
+                {
+                  "rid": "f2fc395037714e1f9f71ba9fbe8263fa",
+                  "receipt_seq": 271,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 792.407333,
+                  "forward_e2e_ms": 624.8629502952099,
+                  "forward_first_token_ms": 622.458927333355,
+                  "handle": "dcbdaafda1c94a189855a9ecbaeb1c4a"
+                },
+                {
+                  "rid": "671b2643534748c2b868befa0e1330f4",
+                  "receipt_seq": 274,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 703.363129,
+                  "forward_e2e_ms": 622.5659102201462,
+                  "forward_first_token_ms": 620.0723797082901,
+                  "handle": "087e1ea4d7d04745b5889de6bb70fe6e"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 1765146624,
+                "host_bytes": 0,
+                "full_slots": 49152,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 1176764416,
+                "hbm_after_forward_bytes": 1765146624,
+                "reclaim_plus_forward_wall_ms": 731.750451,
+                "forward_wall_ms": 731.750451,
+                "forward_e2e_ms": 618.1742250919342,
+                "forward_first_token_ms": 615.8760972321033
+              },
+              "unrelated_forward": {
+                "rid": "9817d21cb3564de9a8a74ec505e2e9ca",
+                "receipt_seq": 279,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 731.750451,
+                "forward_e2e_ms": 618.1742250919342,
+                "forward_first_token_ms": 615.8760972321033
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 4096,
+          "repetition": 4,
+          "warmup": false,
+          "order": [
+            "reclaim",
+            "retain"
+          ],
+          "conditions": {
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "b55ce26615df4a66bb86eff9190e8bfa",
+                  "receipt_seq": 284,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 207.490207,
+                  "forward_e2e_ms": 141.55461266636848,
+                  "forward_first_token_ms": 139.6833062171936,
+                  "handle": "fbd45529dffd416ca886373a004fa678"
+                },
+                {
+                  "rid": "41c4c36db9c4416a9d9ee18b42a1915f",
+                  "receipt_seq": 287,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 199.124758,
+                  "forward_e2e_ms": 138.36831972002983,
+                  "forward_first_token_ms": 136.49848476052284,
+                  "handle": "a0c3a2c944714f4a8ed6f67ded18a379"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "db85344ec74a4cbc8d834da0b4ead5bf",
+                  "seq": 290,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "2137b9c0f992422390263706b6041432",
+                  "seq": 291,
+                  "hbm_bytes": 185729024,
+                  "host_bytes": 0,
+                  "full_slots": 4096,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 4.253084,
+                "reclaimed_hbm_bytes": 371458048,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 185729024,
+                "reclaim_plus_forward_wall_ms": 299.721524,
+                "forward_wall_ms": 295.46844,
+                "forward_e2e_ms": 139.14404809474945,
+                "forward_first_token_ms": 137.2734121978283
+              },
+              "unrelated_forward": {
+                "rid": "1c994ea573bd43d7b028a5a06b16a2fe",
+                "receipt_seq": 294,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 295.46844,
+                "forward_e2e_ms": 139.14404809474945,
+                "forward_first_token_ms": 137.2734121978283
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "retain": {
+              "branches": [
+                {
+                  "rid": "20da0e5d1c1f48c89ba5273f42bd6d8e",
+                  "receipt_seq": 299,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    82
+                  ],
+                  "forward_wall_ms": 214.90804,
+                  "forward_e2e_ms": 143.33228021860123,
+                  "forward_first_token_ms": 141.39731228351593,
+                  "handle": "cf7da4f238904ae7b7053654693be9dd"
+                },
+                {
+                  "rid": "544afbf0d5d64c4fb999aae726b3d305",
+                  "receipt_seq": 302,
+                  "prompt_tokens": 4096,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    248046
+                  ],
+                  "forward_wall_ms": 199.602694,
+                  "forward_e2e_ms": 139.21862095594406,
+                  "forward_first_token_ms": 137.02256232500076,
+                  "handle": "a5c1ee8413ec455c906eb3d1855f0098"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 371458048,
+                "host_bytes": 0,
+                "full_slots": 8192,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 557187072,
+                "host_bytes": 0,
+                "full_slots": 12288,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 371458048,
+                "hbm_after_forward_bytes": 557187072,
+                "reclaim_plus_forward_wall_ms": 204.17575,
+                "forward_wall_ms": 204.17575,
+                "forward_e2e_ms": 138.72187957167625,
+                "forward_first_token_ms": 136.70984283089638
+              },
+              "unrelated_forward": {
+                "rid": "009531d955074b629d43d1069e8dc836",
+                "receipt_seq": 307,
+                "prompt_tokens": 4096,
+                "cached_tokens": 0,
+                "output_ids": [
+                  198
+                ],
+                "forward_wall_ms": 204.17575,
+                "forward_e2e_ms": 138.72187957167625,
+                "forward_first_token_ms": 136.70984283089638
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        },
+        {
+          "length": 16384,
+          "repetition": 4,
+          "warmup": false,
+          "order": [
+            "retain",
+            "reclaim"
+          ],
+          "conditions": {
+            "retain": {
+              "branches": [
+                {
+                  "rid": "6313884e92904af4950a54101bf05139",
+                  "receipt_seq": 312,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 831.800552,
+                  "forward_e2e_ms": 621.911309659481,
+                  "forward_first_token_ms": 619.6633502840996,
+                  "handle": "973289e79ef8435390385c0b3802da3a"
+                },
+                {
+                  "rid": "7df9e8ea0f2f457fbdcf9bbc3ac95611",
+                  "receipt_seq": 315,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 698.808903,
+                  "forward_e2e_ms": 613.4488992393017,
+                  "forward_first_token_ms": 610.9940521419048,
+                  "handle": "fe46c22c8b7840a1ad16de58495a12c5"
+                }
+              ],
+              "reclaim_receipts": [],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "after_forward": {
+                "hbm_bytes": 1765146624,
+                "host_bytes": 0,
+                "full_slots": 49152,
+                "recurrent_slots": 3
+              },
+              "metrics": {
+                "reclaim_wall_ms": 0.0,
+                "reclaimed_hbm_bytes": 0,
+                "hbm_before_forward_bytes": 1176764416,
+                "hbm_after_forward_bytes": 1765146624,
+                "reclaim_plus_forward_wall_ms": 696.525672,
+                "forward_wall_ms": 696.525672,
+                "forward_e2e_ms": 617.7502050995827,
+                "forward_first_token_ms": 615.3229586780071
+              },
+              "unrelated_forward": {
+                "rid": "e0467666414a4baba8af4caba3419c81",
+                "receipt_seq": 320,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 696.525672,
+                "forward_e2e_ms": 617.7502050995827,
+                "forward_first_token_ms": 615.3229586780071
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "reclaim": {
+              "branches": [
+                {
+                  "rid": "d35650b10497485b856e79b64c64dc09",
+                  "receipt_seq": 325,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    793
+                  ],
+                  "forward_wall_ms": 677.227606,
+                  "forward_e2e_ms": 614.9173676967621,
+                  "forward_first_token_ms": 612.6872003078461,
+                  "handle": "fc8ac8275f494b44bffc77b095df32c7"
+                },
+                {
+                  "rid": "c5e9d0e988644fe3ad943779285ad821",
+                  "receipt_seq": 328,
+                  "prompt_tokens": 16384,
+                  "cached_tokens": 0,
+                  "output_ids": [
+                    1605
+                  ],
+                  "forward_wall_ms": 753.02219,
+                  "forward_e2e_ms": 610.9026186168194,
+                  "forward_first_token_ms": 608.5798554122448,
+                  "handle": "d6c9cd470d354285908e84136aa081fd"
+                }
+              ],
+              "reclaim_receipts": [
+                {
+                  "action_id": "4994a1bd22d440c29be11a7451537d16",
+                  "seq": 331,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                },
+                {
+                  "action_id": "3983ee8d0bec40e6ac7bbd2d01f5a021",
+                  "seq": 332,
+                  "hbm_bytes": 588382208,
+                  "host_bytes": 0,
+                  "full_slots": 16384,
+                  "recurrent_slots": 1
+                }
+              ],
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "finished_branches": {
+                "hbm_bytes": 1176764416,
+                "host_bytes": 0,
+                "full_slots": 32768,
+                "recurrent_slots": 2
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "metrics": {
+                "reclaim_wall_ms": 22.421565,
+                "reclaimed_hbm_bytes": 1176764416,
+                "hbm_before_forward_bytes": 0,
+                "hbm_after_forward_bytes": 588382208,
+                "reclaim_plus_forward_wall_ms": 832.622029,
+                "forward_wall_ms": 810.200464,
+                "forward_e2e_ms": 610.9780929982662,
+                "forward_first_token_ms": 608.5116602480412
+              },
+              "unrelated_forward": {
+                "rid": "e702092c8c5e442c9c2ae3cf52115257",
+                "receipt_seq": 335,
+                "prompt_tokens": 16384,
+                "cached_tokens": 0,
+                "output_ids": [
+                  68
+                ],
+                "forward_wall_ms": 810.200464,
+                "forward_e2e_ms": 610.9780929982662,
+                "forward_first_token_ms": 608.5116602480412
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok"
+        }
+      ],
+      "summary": [
+        {
+          "length": 4096,
+          "verified_pairs": 5,
+          "planned_pairs": 5,
+          "errors": 0,
+          "missing": 0,
+          "medians": {
+            "reclaim": {
+              "reclaim_wall_ms": 17.015696,
+              "reclaimed_hbm_bytes": 371458048,
+              "hbm_before_forward_bytes": 0,
+              "hbm_after_forward_bytes": 185729024,
+              "reclaim_plus_forward_wall_ms": 299.721524,
+              "forward_wall_ms": 295.46844,
+              "forward_e2e_ms": 138.68894800543785,
+              "forward_first_token_ms": 136.88673451542854
+            },
+            "retain": {
+              "reclaim_wall_ms": 0.0,
+              "reclaimed_hbm_bytes": 0,
+              "hbm_before_forward_bytes": 371458048,
+              "hbm_after_forward_bytes": 557187072,
+              "reclaim_plus_forward_wall_ms": 210.40609,
+              "forward_wall_ms": 210.40609,
+              "forward_e2e_ms": 138.72187957167625,
+              "forward_first_token_ms": 136.70984283089638
+            }
+          }
+        },
+        {
+          "length": 16384,
+          "verified_pairs": 5,
+          "planned_pairs": 5,
+          "errors": 0,
+          "missing": 0,
+          "medians": {
+            "reclaim": {
+              "reclaim_wall_ms": 22.421565,
+              "reclaimed_hbm_bytes": 1176764416,
+              "hbm_before_forward_bytes": 0,
+              "hbm_after_forward_bytes": 588382208,
+              "reclaim_plus_forward_wall_ms": 752.042863,
+              "forward_wall_ms": 720.971092,
+              "forward_e2e_ms": 616.0401329398155,
+              "forward_first_token_ms": 614.26567658782
+            },
+            "retain": {
+              "reclaim_wall_ms": 0.0,
+              "reclaimed_hbm_bytes": 0,
+              "hbm_before_forward_bytes": 1176764416,
+              "hbm_after_forward_bytes": 1765146624,
+              "reclaim_plus_forward_wall_ms": 696.525672,
+              "forward_wall_ms": 696.525672,
+              "forward_e2e_ms": 617.7502050995827,
+              "forward_first_token_ms": 615.3229586780071
+            }
+          }
+        }
+      ],
+      "status": "ok"
+    },
+    "placement": {
+      "engine_arm": "extended-hicache",
+      "wire": "logs/fixedgraph-state-placement-wire.jsonl",
+      "engine_log": "logs/fixedgraph-state-placement.log",
+      "rows": [
+        {
+          "length": 4096,
+          "repetition": -1,
+          "warmup": true,
+          "order": [
+            "recompute",
+            "resident",
+            "restored"
+          ],
+          "conditions": {
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185991168,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "81dbd8cee3a4401b83385e46ac2f8f1e",
+                "receipt_seq": 4,
+                "prompt_tokens": 4097,
+                "cached_tokens": 0,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 369.416687,
+                "forward_e2e_ms": 321.4937821030617,
+                "forward_first_token_ms": 273.52671697735786
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 369.416687,
+                "migrate_plus_forward_wall_ms": 369.416687,
+                "forward_wall_ms": 369.416687,
+                "forward_e2e_ms": 321.4937821030617,
+                "forward_first_token_ms": 273.52671697735786
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 165.896986,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "087c80d5e0484a1980b2c37a627cde4b",
+                "receipt_seq": 15,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 157.112375,
+                "forward_e2e_ms": 115.17587304115295,
+                "forward_first_token_ms": 67.22501292824745
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 185729024,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 157.112375,
+                "migrate_plus_forward_wall_ms": 157.112375,
+                "forward_wall_ms": 157.112375,
+                "forward_e2e_ms": 115.17587304115295,
+                "forward_first_token_ms": 67.22501292824745
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 185729024,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 185729024,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 185729024,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 177.157318,
+              "d2h": {
+                "action_id": "6cc69a5352e5424c8ec2ed650e115e9a",
+                "seq": 28,
+                "wall_ms": 58.02228,
+                "cuda_event_ms": 28.899,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 134217728,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "cb0194e79a66492ea1740604fe69b41e",
+                "seq": 32,
+                "wall_ms": 12.530397,
+                "cuda_event_ms": 4.642,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 134217728,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "fda670672de94769b9e3f1607fc9bedb",
+                "receipt_seq": 36,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 150.426254,
+                "forward_e2e_ms": 116.19644612073898,
+                "forward_first_token_ms": 66.63589552044868
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 185729024,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 185729024,
+                "h2d_bytes": 185729024,
+                "restore_plus_forward_wall_ms": 162.956651,
+                "migrate_plus_forward_wall_ms": 220.978931,
+                "d2h_wall_ms": 58.02228,
+                "d2h_cuda_event_ms": 28.899,
+                "h2d_wall_ms": 12.530397,
+                "h2d_cuda_event_ms": 4.642,
+                "forward_wall_ms": 150.426254,
+                "forward_e2e_ms": 116.19644612073898,
+                "forward_first_token_ms": 66.63589552044868
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 16384,
+          "repetition": -1,
+          "warmup": true,
+          "order": [
+            "resident",
+            "restored",
+            "recompute"
+          ],
+          "conditions": {
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 738.057647,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "879f94b992e748228b2d1b46164e265f",
+                "receipt_seq": 47,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 253.391111,
+                "forward_e2e_ms": 173.62229153513908,
+                "forward_first_token_ms": 112.06011101603508
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 588382208,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 253.391111,
+                "migrate_plus_forward_wall_ms": 253.391111,
+                "forward_wall_ms": 253.391111,
+                "forward_e2e_ms": 173.62229153513908,
+                "forward_first_token_ms": 112.06011101603508
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 588382208,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 588382208,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 588382208,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 826.911892,
+              "d2h": {
+                "action_id": "2a941ab8ef8249e6b12e45ff6fbe1586",
+                "seq": 60,
+                "wall_ms": 97.275715,
+                "cuda_event_ms": 78.202,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 536870912,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "4fc0e2d16062487fa80b0aceb60fbd09",
+                "seq": 64,
+                "wall_ms": 57.015548,
+                "cuda_event_ms": 12.303,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 536870912,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "b3ff48ea083e4798a153c3c2a8153a87",
+                "receipt_seq": 68,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 306.200481,
+                "forward_e2e_ms": 127.8657503426075,
+                "forward_first_token_ms": 69.53160092234612
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 588382208,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 588382208,
+                "h2d_bytes": 588382208,
+                "restore_plus_forward_wall_ms": 363.21602900000005,
+                "migrate_plus_forward_wall_ms": 460.49174400000004,
+                "d2h_wall_ms": 97.275715,
+                "d2h_cuda_event_ms": 78.202,
+                "h2d_wall_ms": 57.015548,
+                "h2d_cuda_event_ms": 12.303,
+                "forward_wall_ms": 306.200481,
+                "forward_e2e_ms": 127.8657503426075,
+                "forward_first_token_ms": 69.53160092234612
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588644352,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "131786e4fe634fe19704052c7be994a3",
+                "receipt_seq": 73,
+                "prompt_tokens": 16385,
+                "cached_tokens": 0,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 858.206489,
+                "forward_e2e_ms": 740.5467145144939,
+                "forward_first_token_ms": 682.526309043169
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 858.206489,
+                "migrate_plus_forward_wall_ms": 858.206489,
+                "forward_wall_ms": 858.206489,
+                "forward_e2e_ms": 740.5467145144939,
+                "forward_first_token_ms": 682.526309043169
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 4096,
+          "repetition": 0,
+          "warmup": false,
+          "order": [
+            "resident",
+            "restored",
+            "recompute"
+          ],
+          "conditions": {
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 182.290747,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "e1573c1fc2b54b84a619b9ed7c0f23d8",
+                "receipt_seq": 84,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 144.878802,
+                "forward_e2e_ms": 112.71093040704727,
+                "forward_first_token_ms": 64.4899420440197
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 185729024,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 144.878802,
+                "migrate_plus_forward_wall_ms": 144.878802,
+                "forward_wall_ms": 144.878802,
+                "forward_e2e_ms": 112.71093040704727,
+                "forward_first_token_ms": 64.4899420440197
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 185729024,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 185729024,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 185729024,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 167.092912,
+              "d2h": {
+                "action_id": "76c86042f8394dacaf68047d581cbceb",
+                "seq": 97,
+                "wall_ms": 33.413505,
+                "cuda_event_ms": 20.54,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 134217728,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "cce6a6948fa04f15b6d280f6c78f9322",
+                "seq": 101,
+                "wall_ms": 17.197617,
+                "cuda_event_ms": 4.39,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 134217728,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "2bfb6d265d324694b805f913643c7eaa",
+                "receipt_seq": 105,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 144.34662,
+                "forward_e2e_ms": 113.7164980173111,
+                "forward_first_token_ms": 64.99933078885078
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 185729024,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 185729024,
+                "h2d_bytes": 185729024,
+                "restore_plus_forward_wall_ms": 161.544237,
+                "migrate_plus_forward_wall_ms": 194.957742,
+                "d2h_wall_ms": 33.413505,
+                "d2h_cuda_event_ms": 20.54,
+                "h2d_wall_ms": 17.197617,
+                "h2d_cuda_event_ms": 4.39,
+                "forward_wall_ms": 144.34662,
+                "forward_e2e_ms": 113.7164980173111,
+                "forward_first_token_ms": 64.99933078885078
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185991168,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "53257326fdd24e8190842d7ab0896d14",
+                "receipt_seq": 110,
+                "prompt_tokens": 4097,
+                "cached_tokens": 0,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 283.959823,
+                "forward_e2e_ms": 254.27810102701187,
+                "forward_first_token_ms": 205.8127149939537
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 283.959823,
+                "migrate_plus_forward_wall_ms": 283.959823,
+                "forward_wall_ms": 283.959823,
+                "forward_e2e_ms": 254.27810102701187,
+                "forward_first_token_ms": 205.8127149939537
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 16384,
+          "repetition": 0,
+          "warmup": false,
+          "order": [
+            "restored",
+            "recompute",
+            "resident"
+          ],
+          "conditions": {
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 588382208,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 588382208,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 588382208,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 668.946197,
+              "d2h": {
+                "action_id": "6e0c947d465b43b0803e2daad1f97efa",
+                "seq": 123,
+                "wall_ms": 90.452029,
+                "cuda_event_ms": 80.143,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 536870912,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "74d96f52dfa04664bca19ec9eae8494c",
+                "seq": 127,
+                "wall_ms": 30.757073,
+                "cuda_event_ms": 12.274,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 536870912,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "438b84dd1bfb4d6da2804e4b0442d5d2",
+                "receipt_seq": 131,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 167.063926,
+                "forward_e2e_ms": 131.88700377941132,
+                "forward_first_token_ms": 72.61683791875839
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 588382208,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 588382208,
+                "h2d_bytes": 588382208,
+                "restore_plus_forward_wall_ms": 197.820999,
+                "migrate_plus_forward_wall_ms": 288.273028,
+                "d2h_wall_ms": 90.452029,
+                "d2h_cuda_event_ms": 80.143,
+                "h2d_wall_ms": 30.757073,
+                "h2d_cuda_event_ms": 12.274,
+                "forward_wall_ms": 167.063926,
+                "forward_e2e_ms": 131.88700377941132,
+                "forward_first_token_ms": 72.61683791875839
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588644352,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "5a8118e9ee574d58945667b3e20b848c",
+                "receipt_seq": 136,
+                "prompt_tokens": 16385,
+                "cached_tokens": 0,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 788.348034,
+                "forward_e2e_ms": 754.25611063838,
+                "forward_first_token_ms": 695.8520002663136
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 788.348034,
+                "migrate_plus_forward_wall_ms": 788.348034,
+                "forward_wall_ms": 788.348034,
+                "forward_e2e_ms": 754.25611063838,
+                "forward_first_token_ms": 695.8520002663136
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 1054.036512,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "cad4adf060af480a9e218ccd5257fceb",
+                "receipt_seq": 147,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 193.260741,
+                "forward_e2e_ms": 130.81268221139908,
+                "forward_first_token_ms": 70.81044092774391
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 588382208,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 193.260741,
+                "migrate_plus_forward_wall_ms": 193.260741,
+                "forward_wall_ms": 193.260741,
+                "forward_e2e_ms": 130.81268221139908,
+                "forward_first_token_ms": 70.81044092774391
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 4096,
+          "repetition": 1,
+          "warmup": false,
+          "order": [
+            "restored",
+            "recompute",
+            "resident"
+          ],
+          "conditions": {
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 185729024,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 185729024,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 185729024,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 181.011999,
+              "d2h": {
+                "action_id": "286326b9e7124fb89821898262f24317",
+                "seq": 160,
+                "wall_ms": 40.746933,
+                "cuda_event_ms": 21.112,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 134217728,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "753b762d18fc4d819b373f946025e5b9",
+                "seq": 164,
+                "wall_ms": 13.634712,
+                "cuda_event_ms": 4.422,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 134217728,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "37d447d4c918478f8ca9a77cee1c1cfa",
+                "receipt_seq": 168,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 153.748125,
+                "forward_e2e_ms": 119.65497583150864,
+                "forward_first_token_ms": 70.43145596981049
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 185729024,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 185729024,
+                "h2d_bytes": 185729024,
+                "restore_plus_forward_wall_ms": 167.382837,
+                "migrate_plus_forward_wall_ms": 208.12976999999998,
+                "d2h_wall_ms": 40.746933,
+                "d2h_cuda_event_ms": 21.112,
+                "h2d_wall_ms": 13.634712,
+                "h2d_cuda_event_ms": 4.422,
+                "forward_wall_ms": 153.748125,
+                "forward_e2e_ms": 119.65497583150864,
+                "forward_first_token_ms": 70.43145596981049
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185991168,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "4b8030aea0d64de5a736ea177cd77262",
+                "receipt_seq": 173,
+                "prompt_tokens": 4097,
+                "cached_tokens": 0,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 301.553716,
+                "forward_e2e_ms": 262.1932178735733,
+                "forward_first_token_ms": 212.3693749308586
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 301.553716,
+                "migrate_plus_forward_wall_ms": 301.553716,
+                "forward_wall_ms": 301.553716,
+                "forward_e2e_ms": 262.1932178735733,
+                "forward_first_token_ms": 212.3693749308586
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 172.191305,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "ab5328b91ea34395869fd11a73736b73",
+                "receipt_seq": 184,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 155.211075,
+                "forward_e2e_ms": 116.80471524596214,
+                "forward_first_token_ms": 67.74785742163658
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 185729024,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 155.211075,
+                "migrate_plus_forward_wall_ms": 155.211075,
+                "forward_wall_ms": 155.211075,
+                "forward_e2e_ms": 116.80471524596214,
+                "forward_first_token_ms": 67.74785742163658
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 16384,
+          "repetition": 1,
+          "warmup": false,
+          "order": [
+            "recompute",
+            "resident",
+            "restored"
+          ],
+          "conditions": {
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588644352,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "fc7fbbc7065141bda909cfde9c531803",
+                "receipt_seq": 189,
+                "prompt_tokens": 16385,
+                "cached_tokens": 0,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 805.437208,
+                "forward_e2e_ms": 758.0451145768166,
+                "forward_first_token_ms": 699.0817338228226
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 805.437208,
+                "migrate_plus_forward_wall_ms": 805.437208,
+                "forward_wall_ms": 805.437208,
+                "forward_e2e_ms": 758.0451145768166,
+                "forward_first_token_ms": 699.0817338228226
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 677.89821,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "58077ca803aa40489ce4a45e49a79d64",
+                "receipt_seq": 200,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 359.239032,
+                "forward_e2e_ms": 129.11423295736313,
+                "forward_first_token_ms": 70.3308954834938
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 588382208,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 359.239032,
+                "migrate_plus_forward_wall_ms": 359.239032,
+                "forward_wall_ms": 359.239032,
+                "forward_e2e_ms": 129.11423295736313,
+                "forward_first_token_ms": 70.3308954834938
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 588382208,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 588382208,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 588382208,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 672.371929,
+              "d2h": {
+                "action_id": "a310aff7090a4fb5b49b46748d36a121",
+                "seq": 213,
+                "wall_ms": 138.621657,
+                "cuda_event_ms": 79.306,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 536870912,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "1ab5f12e1d0d4e69bcacc4b1dd2c5f45",
+                "seq": 217,
+                "wall_ms": 56.27038,
+                "cuda_event_ms": 12.272,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 536870912,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "ad22a56db6ee41a0a7f37b63d5208cbc",
+                "receipt_seq": 221,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 178.78604,
+                "forward_e2e_ms": 129.69981506466866,
+                "forward_first_token_ms": 71.34070619940758
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 588382208,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 588382208,
+                "h2d_bytes": 588382208,
+                "restore_plus_forward_wall_ms": 235.05642,
+                "migrate_plus_forward_wall_ms": 373.67807700000003,
+                "d2h_wall_ms": 138.621657,
+                "d2h_cuda_event_ms": 79.306,
+                "h2d_wall_ms": 56.27038,
+                "h2d_cuda_event_ms": 12.272,
+                "forward_wall_ms": 178.78604,
+                "forward_e2e_ms": 129.69981506466866,
+                "forward_first_token_ms": 71.34070619940758
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 4096,
+          "repetition": 2,
+          "warmup": false,
+          "order": [
+            "recompute",
+            "resident",
+            "restored"
+          ],
+          "conditions": {
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185991168,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "e47ae3951a3e4354a780d7ae33fd3083",
+                "receipt_seq": 226,
+                "prompt_tokens": 4097,
+                "cached_tokens": 0,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 357.670239,
+                "forward_e2e_ms": 318.1191086769104,
+                "forward_first_token_ms": 257.5838044285774
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 357.670239,
+                "migrate_plus_forward_wall_ms": 357.670239,
+                "forward_wall_ms": 357.670239,
+                "forward_e2e_ms": 318.1191086769104,
+                "forward_first_token_ms": 257.5838044285774
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 299.71905,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "5fdb2a03a0284b709c0a5920542040bf",
+                "receipt_seq": 237,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 211.773606,
+                "forward_e2e_ms": 159.61787849664688,
+                "forward_first_token_ms": 102.18588262796402
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 185729024,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 211.773606,
+                "migrate_plus_forward_wall_ms": 211.773606,
+                "forward_wall_ms": 211.773606,
+                "forward_e2e_ms": 159.61787849664688,
+                "forward_first_token_ms": 102.18588262796402
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 185729024,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 185729024,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 185729024,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 244.654441,
+              "d2h": {
+                "action_id": "8bff35fe4b274214b9bb45914e17d1bd",
+                "seq": 250,
+                "wall_ms": 37.760538,
+                "cuda_event_ms": 24.768,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 134217728,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "668a4003d9ca439d8a8bc53bd18be356",
+                "seq": 254,
+                "wall_ms": 15.757789,
+                "cuda_event_ms": 4.419,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 134217728,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "3595887e30d249d8a8d5281d752116ad",
+                "receipt_seq": 258,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 171.117928,
+                "forward_e2e_ms": 142.20857992768288,
+                "forward_first_token_ms": 90.90722352266312
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 185729024,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 185729024,
+                "h2d_bytes": 185729024,
+                "restore_plus_forward_wall_ms": 186.875717,
+                "migrate_plus_forward_wall_ms": 224.636255,
+                "d2h_wall_ms": 37.760538,
+                "d2h_cuda_event_ms": 24.768,
+                "h2d_wall_ms": 15.757789,
+                "h2d_cuda_event_ms": 4.419,
+                "forward_wall_ms": 171.117928,
+                "forward_e2e_ms": 142.20857992768288,
+                "forward_first_token_ms": 90.90722352266312
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 16384,
+          "repetition": 2,
+          "warmup": false,
+          "order": [
+            "resident",
+            "restored",
+            "recompute"
+          ],
+          "conditions": {
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 738.652062,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "a03c9064960a4f56b600be32e261297d",
+                "receipt_seq": 269,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 177.991944,
+                "forward_e2e_ms": 126.61467865109444,
+                "forward_first_token_ms": 69.07821446657181
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 588382208,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 177.991944,
+                "migrate_plus_forward_wall_ms": 177.991944,
+                "forward_wall_ms": 177.991944,
+                "forward_e2e_ms": 126.61467865109444,
+                "forward_first_token_ms": 69.07821446657181
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 588382208,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 588382208,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 588382208,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 761.581021,
+              "d2h": {
+                "action_id": "f35dd383b7384b6d9dee105e257356a2",
+                "seq": 282,
+                "wall_ms": 202.6656,
+                "cuda_event_ms": 145.239,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 536870912,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "37d16882e51e446e8052f4b434f397a3",
+                "seq": 286,
+                "wall_ms": 42.65212,
+                "cuda_event_ms": 12.289,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 536870912,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "67d9d52f6c124acfa8d5a9853d3959fa",
+                "receipt_seq": 290,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 183.747557,
+                "forward_e2e_ms": 127.98621132969856,
+                "forward_first_token_ms": 68.93303990364075
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 588382208,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 588382208,
+                "h2d_bytes": 588382208,
+                "restore_plus_forward_wall_ms": 226.399677,
+                "migrate_plus_forward_wall_ms": 429.06527700000004,
+                "d2h_wall_ms": 202.6656,
+                "d2h_cuda_event_ms": 145.239,
+                "h2d_wall_ms": 42.65212,
+                "h2d_cuda_event_ms": 12.289,
+                "forward_wall_ms": 183.747557,
+                "forward_e2e_ms": 127.98621132969856,
+                "forward_first_token_ms": 68.93303990364075
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588644352,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "029d215014444f4caacb359fbb3dc7b1",
+                "receipt_seq": 295,
+                "prompt_tokens": 16385,
+                "cached_tokens": 0,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 820.198298,
+                "forward_e2e_ms": 762.4763511121273,
+                "forward_first_token_ms": 703.3515311777592
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 820.198298,
+                "migrate_plus_forward_wall_ms": 820.198298,
+                "forward_wall_ms": 820.198298,
+                "forward_e2e_ms": 762.4763511121273,
+                "forward_first_token_ms": 703.3515311777592
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 4096,
+          "repetition": 3,
+          "warmup": false,
+          "order": [
+            "resident",
+            "restored",
+            "recompute"
+          ],
+          "conditions": {
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 170.099185,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "ac9237ad95544d7fabe85823c65b116b",
+                "receipt_seq": 306,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 280.782829,
+                "forward_e2e_ms": 234.97680574655533,
+                "forward_first_token_ms": 65.7438114285469
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 185729024,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 280.782829,
+                "migrate_plus_forward_wall_ms": 280.782829,
+                "forward_wall_ms": 280.782829,
+                "forward_e2e_ms": 234.97680574655533,
+                "forward_first_token_ms": 65.7438114285469
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 185729024,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 185729024,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 185729024,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 172.903532,
+              "d2h": {
+                "action_id": "0af7b8bd6dea4be9a340d08ba2aa69aa",
+                "seq": 319,
+                "wall_ms": 30.908476,
+                "cuda_event_ms": 20.822,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 134217728,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "42be82f868b14830bd70007478181f40",
+                "seq": 323,
+                "wall_ms": 21.84889,
+                "cuda_event_ms": 4.419,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 134217728,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "34a7a482ae044add82fe16a2dd625d83",
+                "receipt_seq": 327,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 142.559981,
+                "forward_e2e_ms": 117.99519881606102,
+                "forward_first_token_ms": 66.42813980579376
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 185729024,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 185729024,
+                "h2d_bytes": 185729024,
+                "restore_plus_forward_wall_ms": 164.408871,
+                "migrate_plus_forward_wall_ms": 195.31734699999998,
+                "d2h_wall_ms": 30.908476,
+                "d2h_cuda_event_ms": 20.822,
+                "h2d_wall_ms": 21.84889,
+                "h2d_cuda_event_ms": 4.419,
+                "forward_wall_ms": 142.559981,
+                "forward_e2e_ms": 117.99519881606102,
+                "forward_first_token_ms": 66.42813980579376
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185991168,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "5108233b74cd4160aa72e44486ffbe16",
+                "receipt_seq": 332,
+                "prompt_tokens": 4097,
+                "cached_tokens": 0,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 293.56727,
+                "forward_e2e_ms": 255.62497228384018,
+                "forward_first_token_ms": 205.44934272766113
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 293.56727,
+                "migrate_plus_forward_wall_ms": 293.56727,
+                "forward_wall_ms": 293.56727,
+                "forward_e2e_ms": 255.62497228384018,
+                "forward_first_token_ms": 205.44934272766113
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 16384,
+          "repetition": 3,
+          "warmup": false,
+          "order": [
+            "restored",
+            "recompute",
+            "resident"
+          ],
+          "conditions": {
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 588382208,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 588382208,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 588382208,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 735.473538,
+              "d2h": {
+                "action_id": "421585fe88a74d958ccdbb98078f2b48",
+                "seq": 345,
+                "wall_ms": 110.776333,
+                "cuda_event_ms": 83.087,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 536870912,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "0403c17710524f03a20c21ef3812620d",
+                "seq": 349,
+                "wall_ms": 47.838168,
+                "cuda_event_ms": 12.288,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 536870912,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "e43de889623a4552a4a2bc2777317912",
+                "receipt_seq": 353,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 185.980046,
+                "forward_e2e_ms": 131.74599409103394,
+                "forward_first_token_ms": 73.23726266622543
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 588382208,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 588382208,
+                "h2d_bytes": 588382208,
+                "restore_plus_forward_wall_ms": 233.81821399999998,
+                "migrate_plus_forward_wall_ms": 344.594547,
+                "d2h_wall_ms": 110.776333,
+                "d2h_cuda_event_ms": 83.087,
+                "h2d_wall_ms": 47.838168,
+                "h2d_cuda_event_ms": 12.288,
+                "forward_wall_ms": 185.980046,
+                "forward_e2e_ms": 131.74599409103394,
+                "forward_first_token_ms": 73.23726266622543
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588644352,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "4725b32a7ddf43d7abf53837ede1a81e",
+                "receipt_seq": 358,
+                "prompt_tokens": 16385,
+                "cached_tokens": 0,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 855.981726,
+                "forward_e2e_ms": 754.4723488390446,
+                "forward_first_token_ms": 694.2756250500679
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 855.981726,
+                "migrate_plus_forward_wall_ms": 855.981726,
+                "forward_wall_ms": 855.981726,
+                "forward_e2e_ms": 754.4723488390446,
+                "forward_first_token_ms": 694.2756250500679
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 735.802237,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "e76ed1902af046f5b465075ea74a1409",
+                "receipt_seq": 369,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 174.419697,
+                "forward_e2e_ms": 129.43319976329803,
+                "forward_first_token_ms": 70.0620450079441
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 588382208,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 174.419697,
+                "migrate_plus_forward_wall_ms": 174.419697,
+                "forward_wall_ms": 174.419697,
+                "forward_e2e_ms": 129.43319976329803,
+                "forward_first_token_ms": 70.0620450079441
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 4096,
+          "repetition": 4,
+          "warmup": false,
+          "order": [
+            "restored",
+            "recompute",
+            "resident"
+          ],
+          "conditions": {
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 185729024,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 185729024,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 185729024,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 182.346544,
+              "d2h": {
+                "action_id": "7d421c1aacd54279b464fc35d1db055b",
+                "seq": 382,
+                "wall_ms": 32.871063,
+                "cuda_event_ms": 20.848,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 134217728,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "36d6fa2ef8b946b1a4b268f1eadd5807",
+                "seq": 386,
+                "wall_ms": 22.1704,
+                "cuda_event_ms": 4.415,
+                "ack_bytes": 185729024,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 134217728,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "7054560d8015462aaa7f928a0c783e93",
+                "receipt_seq": 390,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 137.220722,
+                "forward_e2e_ms": 115.72390422224998,
+                "forward_first_token_ms": 66.88253954052925
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 185729024,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 185729024,
+                "h2d_bytes": 185729024,
+                "restore_plus_forward_wall_ms": 159.391122,
+                "migrate_plus_forward_wall_ms": 192.262185,
+                "d2h_wall_ms": 32.871063,
+                "d2h_cuda_event_ms": 20.848,
+                "h2d_wall_ms": 22.1704,
+                "h2d_cuda_event_ms": 4.415,
+                "forward_wall_ms": 137.220722,
+                "forward_e2e_ms": 115.72390422224998,
+                "forward_first_token_ms": 66.88253954052925
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 185991168,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "e166f06386444abbb0c35491c1a195ea",
+                "receipt_seq": 395,
+                "prompt_tokens": 4097,
+                "cached_tokens": 0,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 294.223063,
+                "forward_e2e_ms": 263.87548819184303,
+                "forward_first_token_ms": 211.88469231128693
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 294.223063,
+                "migrate_plus_forward_wall_ms": 294.223063,
+                "forward_wall_ms": 294.223063,
+                "forward_e2e_ms": 263.87548819184303,
+                "forward_first_token_ms": 211.88469231128693
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 185729024,
+                "host_bytes": 0,
+                "full_slots": 4096,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 237502464,
+                "host_bytes": 0,
+                "full_slots": 4104,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 188.442243,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "142d5ab81c16487faff9c76243b1001d",
+                "receipt_seq": 406,
+                "prompt_tokens": 4097,
+                "cached_tokens": 4096,
+                "output_ids": [
+                  220,
+                  197,
+                  7,
+                  16,
+                  15,
+                  15,
+                  15,
+                  15
+                ],
+                "forward_wall_ms": 152.055041,
+                "forward_e2e_ms": 117.71782487630844,
+                "forward_first_token_ms": 69.19259950518608
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 185729024,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 185729024,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 152.055041,
+                "migrate_plus_forward_wall_ms": 152.055041,
+                "forward_wall_ms": 152.055041,
+                "forward_e2e_ms": 117.71782487630844,
+                "forward_first_token_ms": 69.19259950518608
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        },
+        {
+          "length": 16384,
+          "repetition": 4,
+          "warmup": false,
+          "order": [
+            "recompute",
+            "resident",
+            "restored"
+          ],
+          "conditions": {
+            "recompute": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "after_forward": {
+                "hbm_bytes": 588644352,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 1
+              },
+              "prepare_wall_ms": null,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "d59464fc9e584879ab91546be658361f",
+                "receipt_seq": 411,
+                "prompt_tokens": 16385,
+                "cached_tokens": 0,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 804.262687,
+                "forward_e2e_ms": 747.1068650484085,
+                "forward_first_token_ms": 689.4901879131794
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 0,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 804.262687,
+                "migrate_plus_forward_wall_ms": 804.262687,
+                "forward_wall_ms": 804.262687,
+                "forward_e2e_ms": 747.1068650484085,
+                "forward_first_token_ms": 689.4901879131794
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "resident": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 0,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 0,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 666.430602,
+              "d2h": null,
+              "h2d": null,
+              "target_forward": {
+                "rid": "1c22da28d106433295635379a0af9c68",
+                "receipt_seq": 422,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 173.458403,
+                "forward_e2e_ms": 125.56108087301254,
+                "forward_first_token_ms": 67.69939884543419
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 588382208,
+                "waiting_host_bytes": 0,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 0,
+                "h2d_bytes": 0,
+                "restore_plus_forward_wall_ms": 173.458403,
+                "migrate_plus_forward_wall_ms": 173.458403,
+                "forward_wall_ms": 173.458403,
+                "forward_e2e_ms": 125.56108087301254,
+                "forward_first_token_ms": 67.69939884543419
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            },
+            "restored": {
+              "baseline": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "waiting": {
+                "hbm_bytes": 0,
+                "host_bytes": 588382208,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              },
+              "before_forward": {
+                "hbm_bytes": 588382208,
+                "host_bytes": 588382208,
+                "full_slots": 16384,
+                "recurrent_slots": 1
+              },
+              "after_forward": {
+                "hbm_bytes": 640155648,
+                "host_bytes": 588382208,
+                "full_slots": 16392,
+                "recurrent_slots": 2
+              },
+              "prepare_wall_ms": 663.282922,
+              "d2h": {
+                "action_id": "56016662fd3e4c2cbc5b7cd741d27b2c",
+                "seq": 435,
+                "wall_ms": 112.576724,
+                "cuda_event_ms": 78.899,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "d2h_full_native_bytes": 536870912,
+                  "d2h_full_triton_bytes": 0,
+                  "d2h_mamba_native_bytes": 51511296,
+                  "d2h_mamba_side_bytes": 0,
+                  "d2h_mamba_triton_bytes": 0
+                }
+              },
+              "h2d": {
+                "action_id": "ba72e3441a1842f2a59d049f8d7160bd",
+                "seq": 439,
+                "wall_ms": 31.844843,
+                "cuda_event_ms": 12.257,
+                "ack_bytes": 588382208,
+                "submitted_bytes_by_pool_and_kernel": {
+                  "h2d_full_native_bytes": 536870912,
+                  "h2d_full_triton_bytes": 0,
+                  "h2d_mamba_native_bytes": 51511296,
+                  "h2d_mamba_side_bytes": 0,
+                  "h2d_mamba_triton_bytes": 0
+                }
+              },
+              "target_forward": {
+                "rid": "ec8daaa7fa9041fb82333b2f208ab9fb",
+                "receipt_seq": 443,
+                "prompt_tokens": 16385,
+                "cached_tokens": 16384,
+                "output_ids": [
+                  248046,
+                  198,
+                  248045,
+                  846,
+                  198,
+                  760,
+                  1156,
+                  6587
+                ],
+                "forward_wall_ms": 177.824576,
+                "forward_e2e_ms": 126.98940932750702,
+                "forward_first_token_ms": 68.7590204179287
+              },
+              "metrics": {
+                "waiting_hbm_bytes": 0,
+                "waiting_host_bytes": 588382208,
+                "hbm_before_forward_bytes": 588382208,
+                "d2h_bytes": 588382208,
+                "h2d_bytes": 588382208,
+                "restore_plus_forward_wall_ms": 209.669419,
+                "migrate_plus_forward_wall_ms": 322.246143,
+                "d2h_wall_ms": 112.576724,
+                "d2h_cuda_event_ms": 78.899,
+                "h2d_wall_ms": 31.844843,
+                "h2d_cuda_event_ms": 12.257,
+                "forward_wall_ms": 177.824576,
+                "forward_e2e_ms": 126.98940932750702,
+                "forward_first_token_ms": 68.7590204179287
+              },
+              "after_cleanup": {
+                "hbm_bytes": 0,
+                "host_bytes": 0,
+                "full_slots": 0,
+                "recurrent_slots": 0
+              }
+            }
+          },
+          "status": "ok",
+          "resident_restore_greedy_equal": true
+        }
+      ],
+      "copy_mode": "0",
+      "greedy_tokens": 8,
+      "length_is": "prepared prefix tokens",
+      "summary": [
+        {
+          "length": 4096,
+          "verified_pairs": 5,
+          "planned_pairs": 5,
+          "errors": 0,
+          "missing": 0,
+          "medians": {
+            "resident": {
+              "waiting_hbm_bytes": 185729024,
+              "waiting_host_bytes": 0,
+              "hbm_before_forward_bytes": 185729024,
+              "d2h_bytes": 0,
+              "h2d_bytes": 0,
+              "restore_plus_forward_wall_ms": 155.211075,
+              "migrate_plus_forward_wall_ms": 155.211075,
+              "forward_wall_ms": 155.211075,
+              "forward_e2e_ms": 117.71782487630844,
+              "forward_first_token_ms": 67.74785742163658
+            },
+            "restored": {
+              "waiting_hbm_bytes": 0,
+              "waiting_host_bytes": 185729024,
+              "hbm_before_forward_bytes": 185729024,
+              "d2h_bytes": 185729024,
+              "h2d_bytes": 185729024,
+              "restore_plus_forward_wall_ms": 164.408871,
+              "migrate_plus_forward_wall_ms": 195.31734699999998,
+              "d2h_wall_ms": 33.413505,
+              "d2h_cuda_event_ms": 20.848,
+              "h2d_wall_ms": 17.197617,
+              "h2d_cuda_event_ms": 4.419,
+              "forward_wall_ms": 144.34662,
+              "forward_e2e_ms": 117.99519881606102,
+              "forward_first_token_ms": 66.88253954052925
+            },
+            "recompute": {
+              "waiting_hbm_bytes": 0,
+              "waiting_host_bytes": 0,
+              "hbm_before_forward_bytes": 0,
+              "d2h_bytes": 0,
+              "h2d_bytes": 0,
+              "restore_plus_forward_wall_ms": 294.223063,
+              "migrate_plus_forward_wall_ms": 294.223063,
+              "forward_wall_ms": 294.223063,
+              "forward_e2e_ms": 262.1932178735733,
+              "forward_first_token_ms": 211.88469231128693
+            }
+          },
+          "resident_restore_verified_pairs": 5,
+          "resident_restore_medians": {
+            "resident": {
+              "waiting_hbm_bytes": 185729024,
+              "waiting_host_bytes": 0,
+              "hbm_before_forward_bytes": 185729024,
+              "d2h_bytes": 0,
+              "h2d_bytes": 0,
+              "restore_plus_forward_wall_ms": 155.211075,
+              "migrate_plus_forward_wall_ms": 155.211075,
+              "forward_wall_ms": 155.211075,
+              "forward_e2e_ms": 117.71782487630844,
+              "forward_first_token_ms": 67.74785742163658
+            },
+            "restored": {
+              "waiting_hbm_bytes": 0,
+              "waiting_host_bytes": 185729024,
+              "hbm_before_forward_bytes": 185729024,
+              "d2h_bytes": 185729024,
+              "h2d_bytes": 185729024,
+              "restore_plus_forward_wall_ms": 164.408871,
+              "migrate_plus_forward_wall_ms": 195.31734699999998,
+              "d2h_wall_ms": 33.413505,
+              "d2h_cuda_event_ms": 20.848,
+              "h2d_wall_ms": 17.197617,
+              "h2d_cuda_event_ms": 4.419,
+              "forward_wall_ms": 144.34662,
+              "forward_e2e_ms": 117.99519881606102,
+              "forward_first_token_ms": 66.88253954052925
+            }
+          }
+        },
+        {
+          "length": 16384,
+          "verified_pairs": 5,
+          "planned_pairs": 5,
+          "errors": 0,
+          "missing": 0,
+          "medians": {
+            "resident": {
+              "waiting_hbm_bytes": 588382208,
+              "waiting_host_bytes": 0,
+              "hbm_before_forward_bytes": 588382208,
+              "d2h_bytes": 0,
+              "h2d_bytes": 0,
+              "restore_plus_forward_wall_ms": 177.991944,
+              "migrate_plus_forward_wall_ms": 177.991944,
+              "forward_wall_ms": 177.991944,
+              "forward_e2e_ms": 129.11423295736313,
+              "forward_first_token_ms": 70.0620450079441
+            },
+            "restored": {
+              "waiting_hbm_bytes": 0,
+              "waiting_host_bytes": 588382208,
+              "hbm_before_forward_bytes": 588382208,
+              "d2h_bytes": 588382208,
+              "h2d_bytes": 588382208,
+              "restore_plus_forward_wall_ms": 226.399677,
+              "migrate_plus_forward_wall_ms": 344.594547,
+              "d2h_wall_ms": 112.576724,
+              "d2h_cuda_event_ms": 80.143,
+              "h2d_wall_ms": 42.65212,
+              "h2d_cuda_event_ms": 12.274,
+              "forward_wall_ms": 178.78604,
+              "forward_e2e_ms": 129.69981506466866,
+              "forward_first_token_ms": 71.34070619940758
+            },
+            "recompute": {
+              "waiting_hbm_bytes": 0,
+              "waiting_host_bytes": 0,
+              "hbm_before_forward_bytes": 0,
+              "d2h_bytes": 0,
+              "h2d_bytes": 0,
+              "restore_plus_forward_wall_ms": 805.437208,
+              "migrate_plus_forward_wall_ms": 805.437208,
+              "forward_wall_ms": 805.437208,
+              "forward_e2e_ms": 754.4723488390446,
+              "forward_first_token_ms": 695.8520002663136
+            }
+          },
+          "resident_restore_verified_pairs": 5,
+          "resident_restore_medians": {
+            "resident": {
+              "waiting_hbm_bytes": 588382208,
+              "waiting_host_bytes": 0,
+              "hbm_before_forward_bytes": 588382208,
+              "d2h_bytes": 0,
+              "h2d_bytes": 0,
+              "restore_plus_forward_wall_ms": 177.991944,
+              "migrate_plus_forward_wall_ms": 177.991944,
+              "forward_wall_ms": 177.991944,
+              "forward_e2e_ms": 129.11423295736313,
+              "forward_first_token_ms": 70.0620450079441
+            },
+            "restored": {
+              "waiting_hbm_bytes": 0,
+              "waiting_host_bytes": 588382208,
+              "hbm_before_forward_bytes": 588382208,
+              "d2h_bytes": 588382208,
+              "h2d_bytes": 588382208,
+              "restore_plus_forward_wall_ms": 226.399677,
+              "migrate_plus_forward_wall_ms": 344.594547,
+              "d2h_wall_ms": 112.576724,
+              "d2h_cuda_event_ms": 80.143,
+              "h2d_wall_ms": 42.65212,
+              "h2d_cuda_event_ms": 12.274,
+              "forward_wall_ms": 178.78604,
+              "forward_e2e_ms": 129.69981506466866,
+              "forward_first_token_ms": 71.34070619940758
+            }
+          }
+        }
+      ],
+      "status": "ok"
+    }
+  }
+}

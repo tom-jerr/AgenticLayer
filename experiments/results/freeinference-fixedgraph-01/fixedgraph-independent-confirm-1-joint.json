@@ -1,0 +1,184 @@
+{
+  "name": "fixedgraph-independent-confirm-1-joint",
+  "mode": "controlled",
+  "sample_sha256": "becf50f4124a773fa49c9c67fb4c5da445da2c59b43346aed095cc1f2bee4643",
+  "tested_turn_hashes": [
+    "001e373daa39bdc2b3b94d98ee1e8ff54d99e262fa5d84e78545f84cd092ac39",
+    "05e2f12582de98dab01bb19e42252b1f934d82e1e5505ba46bfd2e87a81ae1f0",
+    "004807a48f4cebd2182f24bcb58d14650a5e8f520d3da7c7025dd9b2ae0b99ce",
+    "00219709c8205f6c74bd169d841a0cac8bc446b51bc6047b2d537910c19d42d2",
+    "001839abee14a259c926686c544f199f4f4713dcc1e21ec611bedec5ae832455",
+    "00115d4e2e33e51ab61f61deb8a1d0686f1b04349953f59837e0653b737f14be",
+    "0050bbdbd7493721d5e390ee9d9b7294cb618888d2c0a71f9bbf948c0dc4ad84",
+    "0003abada3bc909610a9f8cac604360b6a01205e0bee0ca35d904c185d77b962",
+    "04c960bad0754e21131ddeacba4898b5d3bb8210b40ba976dc222984a47d0928",
+    "002d3ab64cef935f762b00dea9e5e630d81305e0ff5cac7505ebcf81e2d06a48",
+    "002a3ae978f59242b09b96d55ac9b6bc6758ad6f2117a803fb9305b9aae38c9b",
+    "0139d3ad3ab7f80e932a268d4a6cfa30ed04ab4200815597dc3cfb9ae12a65d9",
+    "00124f2c85169cb01be27a3035170f999cf83c4518141ecda723ecca64f3cc5f"
+  ],
+  "turns_per_stratum_limit": 3,
+  "max_turn_decode": 3072,
+  "wait_drift": "recorded",
+  "altered_barriers": [],
+  "replay_elapsed_ms": 170414.860422,
+  "tested_strata": {
+    "multi_call": 3,
+    "subsession": 3,
+    "ordinary": 4,
+    "mutation_switch": 3
+  },
+  "summary": {
+    "statuses": {
+      "completed": 13
+    },
+    "p50_ms": 46903.540425002575,
+    "p95_ms": 84586.16680651903,
+    "p99_ms": 84586.16680651903
+  },
+  "turns": [
+    {
+      "identity": [
+        "2026-08-09_2026-08-15",
+        "d20e81a7466dd4fd39473fcc9a2f302e",
+        10
+      ],
+      "stratum": "ordinary",
+      "arrival": 20621950.29240651,
+      "status": "completed",
+      "wall_ms": 962.722010910511
+    },
+    {
+      "identity": [
+        "2026-08-09_2026-08-15",
+        "682d0c226a619c6f84a065c47846fb93",
+        1
+      ],
+      "stratum": "ordinary",
+      "arrival": 20621944.29240651,
+      "status": "completed",
+      "wall_ms": 18667.709849774837
+    },
+    {
+      "identity": [
+        "2026-08-09_2026-08-15",
+        "682d0c226a619c6f84a065c47846fb93",
+        13
+      ],
+      "stratum": "ordinary",
+      "arrival": 20621945.29240651,
+      "status": "completed",
+      "wall_ms": 24093.98064762354
+    },
+    {
+      "identity": [
+        "2026-08-09_2026-08-15",
+        "dac832e27e2184b5fabddda0bbd20758",
+        1
+      ],
+      "stratum": "multi_call",
+      "arrival": 20621947.29240651,
+      "status": "completed",
+      "wall_ms": 43075.6904296577
+    },
+    {
+      "identity": [
+        "2026-08-09_2026-08-15",
+        "d9205ee9c0a35b542873cb7da8cfd4ec",
+        6
+      ],
+      "stratum": "ordinary",
+      "arrival": 20621948.29240651,
+      "status": "completed",
+      "wall_ms": 46903.540425002575
+    },
+    {
+      "identity": [
+        "2026-08-16_2026-08-22",
+        "3a268a1dd93fb0da7a9f39cf66115830",
+        2
+      ],
+      "stratum": "mutation_switch",
+      "arrival": 20621951.29240651,
+      "status": "completed",
+      "wall_ms": 43907.71201625466
+    },
+    {
+      "identity": [
+        "2026-08-09_2026-08-15",
+        "5132ef9191aa4344e5d5e0727d4d22df",
+        0
+      ],
+      "stratum": "subsession",
+      "arrival": 20621949.29240651,
+      "status": "completed",
+      "wall_ms": 66242.89731681347
+    },
+    {
+      "identity": [
+        "2026-08-09_2026-08-15",
+        "204e2378d874a7b5f6746e3e8ccc22c8",
+        24
+      ],
+      "stratum": "multi_call",
+      "arrival": 20621946.29240651,
+      "status": "completed",
+      "wall_ms": 69244.80039253831
+    },
+    {
+      "identity": [
+        "2026-08-23_2026-08-29",
+        "a71558b290f3f3937d2f2752c95090ff",
+        26
+      ],
+      "stratum": "subsession",
+      "arrival": 20621952.29240651,
+      "status": "completed",
+      "wall_ms": 84586.16680651903
+    },
+    {
+      "identity": [
+        "2026-08-30_2026-09-05",
+        "48c885e564b321890af6e8692ab6c076",
+        33
+      ],
+      "stratum": "mutation_switch",
+      "arrival": 20622039.880532112,
+      "status": "completed",
+      "wall_ms": 17143.77473667264
+    },
+    {
+      "identity": [
+        "2026-08-30_2026-09-05",
+        "3d942016c1594f96be3b059baffe0a83",
+        44
+      ],
+      "stratum": "multi_call",
+      "arrival": 20622037.880532112,
+      "status": "completed",
+      "wall_ms": 60728.88796776533
+    },
+    {
+      "identity": [
+        "2026-08-30_2026-09-05",
+        "4d1db7c045522eb23db2351bc814803e",
+        16
+      ],
+      "stratum": "subsession",
+      "arrival": 20622038.880532112,
+      "status": "completed",
+      "wall_ms": 60029.54801544547
+    },
+    {
+      "identity": [
+        "2026-08-30_2026-09-05",
+        "995060fb03ab00b24ddd18a1bb166ac5",
+        4
+      ],
+      "stratum": "mutation_switch",
+      "arrival": 20622036.880532112,
+      "status": "completed",
+      "wall_ms": 77824.7336409986
+    }
+  ]
+}

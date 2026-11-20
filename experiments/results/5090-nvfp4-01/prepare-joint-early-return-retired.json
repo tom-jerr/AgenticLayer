@@ -1,0 +1,118 @@
+{
+  "kind": "fixed-surface GPU preparation fixture (not DSH E3 or trace)",
+  "wait_ms": 100,
+  "pairs": [
+    {
+      "pair": 0,
+      "cold_rid": "674ee95d14a54e09b1e26e02a7722773",
+      "early_rid": "1851ef05178445bd9e42719f04f118c1",
+      "same_response": true,
+      "expected_response": true,
+      "prepare_status": "running",
+      "prepared": false,
+      "cold_ms": 461.664593,
+      "early_ms": 553.159567,
+      "cold_total_ms": 561.896348,
+      "early_total_ms": 658.858918,
+      "cold_hit": 0,
+      "early_hit": 0
+    },
+    {
+      "pair": 1,
+      "cold_rid": "1ce31a924ad9483ca9fac61c478e8e66",
+      "early_rid": "99a5779de71546e4853a44736a70028b",
+      "same_response": true,
+      "expected_response": true,
+      "prepare_status": "running",
+      "prepared": false,
+      "cold_ms": 1956.199058,
+      "early_ms": 862.323119,
+      "cold_total_ms": 2056.4232779999998,
+      "early_total_ms": 966.5578330000001,
+      "cold_hit": 0,
+      "early_hit": 0
+    },
+    {
+      "pair": 2,
+      "cold_rid": "f187bc514cd542b0b961b314d28b4a74",
+      "early_rid": "0e221c36c00d4bcfb3e58a1b31c6e435",
+      "same_response": true,
+      "expected_response": true,
+      "prepare_status": "ready",
+      "prepared": false,
+      "cold_ms": 2211.325297,
+      "early_ms": 1157.504567,
+      "cold_total_ms": 2311.52296,
+      "early_total_ms": 1260.33812,
+      "cold_hit": 0,
+      "early_hit": 0
+    },
+    {
+      "pair": 3,
+      "cold_rid": "5a783df5354541bc845348aaa9e98257",
+      "early_rid": "6f621229eac14e528d486119ace91caa",
+      "same_response": true,
+      "expected_response": true,
+      "prepare_status": "running",
+      "prepared": false,
+      "cold_ms": 463.082119,
+      "early_ms": 756.086944,
+      "cold_total_ms": 563.2977549999999,
+      "early_total_ms": 860.651424,
+      "cold_hit": 0,
+      "early_hit": 0
+    },
+    {
+      "pair": 4,
+      "cold_rid": "aa025a87f71c438c9fbce526bce8ad33",
+      "early_rid": "0b31f69cb676419688a3b1f637ae631a",
+      "same_response": true,
+      "expected_response": true,
+      "prepare_status": "running",
+      "prepared": false,
+      "cold_ms": 920.456158,
+      "early_ms": 733.66889,
+      "cold_total_ms": 1020.7043649999999,
+      "early_total_ms": 838.4669240000001,
+      "cold_hit": 0,
+      "early_hit": 0
+    },
+    {
+      "pair": 5,
+      "cold_rid": "e4f100d464f8434bad596745b83f0e33",
+      "early_rid": "35ddbec1a9c14fc098ea3c6bf6e423d7",
+      "same_response": true,
+      "expected_response": true,
+      "prepare_status": "running",
+      "prepared": false,
+      "cold_ms": 1060.547477,
+      "early_ms": 1139.147278,
+      "cold_total_ms": 1160.76649,
+      "early_total_ms": 1243.552101,
+      "cold_hit": 0,
+      "early_hit": 0
+    }
+  ],
+  "prepared_pairs": 0,
+  "same_responses": true,
+  "latencies_ms_p50_p95": {
+    "cold_ms": [
+      990.5018175,
+      2211.325297
+    ],
+    "early_ms": [
+      809.2050315,
+      1157.504567
+    ],
+    "cold_total_ms": [
+      1090.7354275,
+      2311.52296
+    ],
+    "early_total_ms": [
+      913.6046285,
+      1260.33812
+    ]
+  },
+  "policy": "joint",
+  "calibration_sha256": "70916d7cddc5427e792e0623aa4bd63786d99271e5b8c46b134913ebfa88ac47"
+}

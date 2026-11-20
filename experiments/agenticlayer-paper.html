@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AgenticLayer 技术路径、固定 CUDA Graph 对照、敏感性、消融与案例研究。">
+  <title>AgenticLayer｜面向智能体的跨层协同服务与 KV 缓存管理</title>
+  <style>
+    @font-face { font-family:"Paper Han"; src:url("paper-assets/paper-han.woff2") format("woff2"); font-style:normal; font-weight:400; font-display:swap; }
+    :root { color-scheme: light; --paper:#f8f7f2; --ink:#232522; --muted:#525750; --line:#d5d3c8; --grid:#e4e2da; --accent:#8c2f30; --secondary:#285f5a; --wash:#efeee6; --serif:"Noto Serif CJK SC","Songti SC",STSong,SimSun,"Paper Han",Georgia,serif; --sans:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",system-ui,"Paper Han",sans-serif; }
+    *,*::before,*::after { box-sizing:border-box; }
+    html { scroll-padding-top:1.4rem; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:1.02rem/1.84 var(--serif); }
+    a { color:var(--accent); text-decoration-thickness:1px; text-underline-offset:.20em; overflow-wrap:anywhere; }
+    a:hover { color:var(--ink); }
+    :focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    code { font: .86em/1.4 ui-monospace,"SFMono-Regular",Consolas,monospace; overflow-wrap:anywhere; }
+    .skip { position:absolute; left:1rem; top:-5rem; padding:.4rem .7rem; background:var(--paper); z-index:1; }
+    .skip:focus { top:1rem; }
+    .wrap { width:min(1140px,calc(100% - 5.5rem)); margin-inline:auto; }
+    .mast { padding-top:2.3rem; }
+    .edition { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:.3rem 1.5rem; padding:.5rem 0; border-top:3px double var(--ink); border-bottom:1px solid var(--line); color:var(--muted); font: .78rem/1.4 var(--sans); letter-spacing:.10em; }
+    .edition b { color:var(--accent); }
+    h1,h2,h3 { text-wrap:balance; }
+    h1 { margin:1.95rem 0 .45rem; max-width:20em; font-size:clamp(1.9rem,4.1vw,3.5rem); font-weight:700; line-height:1.26; letter-spacing:-.025em; }
+    .project { color:var(--accent); }
+    .subtitle { margin:0 0 1.25rem; font:italic 1rem/1.5 Georgia,serif; color:var(--muted); }
+    .metadata { display:flex; flex-wrap:wrap; gap:.35rem 1.35rem; padding:0 0 1rem; margin:0; border-bottom:1px solid var(--line); font:.79rem/1.6 var(--sans); color:var(--muted); }
+    .metadata div { display:flex; align-items:baseline; gap:.45rem; }
+    .metadata dt { font-weight:700; color:var(--ink); }
+    .metadata dd { margin:0; }
+    .document { display:grid; grid-template-columns:10.2rem minmax(0,1fr); align-items:start; gap:clamp(1.5rem,5vw,4.2rem); padding-top:1.6rem; }
+    nav { position:sticky; top:1.5rem; padding:.28rem 1rem .3rem 0; border-right:1px solid var(--line); font:.84rem/1.66 var(--sans); }
+    nav b { display:block; margin-bottom:.65rem; color:var(--accent); font-size:.72rem; letter-spacing:.13em; }
+    nav ol { list-style:none; margin:0; padding:0; }
+    nav a { display:flex; gap:.55rem; align-items:baseline; padding:.24rem 0; color:var(--muted); text-decoration:none; }
+    nav a:hover,nav a:focus-visible { color:var(--accent); text-decoration:underline; }
+    nav a span { min-width:1.4em; color:var(--accent); font-family:Georgia,serif; font-variant-numeric:tabular-nums; }
+    main { min-width:0; }
+    .abstract { margin:0 0 2.55rem; padding:.9rem 1.25rem 1rem; border-left:3px solid var(--accent); background:var(--wash); }
+    .abstract h2 { margin:0 0 .35rem; padding:0; border:0; font-size:1.05rem; }
+    .abstract p { margin:.35rem 0; }
+    .keywords { font:.82rem/1.7 var(--sans); color:var(--muted); }
+    section { margin:0 0 3rem; }
+    h2 { display:flex; gap:.65rem; align-items:baseline; border-bottom:1px solid var(--line); margin:0 0 .9rem; padding:0 0 .48rem; font-size:1.65rem; line-height:1.3; }
+    h2 .n { font:400 1rem Georgia,serif; color:var(--accent); font-variant-numeric:tabular-nums; }
+    h3 { margin:1.35rem 0 .45rem; font-size:1.12rem; line-height:1.45; }
+    p { margin:.65rem 0; }
+    .cite { white-space:nowrap; font:.72em/1 var(--sans); }
+    .note { padding:.55rem 0 .6rem .85rem; border-left:2px solid var(--line); font-size:.92rem; color:var(--muted); }
+    .compact { margin:.5rem 0 0; padding-left:1.3em; }
+    .compact li { margin:.33rem 0; padding-left:.15em; }
+    figure { margin:1.3rem 0 1.55rem; }
+    .chart { display:block; width:100%; height:auto; max-width:760px; margin-inline:auto; font:14px var(--sans); overflow:visible; }
+    .chart text { fill:var(--ink); }
+    .chart .light { fill:var(--muted); }
+    .chart .small { font-size:12px; }
+    .chart path { fill:none; }
+    .chart .grid { stroke:var(--grid); stroke-width:1; }
+    .chart .axis { stroke:var(--muted); stroke-width:1; }
+    .chart .series { stroke-width:2.5; stroke-linejoin:round; }
+    .chart .base { stroke:var(--muted); }
+    .chart .joint { stroke:var(--accent); }
+    .chart .gate { stroke:var(--secondary); }
+    .chart .dashed { stroke-dasharray:7 4; }
+    .chart .dotted { stroke-dasharray:2 4; }
+    .legend { display:flex; justify-content:center; flex-wrap:wrap; gap:.4rem 1.1rem; margin:.25rem 0 .55rem; color:var(--muted); font:.78rem/1.6 var(--sans); }
+    .legend i { display:inline-block; width:1.4rem; vertical-align:.22em; margin-right:.35rem; border-top:2px solid var(--muted); }
+    .legend .red { border-color:var(--accent); }
+    .legend .teal { border-color:var(--secondary); }
+    .legend .dash { border-top-style:dashed; }
+    .legend .dot { border-top-style:dotted; }
+    .legend .square { vertical-align:-.05em; width:.75rem; height:.75rem; border:0; background:var(--muted); }
+    .legend .square.red { background:var(--accent); }
+    figcaption,caption { color:var(--muted); font:.82rem/1.66 var(--sans); }
+    figcaption { margin-top:.45rem; padding-top:.55rem; border-top:1px solid var(--line); }
+    figcaption b,caption b { color:var(--ink); }
+    .arch { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr); align-items:stretch; gap:.45rem; }
+    .module { margin:0; border:1px solid var(--line); border-top:3px solid var(--secondary); padding:.72rem .7rem; background:#fcfbf7; font:.84rem/1.65 var(--sans); }
+    .module.control { border-top-color:var(--accent); }
+    .module span { display:block; color:var(--muted); font-size:.72rem; }
+    .module b { display:block; margin:.12rem 0 .45rem; font-size:1rem; }
+    .arrow { align-self:center; color:var(--accent); font:1.15rem/1 var(--sans); }
+    .ledger { margin:.65rem 0 0; padding:.5rem .75rem; border:1px solid var(--line); background:var(--wash); font:.82rem/1.6 var(--sans); }
+    .table-box { margin:1rem 0 1.4rem; overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); font:.88rem/1.6 var(--sans); }
+    caption { text-align:left; padding:0 0 .5rem; }
+    th,td { padding:.56rem .58rem; text-align:left; vertical-align:top; }
+    thead th { border-bottom:1px solid var(--ink); font-weight:700; }
+    tbody tr+tr > * { border-top:1px solid var(--grid); }
+    tbody th { font-weight:600; }
+    .num { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .sources { font:.84rem/1.7 var(--sans); padding-left:1.45em; }
+    .sources li { padding:.1rem 0 .28rem .2rem; }
+    .refs { font-family:var(--sans); }
+    .rule { display:grid; grid-template-columns:auto minmax(0,1fr); gap:.55rem 1rem; margin:.5rem 0; font-size:.93rem; }
+    .rule dt { font-weight:700; color:var(--accent); }
+    .rule dd { margin:0; }
+    footer { padding:.75rem 0 2rem; border-top:3px double var(--ink); color:var(--muted); font:.8rem/1.6 var(--sans); }
+    @media (max-width:900px) {
+      .wrap { width:calc(100% - 3rem); }
+      .document { grid-template-columns:1fr; gap:1.2rem; }
+      nav { position:static; border-right:0; border-bottom:1px solid var(--line); padding:.25rem 0 .55rem; }
+      nav b { display:none; }
+      nav ol { display:flex; flex-wrap:wrap; gap:0 .95rem; }
+    }
+    @media (max-width:570px) {
+      .wrap { width:calc(100% - 1.7rem); }
+      .mast { padding-top:.85rem; }
+      h1 { margin:1.15rem 0 .5rem; }
+      h2 { font-size:1.4rem; }
+      .document { padding-top:.65rem; }
+      .abstract { padding:.75rem .8rem; }
+      .arch { grid-template-columns:1fr; text-align:left; }
+      .arrow { line-height:.82; justify-self:center; transform:rotate(90deg); }
+      .table-box:focus-visible { outline-offset:1px; }
+      .wide { min-width:35rem; }
+      .rule { grid-template-columns:1fr; gap:.1rem; }
+      .rule dd { margin-bottom:.55rem; }
+      .chart.mobile-detail { min-width:32rem; }
+      .chart-scroll { overflow-x:auto; }
+    }
+    @media print {
+      @page { margin:16mm; }
+      :root { --paper:white; --wash:#f5f5f5; }
+      body { font-size:10.5pt; line-height:1.6; }
+      .wrap { width:100%; }
+      .mast { padding-top:0; }
+      h1 { font-size:26pt; margin-top:1rem; }
+      .document { display:block; padding-top:1rem; }
+      nav, .skip, footer a { display:none; }
+      h2,h3 { break-after:avoid; }
+      figure,tr { break-inside:avoid; }
+      section { margin-bottom:1.4rem; }
+      .table-box,.chart-scroll { overflow:visible; }
+      .wide,.chart.mobile-detail { min-width:0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#abstract">跳至正文</a>
+  <header class="wrap mast" id="top">
+    <div class="edition"><b>系统研究报告</b><span>TECHNICAL REPORT · FIXED-GRAPH EVALUATION</span></div>
+    <h1><span class="project" lang="en">AgenticLayer</span><br>面向智能体的跨层协同服务与 KV 缓存管理</h1>
+    <p class="subtitle" lang="en">Cross-Layer Coordinated Serving and KV Cache Management for Agentic Workloads</p>
+    <dl class="metadata">
+      <div><dt>实现</dt><dd>DeepSeek Harness · AgenticLayer · SGLang / HiCache</dd></div>
+      <div><dt>硬件</dt><dd>单卡 RTX 5090</dd></div>
+      <div><dt>数据</dt><dd>FreeInference 留出轨迹 + 受控真实工具实验</dd></div>
+    </dl>
+  </header>
+
+  <div class="wrap document">
+    <nav aria-label="论文目录">
+      <b>CONTENTS · 目录</b>
+      <ol>
+        <li><a href="#abstract"><span>—</span>摘要</a></li>
+        <li><a href="#introduction"><span>01</span>动机与背景</a></li>
+        <li><a href="#method"><span>02</span>技术路径</a></li>
+        <li><a href="#protocol"><span>03</span>对比与实验设置</a></li>
+        <li><a href="#results"><span>04</span>主实验</a></li>
+        <li><a href="#sensitivity"><span>05</span>敏感性分析</a></li>
+        <li><a href="#ablation"><span>06</span>消融实验</a></li>
+        <li><a href="#cases"><span>07</span>案例研究</a></li>
+        <li><a href="#discussion"><span>08</span>讨论与结论</a></li>
+        <li><a href="#references"><span>—</span>资料与复现</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <section class="abstract" id="abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">摘　要</h2>
+        <p>智能体的一次用户输入会触发多次推理、工具调用、子任务和上下文变换。仅缩短单次生成无法消除整轮阻塞。AgenticLayer 将框架已确认的依赖、逻辑上下文版本与引擎物理状态交给同一个控制层：先判断动作是否合法、资源是否允许，再决定应否并行、何时准备以及哪些状态可以释放。</p>
+        <p>在固定 CUDA Graph 的真实工具与 GPU 受控试验中，<strong>合法并行 + 付费前瞻</strong>使整轮 P95 下降 <strong>51.44%</strong>，独立复验下降 <strong>41.53%</strong>。而在独立的 FreeInference 留出回放中，联合策略比强组合只快 <strong>1.56%</strong>，区间跨 0，且没有触发可选准备或迁移。证据支持按依赖和等待窗口启用机制，不支持默认全开。</p>
+        <p class="keywords"><b>关键词：</b>智能体服务；活跃轮次；KV 缓存；上下文版本；联合调度</p>
+      </section>
+
+      <section id="introduction" aria-labelledby="intro-title">
+        <h2 id="intro-title"><span class="n">01</span>动机与背景</h2>
+        <p>单轮聊天近似一次模型调用；智能体轮次则交替经过 GPU 推理、CPU / I/O 工具、子智能体汇合和再推理。工具等待可能提供后台窗口，但等待不是空闲的同义词：另一个分支可能正在解码，或者在等待同一条恢复链路。上下文被改写后，即使后缀文本相同，其旧状态也可能已不合法。<sup class="cite"><a href="#ref-thesis">[1]</a></sup></p>
+        <p>因此，优化对象是<strong>活跃轮次</strong>：从用户输入就绪到最终回复完成，包含排队、模型调用、工具和必要变换，不含之前的用户空闲。论文的问题不是每个模块能否单独提速，而是：<strong>在依赖动态揭示、版本可能变化、资源固定的前提下，统一选择动作是否比各模块独立仲裁更有用？</strong></p>
+      </section>
+
+      <section id="method" aria-labelledby="method-title">
+        <h2 id="method-title"><span class="n">02</span>技术路径</h2>
+        <figure aria-labelledby="architecture-caption">
+          <div class="arch">
+            <div class="module"><span>语义来源</span><b>DeepSeek Harness</b>模型与真实工具循环；输出已确认的依赖、消息和子任务事件。</div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="module control"><span>控制面</span><b>AgenticLayer</b>就绪队列、版本目录、合法性过滤、资源门禁、跨动作仲裁。</div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="module"><span>物理执行</span><b>SGLang / HiCache</b>原生推理、Full KV + Mamba 状态、HBM / 主机缓存和传输回执。</div>
+          </div>
+          <div class="ledger"><b>返回控制层：</b>原生匹配长度、队列与驻留、完成 / 取消和拷贝 ACK。没有完成回执，不宣布候选就绪，不释放状态。</div>
+          <figcaption id="architecture-caption"><b>图 1．三层技术路径。</b> Harness 管执行语义，AgenticLayer 管逻辑版本与许可，SGLang 管物理副本。原生对照直连 SGLang。<sup class="cite"><a href="#ref-design">[2]</a></sup></figcaption>
+        </figure>
+        <div class="table-box" tabindex="0" role="region" aria-label="机制与源码映射">
+          <table class="wide">
+            <caption><b>表 1．实现入口与安全约束。</b></caption>
+            <thead><tr><th scope="col">机制</th><th scope="col">实现入口</th><th scope="col">允许的动作与不变量</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">依赖感知执行</th><td><a href="../agenticlayer/dsh-agentic/src/index.ts"><code>dsh-agentic/src/index.ts</code></a></td><td>仅并行真实确认且独立的调用；按声明顺序汇合，保留错误、取消与唯一副作用。</td></tr>
+              <tr><th scope="row">版本转移与回收</th><td><a href="../agenticlayer/agentic_layer/versions.py"><code>versions.py</code></a>、<a href="../agenticlayer/agentic_layer/engine_cache.py"><code>engine_cache.py</code></a></td><td>冻结 → 付费准备 → 安全提交 → 延迟回收。改写不拼接旧状态；租约与在途传输结束前不释放。</td></tr>
+              <tr><th scope="row">联合资源决策</th><td><a href="../agenticlayer/agentic_layer/policy.py"><code>policy.py</code></a>、<a href="../agenticlayer/agentic_layer/server.py"><code>server.py</code></a></td><td>先检查版本、依赖与峰值容量，再比较准入、准备、恢复；在 <code>joint-on-time</code> 下，不启动预计无法及时完成的可选动作。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>决策比较的是<strong>可隐藏的前台等待</strong>，减去传输、排队、状态占用与失效重做的成本。只有准备在安全切换点之前完成，才有资格抵消前台工作。当前 DSH 产品路径仍保留原生同步压缩；提前付费摘要与候选准备由受控入口验证，不能当作已接入 DSH 的异步压缩。<sup class="cite"><a href="#ref-design">[2]</a></sup></p>
+      </section>
+
+      <section id="protocol" aria-labelledby="protocol-title">
+        <h2 id="protocol-title"><span class="n">03</span>对比与实验设置</h2>
+        <p>相关工作提供不同能力：KVTether 把框架事件映射为缓存生命周期，SmoothAgent 提前准备上下文，MORI 聚焦 GPU / 主机放置，TOPAS 用工作流结构与缓存驻留共同指导准入。这里比较的是同一实现中这些决策是否值得联合，不把文献中的不同硬件、负载或指标混入测速。<sup class="cite"><a href="#ref-thesis">[1]</a></sup></p>
+        <div class="table-box" tabindex="0" role="region" aria-label="原生和受控对照口径">
+          <table class="wide">
+            <caption><b>表 2．对照组的决策权限。</b> 强组合不是关闭全部优化的弱基线。</caption>
+            <thead><tr><th scope="col">对照</th><th scope="col">保留的能力</th><th scope="col">对照问题</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>native-radix</code> / <code>native-hicache</code></th><td>原生请求调度与按需缓存；后者加入本机 DRAM 层。</td><td>引入跨层控制前，原生系统的表现如何？</td></tr>
+              <tr><th scope="row"><code>strong</code></th><td>保留合法性、容量、老化与前台保护；子策略按固定次序仲裁。</td><td>已有机制各自工作时，是否还有联合增量？</td></tr>
+              <tr><th scope="row"><code>joint</code> / <code>joint-on-time</code></th><td>同样的安全边界；跨动作比较，后者增加完成截止门禁。</td><td>排序与截止判断能否减少实际阻塞？</td></tr>
+              <tr><th scope="row">单开 / 留一 / <code>oracle</code></th><td>改变一个机制；oracle 用已记录的剩余等待，不代替生产预测。</td><td>单项贡献与预测适用性究竟在哪里？</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>控制变量。</strong> 单卡 RTX 5090，Qwen3.5-9B-NVFP4，L2 checkpoint。同一比较内固定工作量、资源、隔离与正确性门禁。Decode CUDA Graph 为 <code>full</code>，Prefill 为 <code>disabled</code>；启动日志与 <code>/server_info</code> 均核实捕获桶为 1–8。捕获桶相同不等于运行时批次组成相同。<sup class="cite"><a href="#ref-protocol">[3]</a></sup></p>
+        <p><strong>证据分层。</strong> 真实工具 + GPU 的受控任务用于机制归因；真实 FreeInference 留出轨迹按匿名块、因果和等待屏障投影，用于检查机制是否触发及观察覆盖率，<strong>不执行原始工具，不测原始任务正确性</strong>。主指标是整轮 P95；配对差的区间跨 0 不作明确增益，行为或数值门禁未通过不作同质量提速结论。</p>
+      </section>
+
+      <section id="results" aria-labelledby="results-title">
+        <h2 id="results-title"><span class="n">04</span>主实验：联合有效，但有覆盖边界</h2>
+        <h3>4.1　真实工具与 GPU：并行 × 付费前瞻</h3>
+        <p>在同一任务上交叉切换串行 / 合法并行与同步 / 提前准备，计入摘要生成、预填充与未完成回退。原试验和独立复验都通过全部 10 对工作量门禁；两项全开在两次四臂对照中均为最短的 P95。</p>
+        <figure>
+          <div class="chart-scroll" tabindex="0" role="region" aria-label="两次受控主实验柱图">
+            <svg class="chart mobile-detail" viewBox="0 0 720 268" role="img" aria-labelledby="factor-title factor-desc">
+              <title id="factor-title">四组策略在两次独立试验中的整轮 P95</title><desc id="factor-desc">串行与同步为 3581.5 和 3558.5 毫秒，串行与前瞻 2537.5 和 2797.2，并行与同步 2699.2 和 2496.0，并行与前瞻 1739.2 和 2080.8。</desc>
+              <path class="grid" d="M280 20V222 M380 20V222 M480 20V222 M580 20V222"/><path class="axis" d="M180 20V222H580"/>
+              <g text-anchor="end"><text x="164" y="48">串行 · 同步</text><text x="164" y="97">串行 · 前瞻</text><text x="164" y="146">并行 · 同步</text><text x="164" y="195">并行 · 前瞻</text></g>
+              <g fill="var(--muted)"><rect x="180" y="27" width="358.152" height="13"/><rect x="180" y="76" width="253.750" height="13"/><rect x="180" y="125" width="269.920" height="13"/><rect x="180" y="174" width="173.923" height="13"/></g>
+              <g fill="var(--accent)"><rect x="180" y="43" width="355.853" height="13"/><rect x="180" y="92" width="279.717" height="13"/><rect x="180" y="141" width="249.598" height="13"/><rect x="180" y="190" width="208.081" height="13"/></g>
+              <g class="small"><text x="545" y="38">3581.5</text><text x="543" y="54">3558.5</text><text x="441" y="87">2537.5</text><text x="467" y="103">2797.2</text><text x="457" y="136">2699.2</text><text x="437" y="152">2496.0</text><text x="361" y="185">1739.2</text><text x="395" y="201">2080.8</text></g>
+              <g class="small light" text-anchor="middle"><text x="180" y="241">0</text><text x="280" y="241">1000</text><text x="380" y="241">2000</text><text x="480" y="241">3000</text><text x="580" y="241">4000</text><text x="380" y="262">整轮 P95（ms，越低越好）</text></g>
+            </svg>
+          </div>
+          <div class="legend"><span><i class="square"></i>初测</span><span><i class="square red"></i>独立复验</span></div>
+          <figcaption><b>图 2．受控主实验的整轮 P95。</b> 相对全关，联合缩短 1842 ms（95% 配对差区间 [−1894, −931] ms）和 1478 ms（[−2081, −1039] ms）。这是受控真实文件与 GPU 工作，不是 FreeInference 回放中的提速。<sup class="cite"><a href="#ref-factorial">[4]</a></sup></figcaption>
+        </figure>
+        <p>并行让工具更快返回，也缩短了准备窗口：在串行 + 前瞻臂，两次都 10/10 使用候选；在并行 + 前瞻臂，则为 7/10 和 5/10。两次交互差分别为 +84 ms（[−827, +832] ms）和 +346 ms（[−544, +922] ms），不足以确认额外协同或抵消，不能相乘单项加速比。</p>
+
+        <h3>4.2　FreeInference 留出回放：没有可归因的联合提速</h3>
+        <p>首批 12 轮、43 请求、29 个屏障的固定图参考结果中，原生 Radix / HiCache / <code>strong</code> / <code>joint</code> 的 P95 为 32.508 / 32.564 / 33.583 / 36.073 s。受控臂主要只选 <code>admit</code>；该批次不能验证多个可选动作竞争的好处。随后排除首批全部根会话，在无重叠的 12 个会话上复验：13 轮、135 GPU 请求、119 个屏障，60% Full / Mamba 配额和 4 GB host。</p>
+        <div class="table-box" tabindex="0" role="region" aria-label="独立留出集结果">
+          <table class="wide">
+            <caption><b>表 3．独立留出集复验。</b> 差值为相对 <code>strong</code> 的会话配对 bootstrap 95% 区间。</caption>
+            <thead><tr><th scope="col">策略</th><th scope="col" class="num">整轮 P95（s）</th><th scope="col" class="num">差值与 95% CI（s）</th><th scope="col" class="num">与 strong 同序列</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code>strong</code></th><td class="num">85.926</td><td class="num">—</td><td class="num">135/135</td></tr>
+              <tr><th scope="row"><code>joint</code></th><td class="num">84.586</td><td class="num">−1.340 [−8.102, +5.439]</td><td class="num">57/135</td></tr>
+              <tr><th scope="row"><code>joint-on-time</code></th><td class="num">96.306</td><td class="num">+10.379 [+2.025, +10.379]</td><td class="num">61/135</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure>
+          <div class="chart-scroll" tabindex="0" role="region" aria-label="独立留出集完成曲线">
+            <svg class="chart mobile-detail" viewBox="0 0 720 290" role="img" aria-labelledby="completion-title completion-desc">
+              <title id="completion-title">独立留出集累计完成轮次</title><desc id="completion-desc">三组均完成 13 轮，strong 最后一轮 173.076 秒、joint 170.413 秒、joint-on-time 186.482 秒。该量包含轮次的外生到达时间，不是单轮 P95。</desc>
+              <path class="grid" d="M62 194H654 M62 152H654 M62 110H654 M62 68H654 M62 54H654 M218 54V236 M374 54V236 M529 54V236"/>
+              <path class="axis" d="M62 46V236H654"/>
+              <g class="small light"><text x="62" y="34">累计完成轮次</text></g>
+              <g class="small light" text-anchor="end"><text x="52" y="240">0</text><text x="52" y="198">3</text><text x="52" y="156">6</text><text x="52" y="114">9</text><text x="52" y="58">13</text></g>
+              <g class="small light" text-anchor="middle"><text x="62" y="257">0</text><text x="218" y="257">50</text><text x="374" y="257">100</text><text x="529" y="257">150</text><text x="654" y="257">190</text><text x="360" y="278">自首次到达的时间（s）</text></g>
+              <path class="series base" d="M62 236 H94.55 V222 H134.35 V208 H154.47 V194 H206.85 V180 H207.10 V166 H223.89 V152 H284.55 V138 H284.69 V124 H333.46 V110 H405.67 V96 H542.68 V82 H557.69 V68 H601.13 V54"/>
+              <path class="series joint dashed" d="M62 236 H83.69 V222 H120.15 V208 H140.17 V194 H205.53 V180 H220.56 V166 H220.58 V152 H283.92 V138 H283.93 V124 H350.41 V110 H413.16 V96 H542.70 V82 H543.63 V68 H592.84 V54"/>
+              <path class="series gate dotted" d="M62 236 H88.95 V222 H148.69 V208 H169.04 V194 H215.82 V180 H215.84 V166 H229.72 V152 H289.51 V138 H289.78 V124 H342.89 V110 H419.78 V96 H571.75 V82 H587.98 V68 H642.89 V54"/>
+            </svg>
+          </div>
+          <div class="legend"><span><i></i>strong</span><span><i class="red dash"></i>joint</span><span><i class="teal dot"></i>joint-on-time</span></div>
+          <figcaption><b>图 3．独立留出集累计完成曲线。</b> 每阶是一个已完成轮次；横轴保留到达节奏，不等于表 3 的单轮延迟。<sup class="cite"><a href="#ref-trace">[5]</a></sup></figcaption>
+        </figure>
+        <p class="note">三臂没有触发可选准备或迁移。排队、原生缓存命中与动态批次均发生变化，输出也不完全一致；因此不把 P95 差归因给未执行的优化。</p>
+      </section>
+
+      <section id="sensitivity" aria-labelledby="sensitivity-title">
+        <h2 id="sensitivity-title"><span class="n">05</span>敏感性分析</h2>
+        <h3>5.1　等待窗口决定能隐藏多少工作</h3>
+        <figure>
+          <div class="chart-scroll" tabindex="0" role="region" aria-label="付费前瞻随等待窗口变化">
+            <svg class="chart mobile-detail" viewBox="0 0 720 268" role="img" aria-labelledby="wait-title wait-desc">
+              <title id="wait-title">稳定等待下同步与提前准备的整轮 P95</title><desc id="wait-desc">等待 25 毫秒时同步 1127.8，前瞻 1242.8；等待 250 毫秒时 1776.4 和 1425.5；等待 2000 毫秒时 3220.3 和 2859.9。每档十对。</desc>
+              <path class="grid" d="M81 170H651 M81 120H651 M81 70H651 M81 45H651 M110 43V220 M391 43V220 M645 43V220"/><path class="axis" d="M81 43V220H651"/>
+              <g class="small light"><text x="81" y="29">整轮 P95（s）</text></g>
+              <g class="small light" text-anchor="end"><text x="72" y="224">0</text><text x="72" y="174">1</text><text x="72" y="124">2</text><text x="72" y="74">3</text><text x="72" y="49">3.5</text></g>
+              <g class="small light" text-anchor="middle"><text x="110" y="241">25</text><text x="391" y="241">250</text><text x="645" y="241">2000</text><text x="370" y="262">稳定等待窗口（ms，对数轴）</text></g>
+              <path class="series base dashed" d="M110 163.61 L391 131.18 L645 58.98"/>
+              <path class="series joint" d="M110 157.86 L391 148.73 L645 77"/>
+              <g fill="var(--muted)"><circle cx="110" cy="163.61" r="4"/><circle cx="391" cy="131.18" r="4"/><circle cx="645" cy="58.98" r="4"/></g>
+              <g fill="var(--accent)"><circle cx="110" cy="157.86" r="4"/><circle cx="391" cy="148.73" r="4"/><circle cx="645" cy="77" r="4"/></g>
+            </svg>
+          </div>
+          <div class="legend"><span><i class="dash"></i>同步摘要与准备</span><span><i class="red"></i>等待内付费前瞻</span></div>
+          <figcaption><b>图 4．等待窗口扫描。</b> 短至 25 ms 时提前做反而变慢；250 ms 时没有候选命中，但提前摘要遮住了一部分成本；2000 ms 时 10/10 精确命中。点之间仅作趋势连接。<sup class="cite"><a href="#ref-state">[6]</a></sup></figcaption>
+        </figure>
+        <h3>5.2　显存预算、早返与 I/O 并非同一个旋钮</h3>
+        <div class="table-box" tabindex="0" role="region" aria-label="显存压力和等待扰动结果">
+          <table class="wide">
+            <caption><b>表 4．轨迹压力与等待扰动。</b> 同档内做配对；跨档同时改变容量和等待，不据此估计单一容量效应。</caption>
+            <thead><tr><th scope="col">Full / Mamba 配额</th><th scope="col">该档扰动</th><th scope="col" class="num">joint − strong P95（s）</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">80%</th><td>固定 7 个长等待扰动</td><td class="num">−5.777 [−10.180, +1.759]</td></tr>
+              <tr><th scope="row">60%</th><td>固定 7 个早返扰动，host 4 GB</td><td class="num">−3.852 [−3.852, +0.551]</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>两个区间均跨零。这些百分比是配置配额而非实际占用；采样 Full 使用峰值最高约 0.770。真实工具中，限制整个在途工作者对 CPU 重负载有利；I/O 8 分支仅限制工具阶段时配对 P95 改善中位数为 −34.69%，仅限制 GPU 回流则为 +0.21%，不应套用同一预算。</p>
+        <figure>
+          <div class="chart-scroll" tabindex="0" role="region" aria-label="原生排队最小值中位数最大值">
+            <svg class="chart mobile-detail" viewBox="0 0 720 204" role="img" aria-labelledby="queue-title queue-desc">
+              <title id="queue-title">独立留出集的原生排队区间</title><desc id="queue-desc">按最小、中位、最大，strong 为 0.529、1.283、1961.770 毫秒；joint 为 0.546、1.050、3190.125；joint-on-time 为 0.535、2.406、2239.209。</desc>
+              <path class="grid" d="M144 27V160 M181 27V160 M303 27V160 M426 27V160 M548 27V160 M622 27V160"/><path class="axis" d="M144 160H622"/>
+              <g class="small" text-anchor="end"><text x="134" y="52">strong</text><text x="134" y="92">joint</text><text x="134" y="132">joint-on-time</text></g>
+              <g stroke="var(--secondary)" stroke-width="2"><path d="M147.04 48H584.23 M147.04 43V53 M584.23 43V53 M148.65 88H610.09 M148.65 83V93 M610.09 83V93 M147.56 128H591.26 M147.56 123V133 M591.26 123V133"/></g>
+              <g fill="var(--secondary)"><circle cx="194.13" cy="48" r="4.3"/><circle cx="183.49" cy="88" r="4.3"/><circle cx="227.59" cy="128" r="4.3"/></g>
+              <g class="small light" text-anchor="middle"><text x="144" y="181">0.5</text><text x="181" y="181">1</text><text x="303" y="181">10</text><text x="426" y="181">100</text><text x="548" y="181">1000</text><text x="622" y="181">4000</text><text x="383" y="200">原生排队（ms，对数轴）</text></g>
+            </svg>
+          </div>
+          <figcaption><b>图 5．调度时间的 min / median / max。</b> 横线两端为最小、最大，实点是中位数；这是独立留出集的 SGLang 原生排队，不是 AgenticLayer 许可时间，也不是置信区间。<sup class="cite"><a href="#ref-trace">[5]</a></sup></figcaption>
+        </figure>
+      </section>
+
+      <section id="ablation" aria-labelledby="ablation-title">
+        <h2 id="ablation-title"><span class="n">06</span>消融实验</h2>
+        <p>每列结果只在相同输入、工作、资源和正确性门禁内比较。相对改善采用原实验口径；回收为物理占用指标，不换算为时延。下表既给出达门槛的条件，也保留机制不触发或反转的条件。</p>
+        <div class="table-box" tabindex="0" role="region" aria-label="各机制消融数据">
+          <table class="wide">
+            <caption><b>表 5．单开和关键留一。</b> 除注明外，百分比为活跃 P95 降幅，不应在不同行之间相加。<sup class="cite"><a href="#ref-protocol">[3]</a></sup></caption>
+            <thead><tr><th scope="col">机制</th><th scope="col">配对证据</th><th scope="col">可解释边界</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">E1　合法并行</th><td>预热真实 SDK 工具 12/12 对，−5.92%；独立子任务 6/6 对，−23.08%。</td><td>父分支等子任务终态，按声明顺序提交；不是推测执行未确认工具。</td></tr>
+              <tr><th scope="row">E2　预算派发</th><td>CPU 4 / 8 分支的配对 P95 改善中位数 28.34% / 22.84%。</td><td>整段限制两个在途工作者；I/O 未证实有相同收益。</td></tr>
+              <tr><th scope="row">E3　付费前瞻</th><td>稳定 2 s：P95 −11.19%，10/10 精确命中。</td><td>前文改写 10/10 使原候选作废；短窗口可能不够回本。</td></tr>
+              <tr><th scope="row">E4　过期回收</th><td>4K / 16K 的过期 HBM 字节·秒分别减少 98.25% / 98.00%。</td><td>是状态资源节省；不是进程 VRAM 降幅，也不保证低压力时延收益。</td></tr>
+              <tr><th scope="row">E5　联合门禁</th><td>600 ms 下 <code>strong</code> → <code>joint-on-time</code>，10/10 等价，−13.39%。</td><td>早返 150 ms 同闸门退化 9.85%；长窗口确定性复验的完整五臂配对仅 7/10，排除其速度结论。</td></tr>
+              <tr><th scope="row">E6　提前恢复</th><td>16K、250 ms，等传输字节，−6.88%。</td><td>零窗口没有提前 ACK，反而退化 12.72%；ACK 墙钟不等于纯 DMA 时间。</td></tr>
+              <tr><th scope="row">E6　等待预测</th><td>约 376 ms 等待、约 670 ms 准备，仅切换预测，10/10 等价，−30.21%。</td><td>预测不匹配时不能把长窗口历史当作早返的保障。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>在 375 ms 早返、仍按 1500 ms 标称等待校准的确定性试验中，完整联合与仅去掉前瞻的一对一输出 10/10 相同；去前瞻从 5451.8 降至 3622.0 ms，因为准备从未命中。该条件下去预取或去预测没有明确收益；五臂整体没有通过数值门禁，不能升级为“联合相对 strong”的比较。<sup class="cite"><a href="#ref-forecast">[7]</a></sup></p>
+      </section>
+
+      <section id="cases" aria-labelledby="cases-title">
+        <h2 id="cases-title"><span class="n">07</span>案例研究：一次命中、一次回退、一次被拒绝的释放</h2>
+        <h3>7.1　候选完成才切换，不把请求发出算作命中</h3>
+        <p>在第二次四臂复验的并行 + 前瞻臂中，第 2 对的候选在切换前已就绪，第 1 对则仍在执行。两例都是相同配置下的真实回执。下图只标付费摘要、开始准备和检查点；灰色虚线表示候选从申请到检查的观察窗口，不把它误画成实际 GPU 执行跨度。</p>
+        <figure>
+          <div class="chart-scroll" tabindex="0" role="region" aria-label="命中与回退的原始事件时间线">
+            <svg class="chart mobile-detail" viewBox="0 0 720 216" role="img" aria-labelledby="case-title case-desc">
+              <title id="case-title">复验的两个真实候选提交时间线</title><desc id="case-desc">第 2 对：工具返回 914.1 ms，检查点 927.1 ms 候选已完成。第 1 对：工具返回 1011.2 ms，检查点 1023.4 ms 候选仍运行并回退。各自以本轮开始为原点。</desc>
+              <path class="grid" d="M114 37V168 M224 37V168 M334 37V168 M444 37V168 M554 37V168 M664 37V168"/>
+              <path class="axis" d="M114 168H664"/>
+              <g text-anchor="end"><text x="102" y="73">第 2 对</text><text x="102" y="134">第 1 对</text></g>
+              <g class="small light" text-anchor="middle"><text x="114" y="188">0</text><text x="224" y="188">300</text><text x="334" y="188">600</text><text x="444" y="188">900</text><text x="554" y="188">1200</text><text x="664" y="188">1500</text><text x="389" y="209">距本轮开始（ms）</text></g>
+              <g fill="var(--secondary)"><rect x="118.55" y="64" width="140.47" height="9"/><rect x="154.00" y="125" width="187.88" height="9"/></g>
+              <path class="series base dashed" d="M259.31 68.5H453.94 M342.21 129.5H489.25"/>
+              <g stroke="var(--muted)" stroke-width="1"><path d="M449.17 53V83 M484.77 114V144"/></g>
+              <g fill="var(--accent)"><circle cx="453.94" cy="68.5" r="4.5"/><circle cx="489.25" cy="129.5" r="4.5"/></g>
+              <g class="small"><text x="464" y="63">927.1　已就绪</text><text x="500" y="124">1023.4　仍在运行</text></g>
+            </svg>
+          </div>
+          <div class="legend"><span><i class="teal"></i>摘要（开始 → 提交）</span><span><i class="dash"></i>候选申请 → 检查</span><span><i class="red"></i>实点：检查；细竖线：工具返回</span></div>
+          <figcaption><b>图 6．独立复验的实际候选时间线。</b> 第 2 对采用已就绪候选；第 1 对在检查时未就绪，走前台回退。两例不构成时延排名，只解释为什么并行会改变可用窗口。<sup class="cite"><a href="#ref-factorial">[4]</a></sup></figcaption>
+        </figure>
+        <h3>7.2　父分支改写，子分支仍持有旧前缀</h3>
+        <ol class="compact">
+          <li>父分支由 <code>A ∥ B</code> 改写为 <code>A′ ∥ B</code>；父的新请求不再命中旧前缀。子分支仍合法引用旧版本，4K 前缀命中 4096 token。</li>
+          <li>租约存在时原生回收被拒绝。子分支释放后，修复路径允许直接弃置无主且未备份的叶节点，不为回收强制发起一次 D2H。</li>
+          <li>4K 第 0 对中，保护解除后约 <strong>10.0 ms</strong> 收到回收确认，物理 HBM 约减少 <strong>177.1 MiB</strong>；保留臂观测窗口为 600 ms，无释放。两组子分支输出相同。这是一次原始事件轨迹，不是均值。<sup class="cite"><a href="#ref-state">[6]</a></sup></li>
+        </ol>
+      </section>
+
+      <section id="discussion" aria-labelledby="discussion-title">
+        <h2 id="discussion-title"><span class="n">08</span>讨论与结论</h2>
+        <p>证据支持的是<strong>条件式跨层优化</strong>：了解依赖才能利用并行，了解版本才能安全复用和回收，了解实际等待才能判断准备是否值得。把三者放到同一控制点的价值，不等同于每个负载都有多个候选需要联合排序。</p>
+        <dl class="rule">
+          <dt>可以优先启用</dt><dd>已确认独立的工具与子任务；稳定长等待内的付费前瞻；确认过期且无租约、无在途依赖的回收。</dd>
+          <dt>需要条件门禁</dt><dd>CPU 争用明显时限额，轻 I/O 保持合法即发；短窗口只做可按时得到完整 ACK 的恢复，不抢跑赶不上切换点的准备。</dd>
+          <dt>暂不作为默认</dt><dd>匿名回放、漂移未校准或长窗口数值门禁未通过时，不把联合全开当作默认；保留 <code>strong</code>。</dd>
+        </dl>
+        <p class="note"><strong>局限性。</strong> 单卡、固定模型、留出会话数有限，nearest-rank P95 在 12–13 轮时就是最慢轮次。同一热分段下物理迁移 9/9 数值一致，但相对整段冷参考 0/9 达到原容差，不能声称跨分段等价。受控摘要也不证明一般摘要质量。</p>
+      </section>
+
+      <section class="refs" id="references" aria-labelledby="references-title">
+        <h2 id="references-title"><span class="n">—</span>资料与复现</h2>
+        <p class="note">本文直接打开即可阅读，图表不依赖网络。以下原始 JSON / CSV 是采集机本地文件；其他环境可用文件名定位工件，按固定 Graph 报告复现。</p>
+        <ol class="sources">
+          <li id="ref-thesis"><a href="../main.pdf">论文原稿 <code>main.pdf</code></a>：问题、相关研究、版本安全与联合决策模型。</li>
+          <li id="ref-design"><a href="../agenticlayer/DESIGN.md">源码设计</a> · <a href="../agenticlayer/RUNBOOK.md">执行手册</a>。</li>
+          <li id="ref-protocol"><a href="FIXED_GRAPH_CAMPAIGN.md">固定 Graph 实验报告</a>：E1–E6 门禁、原始证据索引、绘图与复现命令。</li>
+          <li id="ref-factorial">交叉试验：<a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-parallel-lookahead.json">初测 JSON</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-parallel-lookahead-confirm.json">独立复验 JSON（含案例事件）</a>。</li>
+          <li id="ref-trace">轨迹：<a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-reference.json">四臂参考</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-independent-confirm.json">独立留出报告</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/independent-figures/arms.csv">调度 CSV</a>。</li>
+          <li id="ref-state">状态：<a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-compaction-e3.json">E3 等待扫描</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-hicache-expired.json">E4 HiCache 回执</a>。</li>
+          <li id="ref-forecast">预测：<a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-deterministic-short-forecast.json">短等待校准对照</a> · <a href="file:///root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-deterministic-paced-long.json">长窗与早返、确定性留一</a>。</li>
+        </ol>
+      </section>
+    </main>
+  </div>
+  <footer class="wrap">AgenticLayer · 技术路径与实测证据 <span aria-hidden="true">/</span> <a href="#top">回到页首</a> <span aria-hidden="true">/</span> <a href="paper-assets/OFL.txt" lang="en">Font · SIL OFL</a></footer>
+</body>
+</html>

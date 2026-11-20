@@ -1,0 +1,2 @@
+single_toggle,off,on,paired_delta_p95_ms,ci95_low_ms,ci95_high_ms,clusters,delta_p50_ms,median_ttft_delta_ms_on_hit_requests
+checkpoints with eager decode,eager-l2,eager-l3,-3171.1888685822487,-4208.523031324148,-176.64042860269547,4,-176.64042860269547,-947.0279961824417

@@ -1,0 +1,106 @@
+{
+  "arm": "cancel-gpu-native-retired",
+  "triton_copy": false,
+  "transfer": {
+    "length": 16384,
+    "prefill_ms": 717.996764,
+    "offload_action_id": "9ef56113aa454c828d19e8267dcbafc7",
+    "cancel_action_id": "e36bb4cadc3743f2a70169cdb5803cdc",
+    "reclaim_action_id": "2bcea92a91f944a7b68fb17afba7bfec",
+    "transfer_bytes": 588382208,
+    "transfer_us": 82247,
+    "transfer_metrics_complete": true,
+    "residency": "hbm",
+    "demoted": false,
+    "matched_tokens": 16384,
+    "baseline_matched_tokens": 0,
+    "output_ids": [
+      248046,
+      198,
+      248045,
+      846,
+      198,
+      760,
+      1156,
+      6587
+    ],
+    "output_token_logprobs": [
+      [
+        -5.672981262207031,
+        248046,
+        null
+      ],
+      [
+        -0.020958038046956062,
+        198,
+        null
+      ],
+      [
+        -0.20324015617370605,
+        248045,
+        null
+      ],
+      [
+        -1.2582590579986572,
+        846,
+        null
+      ],
+      [
+        -0.3306017518043518,
+        198,
+        null
+      ],
+      [
+        -2.219520092010498,
+        760,
+        null
+      ],
+      [
+        -1.0584511756896973,
+        1156,
+        null
+      ],
+      [
+        -0.9686505794525146,
+        6587,
+        null
+      ]
+    ]
+  },
+  "single_victim": {
+    "path": "native /generate batch stream",
+    "same_scheduler_batch_proven": false,
+    "victim_rid": "9848b9b19c1c47f88331a4fbfcef8c0c",
+    "survivor_rid": "371e8745e66449c6acbca41e16cf7502",
+    "cancel_ack_seq": 22,
+    "victim_completion_seq": 23,
+    "survivor_completion_seq": 24,
+    "victim_status": "canceled",
+    "survivor_status": "partial",
+    "survivor_matched_tokens": 0,
+    "baseline_matched_tokens": 0,
+    "survivor_output_ids": [
+      400,
+      470,
+      220,
+      248046,
+      198,
+      248045,
+      198,
+      248045
+    ],
+    "stream_incremental": false
+  },
+  "transfer_counters": {
+    "d2h_full_native_bytes": 536870912,
+    "d2h_full_triton_bytes": 0,
+    "d2h_mamba_native_bytes": 51511296,
+    "d2h_mamba_side_bytes": 0,
+    "d2h_mamba_triton_bytes": 0,
+    "h2d_full_native_bytes": 0,
+    "h2d_full_triton_bytes": 0,
+    "h2d_mamba_native_bytes": 0,
+    "h2d_mamba_side_bytes": 0,
+    "h2d_mamba_triton_bytes": 0
+  }
+}

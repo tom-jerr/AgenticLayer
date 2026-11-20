@@ -1,0 +1,30 @@
+{
+  "arm": "native-radix",
+  "flags": {
+    "served_model_name": "qwen35-9b-nvfp4",
+    "page_size": 1,
+    "tp_size": 1,
+    "dtype": "bfloat16",
+    "kv_cache_dtype": "bf16",
+    "attention_backend": "triton",
+    "linear_attn_prefill_backend": "triton",
+    "linear_attn_decode_backend": "triton",
+    "quantization": "modelopt_fp4",
+    "fp4_gemm_runner_backend": "flashinfer_cutlass",
+    "context_length": 32774,
+    "max_req_input_len": 32768,
+    "disable_radix_cache": false,
+    "enable_hierarchical_cache": false
+  },
+  "measurements": {
+    "context_ms": 2409.617418,
+    "context_output": [
+      286
+    ],
+    "cold_ms": 286.202712,
+    "warm_ms": 69.218494,
+    "cold_hit": 0,
+    "warm_hit": 1024,
+    "logprob_delta": 0.0
+  }
+}

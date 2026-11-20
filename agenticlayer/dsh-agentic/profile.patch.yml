@@ -1,0 +1,79 @@
+- id: llm-pi-ai
+  config:
+    providers:
+      local-sglang:
+        api: openai-completions
+        baseURL: !!js process.env.AGENTIC_MODEL_BASE_URL ?? 'http://127.0.0.1:30081/v1'
+        apiKeyEnv: AGENTIC_LOCAL_TOKEN
+        retryPolicy:
+          mode: normal
+          maxRetries: 0
+        compat:
+          chatTemplateKwargs:
+            enable_thinking: false
+        models:
+          - id: qwen35-9b-nvfp4
+            contextWindow: 32768
+            maxTokens: 512
+            reasoningEfforts: false
+- id: agent-loop
+  config:
+    maxParallelToolCalls: !!js "process.env.AGENTIC_SERIAL === '1' ? 1 : 8"
+- id: tool-subagent
+  disabled: true
+- id: tool-subagent-fork
+  disabled: true
+- id: tool-subagent-control
+  disabled: true
+- id: tool-agent-team
+  disabled: true
+- id: tool-bash
+  disabled: true
+- id: tool-pwsh
+  disabled: true
+- id: tool-jobs
+  disabled: true
+- id: tool-fs
+  disabled: true
+- id: tool-fs-search
+  disabled: true
+- id: tool-working-directory
+  disabled: true
+- id: tool-skill
+  disabled: true
+- id: tool-workflow
+  disabled: true
+- id: tool-todo
+  disabled: true
+- id: tool-goal
+  disabled: true
+- id: tool-web
+  disabled: true
+- id: tool-plugin-manager
+  disabled: true
+- id: compaction-basic
+  disabled: true
+- id: tool-office
+  disabled: true
+- id: workspace-dependencies
+  disabled: true
+- id: tool-schedule
+  disabled: true
+- id: tool-ask-user
+  disabled: true
+- id: present
+  disabled: true
+- id: tool-executor-ptc
+  disabled: true
+- insert:
+    - id: agentic-fixture-compaction
+      name: "__AGENTIC_COMPACTION_MODULE__"
+      config:
+        auto: false
+        summarizationProvider: local-sglang
+        summarizationModel: qwen35-9b-nvfp4
+        maxTokens: 256
+    - id: agentic-layer
+      name: "__AGENTIC_PLUGIN_MODULE__"
+      config:
+        mode: !!js process.env.AGENTIC_MODE ?? 'controlled'

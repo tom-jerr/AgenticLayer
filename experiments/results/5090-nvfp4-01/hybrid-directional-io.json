@@ -1,0 +1,66 @@
+{
+  "arm": "hybrid-directional-io",
+  "copy_mode": "d2h",
+  "runs": [
+    {
+      "length": 512,
+      "prefill_ms": 156.146391,
+      "d2h_wall_ms": 52.238405,
+      "h2d_wall_ms": 556.205093,
+      "d2h_transfer_us": 30171,
+      "h2d_transfer_us": 7783,
+      "d2h_bytes": 68288512,
+      "h2d_bytes": 68288512,
+      "ack_metrics_complete": [
+        true,
+        true
+      ],
+      "matched_tokens": 512,
+      "max_logprob_delta": 0.0
+    },
+    {
+      "length": 4096,
+      "prefill_ms": 176.813947,
+      "d2h_wall_ms": 25.254264,
+      "h2d_wall_ms": 471.330381,
+      "d2h_transfer_us": 5790,
+      "h2d_transfer_us": 4537,
+      "d2h_bytes": 185729024,
+      "h2d_bytes": 185729024,
+      "ack_metrics_complete": [
+        true,
+        true
+      ],
+      "matched_tokens": 4096,
+      "max_logprob_delta": 0.0
+    },
+    {
+      "length": 16384,
+      "prefill_ms": 1030.703132,
+      "d2h_wall_ms": 37.6876,
+      "h2d_wall_ms": 40.324635,
+      "d2h_transfer_us": 15954,
+      "h2d_transfer_us": 12261,
+      "d2h_bytes": 588382208,
+      "h2d_bytes": 588382208,
+      "ack_metrics_complete": [
+        true,
+        true
+      ],
+      "matched_tokens": 16384,
+      "max_logprob_delta": 0.0
+    }
+  ],
+  "transfer_counters": {
+    "d2h_full_native_bytes": 0,
+    "d2h_full_triton_bytes": 687865856,
+    "d2h_mamba_native_bytes": 0,
+    "d2h_mamba_side_bytes": 0,
+    "d2h_mamba_triton_bytes": 154533888,
+    "h2d_full_native_bytes": 687865856,
+    "h2d_full_triton_bytes": 0,
+    "h2d_mamba_native_bytes": 154533888,
+    "h2d_mamba_side_bytes": 0,
+    "h2d_mamba_triton_bytes": 0
+  }
+}

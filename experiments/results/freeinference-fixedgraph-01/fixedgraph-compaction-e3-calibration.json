@@ -1,0 +1,7789 @@
+{
+  "scope": "E3 low-pressure same-shape batch-one native prefill; no host moves",
+  "buckets": [
+    {
+      "token_count": 8192,
+      "batch_size": 1,
+      "prefill_ms": 207.83574,
+      "d2h_ms": 0,
+      "h2d_ms": 0,
+      "recurrent_ms": 0,
+      "samples": 20
+    }
+  ],
+  "waits": {
+    "e3_25ms_elapsed_0ms": [
+      {
+        "duration_ms": 41.089249,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.033392,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.113025,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.093637,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.080147,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.07776,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.072739,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.072985,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.071647,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.177945,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.088694,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.101213,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.093592,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.09678,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.556361,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.492885,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.022523,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.135327,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.114806,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.241501,
+        "completed": true
+      }
+    ],
+    "e3_25ms_elapsed_25ms": [
+      {
+        "duration_ms": 16.089249000000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.033391999999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.11302500000000038,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.09363700000000108,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.08014700000000019,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.07776000000000138,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.07273899999999855,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.07298499999999919,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.07164699999999868,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.1779450000000011,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.08869400000000027,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.10121300000000133,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.09359200000000101,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.09677999999999898,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.556360999999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.49288500000000113,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.0225229999999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.1353270000000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.11480600000000152,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.24150099999999952,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_0ms": [
+      {
+        "duration_ms": 250.989736,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.336844,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.720834,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.928192,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.334094,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.387126,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.741437,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.916231,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.328438,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.457214,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.368961,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.446081,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.717789,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.426544,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.360698,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.863287,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_25ms": [
+      {
+        "duration_ms": 225.989736,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.336844,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.720834,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.928192,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.334094,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.387126,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.741437,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.916231,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.328438,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.457214,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.368961,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.446081,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.717789,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.426544,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.360698,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.863287,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_50ms": [
+      {
+        "duration_ms": 200.989736,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.336844,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.720834,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.928192,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.334094,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.387126,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.741437,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.916231,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.328438,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.457214,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.368961,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.446081,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.717789,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.426544,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.360698,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.863287,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_75ms": [
+      {
+        "duration_ms": 175.989736,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.336844,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.720834,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.928192,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.334094,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.387126,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.741437,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.916231,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.328438,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.457214,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.368961,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.446081,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.717789,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.426544,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.360698,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.863287,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_100ms": [
+      {
+        "duration_ms": 150.989736,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.336844,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.720834,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.928192,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.334094,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.387126,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.741437,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.916231,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.328438,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.457214,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.368961,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.446081,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.717789,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.426544,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.360698,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.863287,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_125ms": [
+      {
+        "duration_ms": 125.989736,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.33684400000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.720834,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.928192,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.334094,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.387126,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.74143699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.91623100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.328438,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.457214,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.36896100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.44608099999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.71778900000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.426544,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.36069800000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.86328700000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_150ms": [
+      {
+        "duration_ms": 100.989736,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.33684400000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.720834,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.928192,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.334094,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.387126,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.74143699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.91623100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.328438,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.457214,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.36896100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.44608099999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.71778900000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.426544,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.36069800000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.86328700000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_175ms": [
+      {
+        "duration_ms": 75.989736,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.33684400000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.720834,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.928192,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.334094,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.387126,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.74143699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.91623100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.328438,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.457214,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.36896100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.44608099999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.71778900000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.426544,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.36069800000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.86328700000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_200ms": [
+      {
+        "duration_ms": 50.98973599999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.33684400000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.720833999999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.928191999999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.33409399999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.387125999999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.080578,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.74143699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.91623100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.328438000000006,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.45721399999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.36896100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.44608099999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.71778900000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.42654400000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.36069800000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.863287000000014,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_225ms": [
+      {
+        "duration_ms": 25.989735999999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.336844000000013,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.720833999999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.928191999999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.334093999999993,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.387125999999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.080578000000003,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.641379,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.74143699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.91623100000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.328438000000006,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.457213999999993,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.368961000000013,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.441722,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.446080999999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.71778900000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.426544000000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.360698000000014,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.863287000000014,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.909649,
+        "completed": true
+      }
+    ],
+    "e3_250ms_elapsed_250ms": [
+      {
+        "duration_ms": 0.9897359999999935,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.33684400000001347,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.7208339999999964,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.9281919999999957,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.33409399999999323,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.387125999999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.0805780000000027,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.6413790000000006,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.7414369999999906,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.9162310000000105,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.3284380000000056,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.45721399999999335,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.368961000000013,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.4417219999999986,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.4460809999999924,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.7177890000000104,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.4265440000000069,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.3606980000000135,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.8632870000000139,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.9096490000000017,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_0ms": [
+      {
+        "duration_ms": 2000.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 2002.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 2000.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 2001.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 2001.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 2000.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 2001.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 2001.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 2001.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 2002.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 2001.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 2002.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 2001.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 2002.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 2001.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 2002.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 2002.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 2002.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 2000.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 2002.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_25ms": [
+      {
+        "duration_ms": 1975.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1977.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1975.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1976.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1976.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1975.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1976.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1976.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1976.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1977.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1976.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1977.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1976.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1977.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1976.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1977.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1977.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1977.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1975.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1977.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_50ms": [
+      {
+        "duration_ms": 1950.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1952.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1950.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1951.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1951.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1950.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1951.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1951.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1951.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1952.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1951.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1952.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1951.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1952.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1951.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1952.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1952.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1952.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1950.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1952.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_75ms": [
+      {
+        "duration_ms": 1925.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1927.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1925.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1926.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1926.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1925.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1926.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1926.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1926.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1927.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1926.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1927.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1926.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1927.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1926.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1927.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1927.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1927.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1925.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1927.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_100ms": [
+      {
+        "duration_ms": 1900.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1902.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1900.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1901.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1901.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1900.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1901.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1901.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1901.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1902.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1901.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1902.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1901.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1902.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1901.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1902.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1902.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1902.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1900.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1902.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_125ms": [
+      {
+        "duration_ms": 1875.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1877.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1875.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1876.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1876.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1875.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1876.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1876.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1876.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1877.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1876.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1877.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1876.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1877.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1876.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1877.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1877.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1877.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1875.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1877.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_150ms": [
+      {
+        "duration_ms": 1850.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1852.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1850.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1851.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1851.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1850.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1851.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1851.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1851.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1852.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1851.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1852.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1851.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1852.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1851.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1852.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1852.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1852.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1850.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1852.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_175ms": [
+      {
+        "duration_ms": 1825.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1827.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1825.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1826.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1826.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1825.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1826.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1826.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1826.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1827.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1826.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1827.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1826.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1827.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1826.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1827.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1827.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1827.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1825.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1827.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_200ms": [
+      {
+        "duration_ms": 1800.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1802.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1800.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1801.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1801.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1800.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1801.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1801.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1801.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1802.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1801.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1802.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1801.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1802.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1801.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1802.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1802.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1802.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1800.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1802.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_225ms": [
+      {
+        "duration_ms": 1775.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1777.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1775.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1776.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1776.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1775.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1776.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1776.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1776.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1777.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1776.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1777.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1776.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1777.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1776.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1777.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1777.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1777.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1775.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1777.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_250ms": [
+      {
+        "duration_ms": 1750.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1752.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1750.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1751.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1751.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1750.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1751.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1751.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1751.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1752.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1751.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1752.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1751.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1752.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1751.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1752.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1752.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1752.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1750.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1752.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_275ms": [
+      {
+        "duration_ms": 1725.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1727.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1725.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1726.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1726.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1725.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1726.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1726.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1726.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1727.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1726.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1727.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1726.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1727.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1726.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1727.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1727.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1727.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1725.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1727.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_300ms": [
+      {
+        "duration_ms": 1700.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1702.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1700.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1701.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1701.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1700.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1701.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1701.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1701.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1702.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1701.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1702.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1701.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1702.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1701.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1702.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1702.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1702.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1700.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1702.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_325ms": [
+      {
+        "duration_ms": 1675.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1677.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1675.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1676.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1676.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1675.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1676.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1676.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1676.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1677.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1676.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1677.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1676.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1677.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1676.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1677.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1677.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1677.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1675.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1677.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_350ms": [
+      {
+        "duration_ms": 1650.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1652.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1650.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1651.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1651.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1650.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1651.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1651.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1651.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1652.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1651.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1652.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1651.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1652.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1651.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1652.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1652.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1652.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1650.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1652.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_375ms": [
+      {
+        "duration_ms": 1625.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1627.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1625.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1626.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1626.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1625.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1626.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1626.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1626.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1627.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1626.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1627.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1626.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1627.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1626.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1627.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1627.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1627.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1625.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1627.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_400ms": [
+      {
+        "duration_ms": 1600.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1602.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1600.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1601.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1601.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1600.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1601.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1601.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1601.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1602.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1601.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1602.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1601.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1602.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1601.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1602.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1602.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1602.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1600.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1602.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_425ms": [
+      {
+        "duration_ms": 1575.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1577.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1575.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1576.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1576.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1575.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1576.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1576.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1576.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1577.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1576.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1577.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1576.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1577.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1576.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1577.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1577.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1577.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1575.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1577.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_450ms": [
+      {
+        "duration_ms": 1550.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1552.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1550.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1551.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1551.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1550.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1551.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1551.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1551.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1552.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1551.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1552.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1551.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1552.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1551.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1552.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1552.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1552.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1550.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1552.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_475ms": [
+      {
+        "duration_ms": 1525.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1527.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1525.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1526.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1526.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1525.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1526.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1526.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1526.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1527.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1526.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1527.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1526.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1527.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1526.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1527.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1527.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1527.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1525.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1527.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_500ms": [
+      {
+        "duration_ms": 1500.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1502.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1500.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1501.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1501.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1500.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1501.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1501.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1501.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1502.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1501.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1502.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1501.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1502.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1501.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1502.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1502.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1502.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1500.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1502.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_525ms": [
+      {
+        "duration_ms": 1475.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1477.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1475.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1476.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1476.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1475.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1476.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1476.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1476.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1477.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1476.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1477.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1476.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1477.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1476.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1477.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1477.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1477.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1475.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1477.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_550ms": [
+      {
+        "duration_ms": 1450.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1452.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1450.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1451.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1451.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1450.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1451.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1451.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1451.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1452.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1451.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1452.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1451.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1452.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1451.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1452.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1452.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1452.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1450.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1452.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_575ms": [
+      {
+        "duration_ms": 1425.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1427.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1425.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1426.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1426.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1425.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1426.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1426.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1426.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1427.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1426.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1427.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1426.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1427.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1426.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1427.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1427.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1427.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1425.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1427.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_600ms": [
+      {
+        "duration_ms": 1400.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1402.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1400.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1401.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1401.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1400.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1401.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1401.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1401.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1402.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1401.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1402.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1401.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1402.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1401.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1402.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1402.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1402.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1400.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1402.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_625ms": [
+      {
+        "duration_ms": 1375.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1377.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1375.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1376.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1376.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1375.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1376.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1376.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1376.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1377.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1376.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1377.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1376.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1377.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1376.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1377.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1377.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1377.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1375.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1377.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_650ms": [
+      {
+        "duration_ms": 1350.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1352.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1350.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1351.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1351.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1350.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1351.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1351.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1351.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1352.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1351.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1352.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1351.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1352.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1351.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1352.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1352.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1352.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1350.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1352.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_675ms": [
+      {
+        "duration_ms": 1325.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1327.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1325.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1326.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1326.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1325.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1326.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1326.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1326.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1327.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1326.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1327.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1326.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1327.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1326.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1327.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1327.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1327.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1325.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1327.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_700ms": [
+      {
+        "duration_ms": 1300.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1302.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1300.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1301.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1301.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1300.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1301.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1301.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1301.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1302.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1301.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1302.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1301.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1302.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1301.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1302.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1302.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1302.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1300.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1302.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_725ms": [
+      {
+        "duration_ms": 1275.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1277.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1275.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1276.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1276.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1275.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1276.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1276.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1276.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1277.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1276.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1277.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1276.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1277.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1276.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1277.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1277.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1277.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1275.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1277.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_750ms": [
+      {
+        "duration_ms": 1250.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1252.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1250.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1251.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1251.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1250.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1251.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1251.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1251.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1252.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1251.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1252.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1251.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1252.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1251.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1252.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1252.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1252.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1250.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1252.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_775ms": [
+      {
+        "duration_ms": 1225.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1227.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1225.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1226.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1226.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1225.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1226.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1226.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1226.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1227.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1226.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1227.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1226.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1227.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1226.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1227.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1227.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1227.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1225.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1227.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_800ms": [
+      {
+        "duration_ms": 1200.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1202.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1200.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1201.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1201.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1200.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1201.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1201.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1201.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1202.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1201.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1202.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1201.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1202.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1201.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1202.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1202.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1202.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1200.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1202.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_825ms": [
+      {
+        "duration_ms": 1175.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1177.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1175.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1176.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1176.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1175.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1176.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1176.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1176.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1177.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1176.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1177.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1176.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1177.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1176.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1177.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1177.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1177.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1175.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1177.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_850ms": [
+      {
+        "duration_ms": 1150.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1152.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1150.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1151.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1151.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1150.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1151.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1151.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1151.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1152.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1151.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1152.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1151.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1152.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1151.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1152.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1152.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1152.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1150.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1152.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_875ms": [
+      {
+        "duration_ms": 1125.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1127.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1125.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1126.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1126.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1125.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1126.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1126.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1126.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1127.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1126.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1127.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1126.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1127.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1126.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1127.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1127.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1127.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1125.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1127.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_900ms": [
+      {
+        "duration_ms": 1100.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1102.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1100.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1101.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1101.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1100.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1101.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1101.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1101.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1102.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1101.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1102.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1101.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1102.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1101.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1102.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1102.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1102.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1100.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1102.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_925ms": [
+      {
+        "duration_ms": 1075.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1077.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1075.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1076.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1076.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1075.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1076.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1076.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1076.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1077.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1076.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1077.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1076.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1077.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1076.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1077.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1077.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1077.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1075.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1077.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_950ms": [
+      {
+        "duration_ms": 1050.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1052.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1050.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1051.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1051.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1050.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1051.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1051.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1051.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1052.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1051.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1052.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1051.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1052.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1051.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1052.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1052.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1052.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1050.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1052.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_975ms": [
+      {
+        "duration_ms": 1025.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1027.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1025.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1026.832381,
+        "completed": true
+      },
+      {
+        "duration_ms": 1026.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1025.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1026.16547,
+        "completed": true
+      },
+      {
+        "duration_ms": 1026.693834,
+        "completed": true
+      },
+      {
+        "duration_ms": 1026.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1027.250993,
+        "completed": true
+      },
+      {
+        "duration_ms": 1026.073818,
+        "completed": true
+      },
+      {
+        "duration_ms": 1027.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1026.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1027.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1026.538856,
+        "completed": true
+      },
+      {
+        "duration_ms": 1027.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1027.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1027.205609,
+        "completed": true
+      },
+      {
+        "duration_ms": 1025.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1027.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1000ms": [
+      {
+        "duration_ms": 1000.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 1002.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 1000.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 1001.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 1001.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 1000.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 1001.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 1001.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 1001.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 1002.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 1001.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 1002.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 1001.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 1002.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 1001.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 1002.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 1002.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 1002.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 1000.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 1002.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1025ms": [
+      {
+        "duration_ms": 975.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 977.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 975.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 976.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 976.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 975.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 976.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 976.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 976.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 977.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 976.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 977.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 976.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 977.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 976.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 977.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 977.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 977.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 975.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 977.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1050ms": [
+      {
+        "duration_ms": 950.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 952.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 950.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 951.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 951.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 950.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 951.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 951.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 951.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 952.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 951.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 952.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 951.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 952.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 951.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 952.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 952.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 952.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 950.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 952.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1075ms": [
+      {
+        "duration_ms": 925.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 927.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 925.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 926.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 926.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 925.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 926.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 926.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 926.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 927.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 926.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 927.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 926.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 927.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 926.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 927.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 927.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 927.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 925.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 927.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1100ms": [
+      {
+        "duration_ms": 900.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 902.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 900.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 901.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 901.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 900.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 901.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 901.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 901.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 902.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 901.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 902.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 901.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 902.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 901.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 902.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 902.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 902.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 900.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 902.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1125ms": [
+      {
+        "duration_ms": 875.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 877.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 875.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 876.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 876.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 875.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 876.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 876.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 876.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 877.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 876.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 877.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 876.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 877.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 876.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 877.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 877.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 877.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 875.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 877.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1150ms": [
+      {
+        "duration_ms": 850.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 852.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 850.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 851.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 851.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 850.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 851.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 851.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 851.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 852.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 851.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 852.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 851.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 852.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 851.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 852.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 852.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 852.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 850.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 852.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1175ms": [
+      {
+        "duration_ms": 825.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 827.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 825.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 826.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 826.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 825.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 826.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 826.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 826.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 827.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 826.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 827.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 826.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 827.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 826.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 827.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 827.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 827.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 825.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 827.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1200ms": [
+      {
+        "duration_ms": 800.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 802.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 802.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 802.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 802.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 801.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 802.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 802.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 802.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 800.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 802.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1225ms": [
+      {
+        "duration_ms": 775.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 777.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 775.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 776.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 776.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 775.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 776.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 776.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 776.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 777.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 776.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 777.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 776.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 777.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 776.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 777.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 777.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 777.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 775.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 777.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1250ms": [
+      {
+        "duration_ms": 750.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 752.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 750.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 751.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 751.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 750.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 751.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 751.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 751.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 752.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 751.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 752.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 751.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 752.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 751.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 752.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 752.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 752.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 750.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 752.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1275ms": [
+      {
+        "duration_ms": 725.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 727.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 725.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 726.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 726.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 725.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 726.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 726.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 726.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 727.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 726.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 727.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 726.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 727.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 726.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 727.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 727.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 727.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 725.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 727.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1300ms": [
+      {
+        "duration_ms": 700.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 702.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 700.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 701.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 701.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 700.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 701.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 701.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 701.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 702.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 701.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 702.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 701.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 702.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 701.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 702.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 702.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 702.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 700.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 702.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1325ms": [
+      {
+        "duration_ms": 675.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 677.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 675.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 676.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 676.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 675.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 676.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 676.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 676.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 677.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 676.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 677.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 676.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 677.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 676.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 677.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 677.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 677.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 675.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 677.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1350ms": [
+      {
+        "duration_ms": 650.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 652.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 650.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 651.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 651.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 650.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 651.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 651.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 651.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 652.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 651.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 652.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 651.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 652.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 651.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 652.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 652.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 652.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 650.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 652.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1375ms": [
+      {
+        "duration_ms": 625.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 627.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 625.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 626.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 626.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 625.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 626.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 626.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 626.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 627.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 626.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 627.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 626.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 627.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 626.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 627.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 627.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 627.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 625.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 627.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1400ms": [
+      {
+        "duration_ms": 600.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 602.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 600.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 601.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 601.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 600.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 601.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 601.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 601.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 602.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 601.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 602.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 601.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 602.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 601.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 602.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 602.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 602.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 600.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 602.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1425ms": [
+      {
+        "duration_ms": 575.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 577.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 575.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 576.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 576.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 575.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 576.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 576.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 576.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 577.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 576.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 577.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 576.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 577.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 576.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 577.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 577.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 577.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 575.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 577.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1450ms": [
+      {
+        "duration_ms": 550.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 552.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 550.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 551.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 551.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 550.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 551.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 551.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 551.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 552.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 551.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 552.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 551.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 552.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 551.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 552.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 552.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 552.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 550.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 552.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1475ms": [
+      {
+        "duration_ms": 525.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 527.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 525.731018,
+        "completed": true
+      },
+      {
+        "duration_ms": 526.8323809999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 526.981205,
+        "completed": true
+      },
+      {
+        "duration_ms": 525.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 526.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 526.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 526.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 527.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 526.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 527.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 526.971646,
+        "completed": true
+      },
+      {
+        "duration_ms": 527.205901,
+        "completed": true
+      },
+      {
+        "duration_ms": 526.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 527.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 527.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 527.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 525.85319,
+        "completed": true
+      },
+      {
+        "duration_ms": 527.170138,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1500ms": [
+      {
+        "duration_ms": 500.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 502.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 500.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 501.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 501.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 500.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 501.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 501.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 501.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 502.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 501.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 502.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 501.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 502.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 501.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 502.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 502.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 502.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 500.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 502.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1525ms": [
+      {
+        "duration_ms": 475.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 477.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 475.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 476.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 476.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 475.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 476.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 476.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 476.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 477.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 476.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 477.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 476.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 477.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 476.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 477.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 477.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 477.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 475.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 477.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1550ms": [
+      {
+        "duration_ms": 450.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 452.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 450.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 451.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 451.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 450.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 451.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 451.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 451.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 452.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 451.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 452.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 451.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 452.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 451.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 452.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 452.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 452.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 450.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 452.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1575ms": [
+      {
+        "duration_ms": 425.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 427.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 425.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 426.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 426.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 425.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 426.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 426.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 426.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 427.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 426.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 427.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 426.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 427.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 426.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 427.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 427.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 427.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 425.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 427.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1600ms": [
+      {
+        "duration_ms": 400.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 402.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 400.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 401.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 401.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 400.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 401.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 401.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 401.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 402.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 401.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 402.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 401.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 402.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 401.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 402.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 402.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 402.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 400.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 402.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1625ms": [
+      {
+        "duration_ms": 375.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 377.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 375.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 376.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 376.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 375.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 376.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 376.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 376.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 377.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 376.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 377.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 376.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 377.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 376.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 377.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 377.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 377.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 375.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 377.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1650ms": [
+      {
+        "duration_ms": 350.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 352.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 350.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 351.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 351.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 350.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 351.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 351.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 351.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 352.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 351.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 352.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 351.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 352.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 351.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 352.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 352.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 352.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 350.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 352.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1675ms": [
+      {
+        "duration_ms": 325.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 327.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 325.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 326.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 326.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 325.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 326.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 326.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 326.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 327.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 326.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 327.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 326.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 327.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 326.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 327.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 327.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 327.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 325.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 327.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1700ms": [
+      {
+        "duration_ms": 300.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 302.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 300.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 301.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 301.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 300.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 301.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 301.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 301.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 302.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 301.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 302.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 301.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 302.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 301.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 302.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 302.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 302.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 300.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 302.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1725ms": [
+      {
+        "duration_ms": 275.666888,
+        "completed": true
+      },
+      {
+        "duration_ms": 277.143047,
+        "completed": true
+      },
+      {
+        "duration_ms": 275.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 276.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 276.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 275.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 276.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 276.6938339999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 276.19309,
+        "completed": true
+      },
+      {
+        "duration_ms": 277.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 276.0738180000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 277.203479,
+        "completed": true
+      },
+      {
+        "duration_ms": 276.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 277.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 276.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 277.209934,
+        "completed": true
+      },
+      {
+        "duration_ms": 277.202951,
+        "completed": true
+      },
+      {
+        "duration_ms": 277.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 275.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 277.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1750ms": [
+      {
+        "duration_ms": 250.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.14304700000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.69383399999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.19308999999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.07381800000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.20347900000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 251.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.20993399999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.20295099999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 250.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 252.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1775ms": [
+      {
+        "duration_ms": 225.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.14304700000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.69383399999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.19308999999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.07381800000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.20347900000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 226.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.20993399999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.20295099999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 225.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 227.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1800ms": [
+      {
+        "duration_ms": 200.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.14304700000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.69383399999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.19308999999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.07381800000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.20347900000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 201.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.20993399999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.20295099999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 200.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 202.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1825ms": [
+      {
+        "duration_ms": 175.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.14304700000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.69383399999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.19308999999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.07381800000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.20347900000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 176.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.20993399999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.20295099999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 175.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 177.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1850ms": [
+      {
+        "duration_ms": 150.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.14304700000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.1654699999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.69383399999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.19308999999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.2509930000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.07381800000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.20347900000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 151.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.20993399999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.20295099999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 150.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 152.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1875ms": [
+      {
+        "duration_ms": 125.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.14304700000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.16546999999991,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.69383399999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.19308999999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.25099300000011,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.07381800000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.20347900000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 126.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.20993399999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.20295099999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 125.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 127.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1900ms": [
+      {
+        "duration_ms": 100.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.14304700000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.16546999999991,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.69383399999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.19308999999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.25099300000011,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.07381800000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.20347900000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 101.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.20993399999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.20295099999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 100.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 102.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1925ms": [
+      {
+        "duration_ms": 75.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.14304700000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.98120500000005,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.16546999999991,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.69383399999992,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.19308999999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.25099300000011,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.07381800000007,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.20347900000002,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.97164599999996,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 76.5388559999999,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.20993399999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.20295099999998,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.2056090000001,
+        "completed": true
+      },
+      {
+        "duration_ms": 75.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 77.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1950ms": [
+      {
+        "duration_ms": 50.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.143047000000024,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.981205000000045,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.989552,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.165469999999914,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.693833999999924,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.193089999999984,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.25099300000011,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.073818000000074,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.203479000000016,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.971645999999964,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 51.538855999999896,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.209933999999976,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.202950999999985,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.205609000000095,
+        "completed": true
+      },
+      {
+        "duration_ms": 50.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 52.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_1975ms": [
+      {
+        "duration_ms": 25.66688799999997,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.143047000000024,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.73101799999995,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.83238099999994,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.981205000000045,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.989552000000003,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.165469999999914,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.693833999999924,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.193089999999984,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.250993000000108,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.073818000000074,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.203479000000016,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.971645999999964,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 26.538855999999896,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.209933999999976,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.202950999999985,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.205609000000095,
+        "completed": true
+      },
+      {
+        "duration_ms": 25.85319000000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 27.17013799999995,
+        "completed": true
+      }
+    ],
+    "e3_2000ms_elapsed_2000ms": [
+      {
+        "duration_ms": 0.6668879999999717,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.143047000000024,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.7310179999999491,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.8323809999999412,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.9812050000000454,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.9895520000000033,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.1654699999999139,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.6938339999999243,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.1930899999999838,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.2509930000001077,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.0738180000000739,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.2034790000000157,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.9716459999999643,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.20590100000004,
+        "completed": true
+      },
+      {
+        "duration_ms": 1.538855999999896,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.2099339999999756,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.2029509999999846,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.205609000000095,
+        "completed": true
+      },
+      {
+        "duration_ms": 0.8531900000000405,
+        "completed": true
+      },
+      {
+        "duration_ms": 2.1701379999999517,
+        "completed": true
+      }
+    ]
+  },
+  "evictions": {
+    "low": [
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      },
+      {
+        "evicted": false
+      }
+    ]
+  },
+  "heldout_target_tokens": 4484
+}

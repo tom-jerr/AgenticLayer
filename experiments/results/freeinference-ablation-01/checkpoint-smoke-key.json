@@ -1,0 +1,14 @@
+{
+  "arms": [
+    {
+      "config": "eager-l2",
+      "launch_name": "checkpoint-l2-smoke-1-native-radix",
+      "repeat": 1
+    },
+    {
+      "config": "eager-l3",
+      "launch_name": "checkpoint-l3-smoke-1-native-radix",
+      "repeat": 1
+    }
+  ]
+}

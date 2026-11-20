@@ -1,0 +1,82 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/freeinference-fixedgraph-01/fixedgraph-heldout-confirm.jsonl",
+  "calibration_sha256": "d41c84a18c51ec52614b045828b5bd5d8367c6fd846dec36f2831be063515ed6",
+  "scope": "GPU projected trace replay",
+  "shared_engine": "fixedgraph-independent-confirm-shared-engine",
+  "source_sha256": {
+    "agenticlayer/agentic_layer/engine_cache.py": "301c1636c589b942ff6891436ac1aa860f279c3e09f5959cea091c73d65a94b4",
+    "agenticlayer/agentic_layer/server.py": "2bdf772efad76f9a933def01d38dbec03cbaf12294480838cd4e563b9126d052",
+    "agenticlayer/agentic_layer/policy.py": "5e9a54fa35fefe5b42c89c87f8a854210d5e151d186af7958b23b2aaef1bf310",
+    "agenticlayer/agentic_layer/versions.py": "bcaf6842551e44b88f34b0b5f985c6cc6e64a9fa8134224ec02fa6101328c7d3",
+    "experiments/trace_replay.py": "0d48ea75eb916d3c43ea60f75bb00fabe125c23f4339f16e92934e4074c07a81",
+    "experiments/trace_matrix.py": "a9766f436f993cbffa9d7b5884bdd6fded7618945aa9cd0ebff4b3d91a2f7c1f",
+    "experiments/launch_engine.sh": "15b146757c3db37b18ff96837e7a60350873e6a6530356b5058e05eb1eaa3940"
+  },
+  "wait_drift": "recorded",
+  "run_summaries": [
+    {
+      "strong": {
+        "name": "fixedgraph-independent-confirm-1-strong",
+        "statuses": {
+          "completed": 13
+        },
+        "p50_ms": 47970.35486996174,
+        "p95_ms": 85926.37812718749,
+        "p99_ms": 85926.37812718749
+      },
+      "joint": {
+        "name": "fixedgraph-independent-confirm-1-joint",
+        "statuses": {
+          "completed": 13
+        },
+        "p50_ms": 46903.540425002575,
+        "p95_ms": 84586.16680651903,
+        "p99_ms": 84586.16680651903
+      },
+      "joint-on-time": {
+        "name": "fixedgraph-independent-confirm-1-joint-on-time",
+        "statuses": {
+          "completed": 13
+        },
+        "p50_ms": 49842.12692081928,
+        "p95_ms": 96305.82328885794,
+        "p99_ms": 96305.82328885794
+      }
+    }
+  ],
+  "paired": {
+    "joint_minus_strong_p95_ms": -1340.211320668459,
+    "ci95_ms": [
+      -8101.644486188889,
+      5439.356964081526
+    ],
+    "clusters": 12,
+    "bootstrap_repeats": 10000,
+    "seed": 20261118,
+    "unavailable_bootstrap_draws": 0
+  },
+  "effects": {
+    "joint vs strong": {
+      "ci95_ms": [
+        -8101.644486188889,
+        5439.356964081526
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": -1340.211320668459
+    },
+    "joint-on-time vs strong": {
+      "ci95_ms": [
+        2025.210164487362,
+        10379.445161670446
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 10379.445161670446
+    }
+  }
+}

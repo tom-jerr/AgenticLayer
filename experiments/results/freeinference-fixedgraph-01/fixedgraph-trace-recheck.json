@@ -1,0 +1,150 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": "d41c84a18c51ec52614b045828b5bd5d8367c6fd846dec36f2831be063515ed6",
+  "scope": "GPU projected trace replay",
+  "shared_engine": "fixedgraph-trace-recheck-shared-engine",
+  "wait_drift": "recorded",
+  "run_summaries": [
+    {
+      "baseline": {
+        "name": "fixedgraph-trace-recheck-1-baseline",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 17838.664446026087,
+        "p95_ms": 45443.69642063975,
+        "p99_ms": 45443.69642063975
+      },
+      "strong": {
+        "name": "fixedgraph-trace-recheck-1-strong",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 18037.463773041964,
+        "p95_ms": 45156.70047700405,
+        "p99_ms": 45156.70047700405
+      },
+      "lifecycle-only": {
+        "name": "fixedgraph-trace-recheck-1-lifecycle-only",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 18430.288806557655,
+        "p95_ms": 37750.663336366415,
+        "p99_ms": 37750.663336366415
+      },
+      "joint-on-time": {
+        "name": "fixedgraph-trace-recheck-1-joint-on-time",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 13953.366823494434,
+        "p95_ms": 38812.65713647008,
+        "p99_ms": 38812.65713647008
+      },
+      "joint-minus-lookahead": {
+        "name": "fixedgraph-trace-recheck-1-joint-minus-lookahead",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 17281.904622912407,
+        "p95_ms": 42328.31283286214,
+        "p99_ms": 42328.31283286214
+      }
+    },
+    {
+      "strong": {
+        "name": "fixedgraph-trace-recheck-2-strong",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 20875.190872699022,
+        "p95_ms": 40113.36098983884,
+        "p99_ms": 40113.36098983884
+      },
+      "lifecycle-only": {
+        "name": "fixedgraph-trace-recheck-2-lifecycle-only",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14034.017585217953,
+        "p95_ms": 35029.234275221825,
+        "p99_ms": 35029.234275221825
+      },
+      "joint-on-time": {
+        "name": "fixedgraph-trace-recheck-2-joint-on-time",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 15274.614427238703,
+        "p95_ms": 40285.00236943364,
+        "p99_ms": 40285.00236943364
+      },
+      "joint-minus-lookahead": {
+        "name": "fixedgraph-trace-recheck-2-joint-minus-lookahead",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 18390.082728117704,
+        "p95_ms": 41387.35369220376,
+        "p99_ms": 41387.35369220376
+      },
+      "baseline": {
+        "name": "fixedgraph-trace-recheck-2-baseline",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 24565.358694642782,
+        "p95_ms": 62408.00899639726,
+        "p99_ms": 62408.00899639726
+      }
+    }
+  ],
+  "paired": null,
+  "effects": {
+    "strong vs baseline": {
+      "ci95_ms": [
+        -17251.308519393206,
+        -5330.335430800915
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": -10832.101050764322
+    },
+    "lifecycle-only vs baseline": {
+      "ci95_ms": [
+        -24657.345660030842,
+        -7947.313956916332
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": -15916.227765381336
+    },
+    "joint-on-time vs baseline": {
+      "ci95_ms": [
+        -28553.160075098276,
+        -6631.039284169674
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": -12132.804904133081
+    },
+    "joint-minus-lookahead vs baseline": {
+      "ci95_ms": [
+        -20079.696163535118,
+        -4056.342728435993
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": -9558.1083483994
+    }
+  }
+}

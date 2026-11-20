@@ -1,0 +1,62 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": "d41c84a18c51ec52614b045828b5bd5d8367c6fd846dec36f2831be063515ed6",
+  "scope": "GPU projected trace replay",
+  "shared_engine": "fixedgraph-trace-pressure80-shared-engine",
+  "wait_drift": "long-double",
+  "run_summaries": [
+    {
+      "strong": {
+        "name": "fixedgraph-trace-pressure80-1-strong",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 18700.24050027132,
+        "p95_ms": 43770.0659930706,
+        "p99_ms": 43770.0659930706
+      },
+      "joint": {
+        "name": "fixedgraph-trace-pressure80-1-joint",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 18745.175324380398,
+        "p95_ms": 37993.173740804195,
+        "p99_ms": 37993.173740804195
+      },
+      "joint-on-time": {
+        "name": "fixedgraph-trace-pressure80-1-joint-on-time",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 18960.697170346975,
+        "p95_ms": 38230.94378784299,
+        "p99_ms": 38230.94378784299
+      }
+    }
+  ],
+  "paired": {
+    "joint_minus_strong_p95_ms": -5776.892252266407,
+    "ci95_ms": [
+      -10179.750736802816,
+      1759.3053802847862
+    ],
+    "clusters": 12,
+    "bootstrap_repeats": 10000,
+    "seed": 20261118,
+    "unavailable_bootstrap_draws": 0
+  },
+  "effects": {
+    "joint vs strong": {
+      "ci95_ms": [
+        -10179.750736802816,
+        1759.3053802847862
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": -5776.892252266407
+    }
+  }
+}

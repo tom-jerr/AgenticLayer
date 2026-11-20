@@ -1,0 +1,202 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": "d41c84a18c51ec52614b045828b5bd5d8367c6fd846dec36f2831be063515ed6",
+  "scope": "GPU projected trace replay",
+  "shared_engine": "fixedgraph-trace-joint-shared-engine",
+  "wait_drift": "recorded",
+  "run_summaries": [
+    {
+      "strong": {
+        "name": "fixedgraph-trace-joint-1-strong",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14690.657503902912,
+        "p95_ms": 34911.448534578085,
+        "p99_ms": 34911.448534578085
+      },
+      "joint": {
+        "name": "fixedgraph-trace-joint-1-joint",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 13937.594972550869,
+        "p95_ms": 33148.155607283115,
+        "p99_ms": 33148.155607283115
+      },
+      "joint-on-time": {
+        "name": "fixedgraph-trace-joint-1-joint-on-time",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14080.63605427742,
+        "p95_ms": 33530.62905743718,
+        "p99_ms": 33530.62905743718
+      },
+      "joint-minus-parallel": {
+        "name": "fixedgraph-trace-joint-1-joint-minus-parallel",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 15770.229943096638,
+        "p95_ms": 36351.33362188935,
+        "p99_ms": 36351.33362188935
+      },
+      "joint-minus-lifecycle": {
+        "name": "fixedgraph-trace-joint-1-joint-minus-lifecycle",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14485.109999775887,
+        "p95_ms": 33860.156927257776,
+        "p99_ms": 33860.156927257776
+      },
+      "joint-minus-placement": {
+        "name": "fixedgraph-trace-joint-1-joint-minus-placement",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14618.568412959576,
+        "p95_ms": 34268.05714890361,
+        "p99_ms": 34268.05714890361
+      },
+      "joint-minus-lookahead": {
+        "name": "fixedgraph-trace-joint-1-joint-minus-lookahead",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 15370.414823293686,
+        "p95_ms": 34688.4753331542,
+        "p99_ms": 34688.4753331542
+      },
+      "joint-minus-prefetch": {
+        "name": "fixedgraph-trace-joint-1-joint-minus-prefetch",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14646.480925381184,
+        "p95_ms": 33754.49779629707,
+        "p99_ms": 33754.49779629707
+      },
+      "joint-minus-prediction": {
+        "name": "fixedgraph-trace-joint-1-joint-minus-prediction",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 15080.5182158947,
+        "p95_ms": 34399.60420131683,
+        "p99_ms": 34399.60420131683
+      },
+      "oracle": {
+        "name": "fixedgraph-trace-joint-1-oracle",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14581.46658912301,
+        "p95_ms": 33915.90765118599,
+        "p99_ms": 33915.90765118599
+      }
+    }
+  ],
+  "paired": {
+    "joint_minus_strong_p95_ms": -1763.2929272949696,
+    "ci95_ms": [
+      -1763.2929272949696,
+      -694.3499147891998
+    ],
+    "clusters": 12,
+    "bootstrap_repeats": 10000,
+    "seed": 20261118,
+    "unavailable_bootstrap_draws": 0
+  },
+  "effects": {
+    "joint-minus-parallel vs joint": {
+      "ci95_ms": [
+        279.50282394886017,
+        3203.1780146062374
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 3203.1780146062374
+    },
+    "joint-minus-lifecycle vs joint": {
+      "ci95_ms": [
+        533.1470184028149,
+        712.0013199746609
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 712.0013199746609
+    },
+    "joint-minus-placement vs joint": {
+      "ci95_ms": [
+        184.5843605697155,
+        1119.901541620493
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 1119.901541620493
+    },
+    "joint-minus-lookahead vs joint": {
+      "ci95_ms": [
+        -787.2666567564011,
+        1540.3197258710861
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 1540.3197258710861
+    },
+    "joint-minus-prefetch vs joint": {
+      "ci95_ms": [
+        -892.6383890211582,
+        665.6468249857426
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 606.342189013958
+    },
+    "joint-minus-prediction vs joint": {
+      "ci95_ms": [
+        -591.6303768754005,
+        1251.448594033718
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 1251.448594033718
+    },
+    "joint vs strong": {
+      "ci95_ms": [
+        -1763.2929272949696,
+        -694.3499147891998
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": -1763.2929272949696
+    },
+    "oracle vs joint": {
+      "ci95_ms": [
+        -455.20028099417686,
+        767.752043902874
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 767.752043902874
+    }
+  }
+}

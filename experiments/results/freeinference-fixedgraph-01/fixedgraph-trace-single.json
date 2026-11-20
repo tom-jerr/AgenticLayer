@@ -1,0 +1,163 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": "d41c84a18c51ec52614b045828b5bd5d8367c6fd846dec36f2831be063515ed6",
+  "scope": "GPU projected trace replay",
+  "shared_engine": "fixedgraph-trace-single-shared-engine",
+  "wait_drift": "recorded",
+  "run_summaries": [
+    {
+      "baseline": {
+        "name": "fixedgraph-trace-single-1-baseline",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14218.322195112705,
+        "p95_ms": 33516.18730276823,
+        "p99_ms": 33516.18730276823
+      },
+      "parallel-only": {
+        "name": "fixedgraph-trace-single-1-parallel-only",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 15043.840169906616,
+        "p95_ms": 34635.8074657619,
+        "p99_ms": 34635.8074657619
+      },
+      "lifecycle-only": {
+        "name": "fixedgraph-trace-single-1-lifecycle-only",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 15002.805016934872,
+        "p95_ms": 34260.35118103027,
+        "p99_ms": 34260.35118103027
+      },
+      "offload-only": {
+        "name": "fixedgraph-trace-single-1-offload-only",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14403.35325524211,
+        "p95_ms": 33836.35834604502,
+        "p99_ms": 33836.35834604502
+      },
+      "lookahead-only": {
+        "name": "fixedgraph-trace-single-1-lookahead-only",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14096.887592226267,
+        "p95_ms": 33517.704371362925,
+        "p99_ms": 33517.704371362925
+      },
+      "ttl": {
+        "name": "fixedgraph-trace-single-1-ttl",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14270.271334797144,
+        "p95_ms": 34065.94292074442,
+        "p99_ms": 34065.94292074442
+      },
+      "task-prefix": {
+        "name": "fixedgraph-trace-single-1-task-prefix",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14718.451879918575,
+        "p95_ms": 34167.18474775553,
+        "p99_ms": 34167.18474775553
+      },
+      "simple": {
+        "name": "fixedgraph-trace-single-1-simple",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14482.344768941402,
+        "p95_ms": 33862.549636512995,
+        "p99_ms": 33862.549636512995
+      }
+    }
+  ],
+  "paired": null,
+  "effects": {
+    "parallel-only vs baseline": {
+      "ci95_ms": [
+        -1.5940815210342407,
+        1119.6201629936695
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 1119.6201629936695
+    },
+    "lifecycle-only vs baseline": {
+      "ci95_ms": [
+        -973.1977544724941,
+        852.6637107133865
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 744.163878262043
+    },
+    "offload-only vs baseline": {
+      "ci95_ms": [
+        -603.0807010829449,
+        394.54731717705727
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 320.1710432767868
+    },
+    "lookahead-only vs baseline": {
+      "ci95_ms": [
+        -914.8744978010654,
+        1.5170685946941376
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 1.5170685946941376
+    },
+    "ttl vs baseline": {
+      "ci95_ms": [
+        -716.7246155440807,
+        549.7556179761887
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 549.7556179761887
+    },
+    "task-prefix vs baseline": {
+      "ci95_ms": [
+        -556.9103807210922,
+        650.9974449872971
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 650.9974449872971
+    },
+    "simple vs baseline": {
+      "ci95_ms": [
+        -552.4956211447716,
+        346.3623337447643
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 346.3623337447643
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": null,
+  "scope": "uncalibrated connection smoke",
+  "run_summaries": [
+    {
+      "native-radix": {
+        "name": "heldout-gpu-connection-1-native-radix",
+        "statuses": {
+          "completed": 4
+        },
+        "p50_ms": 8061.9871616363525,
+        "p95_ms": 34744.624610990286,
+        "p99_ms": 34744.624610990286
+      },
+      "joint": {
+        "name": "heldout-gpu-connection-1-joint",
+        "statuses": {
+          "completed": 4
+        },
+        "p50_ms": 8156.497605144978,
+        "p95_ms": 35745.98367139697,
+        "p99_ms": 35745.98367139697
+      }
+    }
+  ],
+  "paired": null
+}

@@ -1,0 +1,102 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": "d41c84a18c51ec52614b045828b5bd5d8367c6fd846dec36f2831be063515ed6",
+  "scope": "GPU projected trace replay",
+  "shared_engine": "fixedgraph-trace-pressure60-shared-engine",
+  "wait_drift": "early-quarter",
+  "run_summaries": [
+    {
+      "strong": {
+        "name": "fixedgraph-trace-pressure60-1-strong",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 16650.11554583907,
+        "p95_ms": 35447.34311103821,
+        "p99_ms": 35447.34311103821
+      },
+      "joint": {
+        "name": "fixedgraph-trace-pressure60-1-joint",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 13341.458551585674,
+        "p95_ms": 31595.127124339342,
+        "p99_ms": 31595.127124339342
+      },
+      "joint-on-time": {
+        "name": "fixedgraph-trace-pressure60-1-joint-on-time",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 16682.22850188613,
+        "p95_ms": 35151.27078816295,
+        "p99_ms": 35151.27078816295
+      },
+      "joint-minus-prefetch": {
+        "name": "fixedgraph-trace-pressure60-1-joint-minus-prefetch",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 19377.05572322011,
+        "p95_ms": 33714.356411248446,
+        "p99_ms": 33714.356411248446
+      },
+      "joint-minus-prediction": {
+        "name": "fixedgraph-trace-pressure60-1-joint-minus-prediction",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 14458.393972367048,
+        "p95_ms": 34263.64139840007,
+        "p99_ms": 34263.64139840007
+      }
+    }
+  ],
+  "paired": {
+    "joint_minus_strong_p95_ms": -3852.215986698866,
+    "ci95_ms": [
+      -3852.215986698866,
+      550.9966686367989
+    ],
+    "clusters": 12,
+    "bootstrap_repeats": 10000,
+    "seed": 20261118,
+    "unavailable_bootstrap_draws": 0
+  },
+  "effects": {
+    "joint-minus-prefetch vs joint": {
+      "ci95_ms": [
+        -335.2452740073204,
+        3973.141446709633
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 2119.2292869091034
+    },
+    "joint-minus-prediction vs joint": {
+      "ci95_ms": [
+        -3903.0773527920246,
+        2668.514274060726
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": 2668.514274060726
+    },
+    "joint vs strong": {
+      "ci95_ms": [
+        -3852.215986698866,
+        550.9966686367989
+      ],
+      "clusters": 12,
+      "bootstrap_repeats": 10000,
+      "seed": 20261118,
+      "unavailable_bootstrap_draws": 0,
+      "candidate_minus_reference_p95_ms": -3852.215986698866
+    }
+  }
+}

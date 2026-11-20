@@ -1,0 +1,66 @@
+{
+  "arm": "hybrid-triton-io",
+  "triton_copy": true,
+  "runs": [
+    {
+      "length": 512,
+      "prefill_ms": 166.355292,
+      "d2h_wall_ms": 138.750807,
+      "h2d_wall_ms": 76.603951,
+      "d2h_transfer_us": 125661,
+      "h2d_transfer_us": 22649,
+      "d2h_bytes": 68288512,
+      "h2d_bytes": 68288512,
+      "ack_metrics_complete": [
+        true,
+        true
+      ],
+      "matched_tokens": 512,
+      "max_logprob_delta": 0.0
+    },
+    {
+      "length": 4096,
+      "prefill_ms": 174.611546,
+      "d2h_wall_ms": 59.406301,
+      "h2d_wall_ms": 52.089475,
+      "d2h_transfer_us": 5684,
+      "h2d_transfer_us": 34761,
+      "d2h_bytes": 185729024,
+      "h2d_bytes": 185729024,
+      "ack_metrics_complete": [
+        true,
+        true
+      ],
+      "matched_tokens": 4096,
+      "max_logprob_delta": 0.0
+    },
+    {
+      "length": 16384,
+      "prefill_ms": 715.274102,
+      "d2h_wall_ms": 46.405363,
+      "h2d_wall_ms": 87.650474,
+      "d2h_transfer_us": 16382,
+      "h2d_transfer_us": 45016,
+      "d2h_bytes": 588382208,
+      "h2d_bytes": 588382208,
+      "ack_metrics_complete": [
+        true,
+        true
+      ],
+      "matched_tokens": 16384,
+      "max_logprob_delta": 0.0
+    }
+  ],
+  "transfer_counters": {
+    "d2h_full_native_bytes": 0,
+    "d2h_full_triton_bytes": 687865856,
+    "d2h_mamba_native_bytes": 0,
+    "d2h_mamba_side_bytes": 0,
+    "d2h_mamba_triton_bytes": 154533888,
+    "h2d_full_native_bytes": 0,
+    "h2d_full_triton_bytes": 687865856,
+    "h2d_mamba_native_bytes": 0,
+    "h2d_mamba_side_bytes": 0,
+    "h2d_mamba_triton_bytes": 154533888
+  }
+}

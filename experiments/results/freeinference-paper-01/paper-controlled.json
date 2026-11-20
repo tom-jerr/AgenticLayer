@@ -1,0 +1,38 @@
+{
+  "sample": "/root/autodl-tmp/agentic-layer-runs/5090-nvfp4-01/trace-heldout-smoke.jsonl",
+  "calibration_sha256": "d41c84a18c51ec52614b045828b5bd5d8367c6fd846dec36f2831be063515ed6",
+  "scope": "GPU projected trace replay",
+  "run_summaries": [
+    {
+      "strong": {
+        "name": "paper-controlled-1-strong",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 30917.004600167274,
+        "p95_ms": 61657.582357525826,
+        "p99_ms": 61657.582357525826
+      },
+      "joint": {
+        "name": "paper-controlled-1-joint",
+        "statuses": {
+          "completed": 12
+        },
+        "p50_ms": 31082.162387669086,
+        "p95_ms": 62347.56360575557,
+        "p99_ms": 62347.56360575557
+      }
+    }
+  ],
+  "paired": {
+    "joint_minus_strong_p95_ms": 689.981248229742,
+    "ci95_ms": [
+      -794.7618030011654,
+      689.981248229742
+    ],
+    "clusters": 12,
+    "bootstrap_repeats": 10000,
+    "seed": 20261118,
+    "unavailable_bootstrap_draws": 0
+  }
+}
